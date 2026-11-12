@@ -1,0 +1,37 @@
+outcome,framework,tracts,clusters,rho,ci_lo,ci_hi,p_naive,p_spatial,significant,meets_min,meets_strong,lift,lift_lo,lift_hi,lift_meets_min,diff_vs_original,diff_ci,diff_significant
+evictions_2023_2025,original,905,47,0.387,0.294,0.469,1.1815249536578815e-33,< 0.0005,True,False,False,1.37,1.19,1.49,False,,,
+evictions_2023_2025,hud,905,47,0.355,0.264,0.436,3.0826127069178065e-28,< 0.0005,True,False,False,1.36,1.17,1.52,False,-0.032,"[-0.054, -0.008]",True
+evictions_2023_2025,hud_chas,905,47,0.208,0.131,0.288,2.8968263780327914e-10,< 0.0005,True,False,False,1.19,1.04,1.34,False,-0.179,"[-0.237, -0.116]",True
+evictions_2023_2025,equal,905,47,0.331,0.244,0.41,1.4801049768935621e-24,< 0.0005,True,False,False,1.32,1.17,1.48,False,-0.056,"[-0.09, -0.025]",True
+evictions_2023_2025,income_only,905,47,0.426,0.325,0.519,3.1493031641306846e-41,< 0.0005,True,True,False,1.26,1.12,1.49,False,0.039,"[-0.0, 0.084]",False
+evictions_2023_2025,cdc_svi,905,47,0.365,0.263,0.454,7.649216913301295e-30,< 0.0005,True,False,False,1.2,1.06,1.36,False,-0.022,"[-0.078, 0.027]",False
+evictions_2026,original,905,47,0.348,0.249,0.431,4.022115887733977e-27,< 0.0005,True,False,False,1.44,1.25,1.63,False,,,
+evictions_2026,hud,905,47,0.316,0.214,0.4,2.2429795887799306e-22,< 0.0005,True,False,False,1.42,1.2,1.64,False,-0.032,"[-0.053, -0.013]",True
+evictions_2026,hud_chas,905,47,0.188,0.109,0.267,1.120184290488025e-08,< 0.0005,True,False,False,1.24,1.07,1.4,False,-0.159,"[-0.213, -0.097]",True
+evictions_2026,equal,905,47,0.299,0.208,0.385,3.5458271802070265e-20,< 0.0005,True,False,False,1.43,1.25,1.58,False,-0.049,"[-0.075, -0.023]",True
+evictions_2026,income_only,905,47,0.378,0.275,0.472,4.133148570067806e-32,< 0.0005,True,False,False,1.38,1.2,1.62,False,0.03,"[-0.007, 0.073]",False
+evictions_2026,cdc_svi,905,47,0.321,0.213,0.412,3.975354627978793e-23,< 0.0005,True,False,False,1.18,1.02,1.44,False,-0.027,"[-0.079, 0.026]",False
+housing_insecurity,original,1202,60,0.737,0.676,0.781,4.1603700357161675e-206,< 0.0005,True,True,False,,,,,,,
+housing_insecurity,hud,1202,60,0.682,0.625,0.728,1.673489766047194e-165,< 0.0005,True,True,False,,,,,-0.054,"[-0.07, -0.039]",True
+housing_insecurity,hud_chas,1202,60,0.522,0.441,0.597,4.402796739967709e-85,< 0.0005,True,False,False,,,,,-0.214,"[-0.264, -0.157]",True
+housing_insecurity,equal,1202,60,0.643,0.56,0.711,3.2230098964776835e-141,< 0.0005,True,True,False,,,,,-0.094,"[-0.126, -0.062]",True
+housing_insecurity,income_only,1202,60,0.868,0.832,0.892,0.0,< 0.0005,True,True,True,,,,,0.131,"[0.105, 0.164]",True
+housing_insecurity,cdc_svi,1202,60,0.821,0.779,0.85,5.186666824228893e-295,< 0.0005,True,True,True,,,,,0.085,"[0.052, 0.122]",True
+utility_shutoff,original,1202,60,0.736,0.678,0.779,1.5751543974553033e-205,< 0.0005,True,True,False,,,,,,,
+utility_shutoff,hud,1202,60,0.682,0.625,0.725,3.5411103521126596e-165,< 0.0005,True,True,False,,,,,-0.054,"[-0.07, -0.038]",True
+utility_shutoff,hud_chas,1202,60,0.518,0.433,0.59,2.294617569131529e-83,< 0.0005,True,False,False,,,,,-0.218,"[-0.269, -0.166]",True
+utility_shutoff,equal,1202,60,0.643,0.56,0.711,2.1591245308841192e-141,< 0.0005,True,True,False,,,,,-0.093,"[-0.125, -0.062]",True
+utility_shutoff,income_only,1202,60,0.866,0.83,0.889,0.0,< 0.0005,True,True,True,,,,,0.13,"[0.103, 0.162]",True
+utility_shutoff,cdc_svi,1202,60,0.81,0.769,0.839,1.3503284785032774e-280,< 0.0005,True,True,True,,,,,0.074,"[0.04, 0.113]",True
+low_income_renter_loss,original,782,60,0.166,0.088,0.239,2.921254667697711e-06,< 0.0005,True,False,False,,,,,,,
+low_income_renter_loss,hud,782,60,0.202,0.118,0.275,1.2608175046052494e-08,< 0.0005,True,False,False,,,,,0.035,"[0.016, 0.053]",True
+low_income_renter_loss,hud_chas,782,60,0.166,0.092,0.236,3.1574824437484957e-06,< 0.0005,True,False,False,,,,,-0.001,"[-0.077, 0.079]",False
+low_income_renter_loss,equal,782,60,0.134,0.058,0.203,0.0001753426368247099,0.001,True,False,False,,,,,-0.033,"[-0.056, -0.009]",True
+low_income_renter_loss,income_only,782,60,0.113,0.03,0.19,0.0015455812693108085,0.009,True,False,False,,,,,-0.053,"[-0.093, -0.017]",True
+low_income_renter_loss,cdc_svi,782,60,-0.001,-0.087,0.072,0.9686566635210336,0.916,False,False,False,,,,,-0.168,"[-0.24, -0.102]",True
+combined_dedup,original,663,46,0.584,0.496,0.649,8.7554631253992e-62,< 0.0005,True,,,,,,,,,
+combined_dedup,hud,663,46,0.547,0.451,0.621,5.199902234084324e-53,< 0.0005,True,,,,,,,-0.037,"[-0.065, -0.011]",True
+combined_dedup,hud_chas,663,46,0.344,0.251,0.423,7.653817378476287e-20,< 0.0005,True,,,,,,,-0.24,"[-0.307, -0.168]",True
+combined_dedup,equal,663,46,0.523,0.434,0.597,8.191217691050605e-48,< 0.0005,True,,,,,,,-0.061,"[-0.091, -0.028]",True
+combined_dedup,income_only,663,46,0.638,0.549,0.697,4.473751462052062e-77,< 0.0005,True,,,,,,,0.054,"[0.014, 0.096]",True
+combined_dedup,cdc_svi,663,46,0.526,0.406,0.604,2.1213740169424458e-48,< 0.0005,True,,,,,,,-0.058,"[-0.125, -0.009]",True

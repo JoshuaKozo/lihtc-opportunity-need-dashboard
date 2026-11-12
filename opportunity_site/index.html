@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atlanta Opportunity Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800&family=Overpass+Mono:wght@400;600;700&display=swap">
+<style>
+  /* Demo host page. The module styles itself (scoped under .opp); this page only gives it a
+     full-height box and a background, the way the larger app would. */
+  :root { --page-bg: #f3f5f8; --page-ink: #131820; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --page-bg: #101318; --page-ink: #eef1f5; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --page-bg: #101318; --page-ink: #eef1f5; color-scheme: dark; }
+  html, body { height: 100%; }
+  body { background: var(--page-bg); color: var(--page-ink); }
+  #opportunity { height: 100%; }
+  .boot { padding-block: 24px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); font-family: "Overpass", system-ui, sans-serif; }
+</style>
+</head>
+<body>
+
+<div id="opportunity"><p class="boot">Loading the opportunity map...</p></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="opportunity.js"></script>
+<script>
+  // Opens on a real 2025 funded site (Folio House, downtown Atlanta) with two other 2025 funded
+  // sites queued for comparison, so the first view shows every feature working.
+  OpportunityModule.mount(document.getElementById("opportunity"), {
+    dataUrl: "data/",
+    initialTract: "13121003500",
+    initialPoint: { lat: 33.75413, lon: -84.3927, label: "Folio House" },
+    initialCompare: [
+      { tract: "13121003500", point: { lat: 33.75413, lon: -84.3927, label: "Folio House" } },
+      { tract: "13089021301", point: { lat: 33.89743, lon: -84.28646, label: "Edmund Doraville II" } },
+      { tract: "13121007603", point: { lat: 33.71087, lon: -84.44682, label: "Wisteria Place Campbellton" } },
+    ],
+    // A host app with a basemap provider can pass tiles, e.g.
+    // tiles: { url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+    //          attribution: "© OpenStreetMap contributors © CARTO" },
+  }).catch((err) => {
+    document.getElementById("opportunity").innerHTML =
+      '<p class="boot">The opportunity map couldn\'t start: ' + String(err.message).replace(/</g, "&lt;") +
+      '. If you opened this file directly, serve the folder over HTTP instead (for example "python -m http.server") and reload.</p>';
+  });
+</script>
+</body>
+</html>

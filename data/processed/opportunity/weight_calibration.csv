@@ -1,0 +1,6 @@
+weighting,w_mobility,w_schools,w_jobs,w_transit,w_health,w_environment,validity_mobility,validity_life_exp,validity_adult_emp
+current default,0.34,0.27,0.11,0.05,0.11,0.12,0.457,0.527,0.017
+equal,0.167,0.167,0.167,0.167,0.167,0.167,0.302,0.442,0.052
+literature prior,0.25,0.25,0.2,0.1,0.1,0.1,0.345,0.477,0.045
+data only,0.44,0.291,0.012,0.0,0.114,0.143,0.501,0.537,-0.001
+final (blend in ranges),0.345,0.271,0.106,0.05,0.107,0.121,0.45,0.523,0.014

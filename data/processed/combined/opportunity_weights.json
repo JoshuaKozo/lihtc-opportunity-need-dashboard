@@ -1,0 +1,97 @@
+{
+  "tracts": 1225,
+  "life_expectancy_available": 1113,
+  "ranges": {
+    "mobility": {
+      "low": 0.15,
+      "start": 0.25,
+      "high": 0.35
+    },
+    "schools": {
+      "low": 0.15,
+      "start": 0.25,
+      "high": 0.35
+    },
+    "jobs": {
+      "low": 0.1,
+      "start": 0.2,
+      "high": 0.25
+    },
+    "transit": {
+      "low": 0.05,
+      "start": 0.1,
+      "high": 0.15
+    },
+    "health": {
+      "low": 0.05,
+      "start": 0.1,
+      "high": 0.15
+    },
+    "environment": {
+      "low": 0.05,
+      "start": 0.1,
+      "high": 0.15
+    }
+  },
+  "data_weights": {
+    "mobility": 0.507,
+    "schools": 0.337,
+    "jobs": 0.033,
+    "transit": 0.0,
+    "health": 0.0,
+    "environment": 0.122
+  },
+  "final_weights": {
+    "mobility": 0.35,
+    "schools": 0.299,
+    "jobs": 0.122,
+    "transit": 0.056,
+    "health": 0.056,
+    "environment": 0.117
+  },
+  "final_percent": {
+    "mobility": 35,
+    "schools": 30,
+    "jobs": 12,
+    "transit": 6,
+    "health": 5,
+    "environment": 12
+  },
+  "weights_by_blend": {
+    "0.25": {
+      "mobility": 0.314,
+      "schools": 0.272,
+      "jobs": 0.158,
+      "transit": 0.075,
+      "health": 0.075,
+      "environment": 0.106
+    },
+    "0.50": {
+      "mobility": 0.35,
+      "schools": 0.299,
+      "jobs": 0.122,
+      "transit": 0.056,
+      "health": 0.056,
+      "environment": 0.117
+    },
+    "0.75": {
+      "mobility": 0.35,
+      "schools": 0.319,
+      "jobs": 0.104,
+      "transit": 0.054,
+      "health": 0.054,
+      "environment": 0.12
+    }
+  },
+  "validity_final": {
+    "mobility": 0.401,
+    "life_expectancy": 0.505,
+    "adult_employment_test_only": 0.016
+  },
+  "stability_final": {
+    "median_rank_corr": 0.99,
+    "top10_kept_90pct": 75,
+    "top10": 123
+  },
+  "rank_corr_with_published": 0.997
+}

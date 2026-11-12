@@ -1,0 +1,477 @@
+{
+ "per_metric": [
+  {
+   "part": "mobility",
+   "metric": "oa_kfr_p25",
+   "mobility": null,
+   "life_expectancy": {
+    "r": 0.507,
+    "positive": 8,
+    "counties": 11
+   }
+  },
+  {
+   "part": "mobility",
+   "metric": "oa_jail_p25",
+   "mobility": null,
+   "life_expectancy": {
+    "r": 0.361,
+    "positive": 8,
+    "counties": 11
+   }
+  },
+  {
+   "part": "jobs",
+   "metric": "epa_jobs_45min_transit",
+   "mobility": {
+    "r": -0.412,
+    "positive": 0,
+    "counties": 5
+   },
+   "life_expectancy": {
+    "r": -0.304,
+    "positive": 0,
+    "counties": 5
+   }
+  },
+  {
+   "part": "jobs",
+   "metric": "epa_jobs_45min_auto",
+   "mobility": {
+    "r": -0.103,
+    "positive": 4,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": -0.051,
+    "positive": 5,
+    "counties": 11
+   }
+  },
+  {
+   "part": "jobs",
+   "metric": "jobs_nondegree_5mi",
+   "mobility": {
+    "r": -0.047,
+    "positive": 3,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.041,
+    "positive": 6,
+    "counties": 11
+   }
+  },
+  {
+   "part": "jobs",
+   "metric": "jobs_per_nondegree_worker_5mi",
+   "mobility": {
+    "r": -0.037,
+    "positive": 3,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.047,
+    "positive": 6,
+    "counties": 11
+   }
+  },
+  {
+   "part": "jobs",
+   "metric": "jobs_growth_5mi",
+   "mobility": {
+    "r": -0.056,
+    "positive": 2,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.066,
+    "positive": 5,
+    "counties": 11
+   }
+  },
+  {
+   "part": "schools",
+   "metric": "school_prof_elem3",
+   "mobility": {
+    "r": 0.463,
+    "positive": 11,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.406,
+    "positive": 8,
+    "counties": 11
+   }
+  },
+  {
+   "part": "schools",
+   "metric": "school_prof_middle",
+   "mobility": {
+    "r": 0.444,
+    "positive": 11,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.408,
+    "positive": 11,
+    "counties": 11
+   }
+  },
+  {
+   "part": "schools",
+   "metric": "school_prof_high",
+   "mobility": {
+    "r": 0.381,
+    "positive": 10,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.34,
+    "positive": 9,
+    "counties": 11
+   }
+  },
+  {
+   "part": "schools",
+   "metric": "school_grad_rate_high",
+   "mobility": {
+    "r": 0.305,
+    "positive": 10,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.291,
+    "positive": 10,
+    "counties": 11
+   }
+  },
+  {
+   "part": "transit",
+   "metric": "marta_rail_dist_mi",
+   "mobility": {
+    "r": -0.099,
+    "positive": 4,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": -0.071,
+    "positive": 6,
+    "counties": 11
+   }
+  },
+  {
+   "part": "transit",
+   "metric": "marta_stops_half_mi",
+   "mobility": {
+    "r": -0.437,
+    "positive": 0,
+    "counties": 3
+   },
+   "life_expectancy": {
+    "r": -0.389,
+    "positive": 0,
+    "counties": 3
+   }
+  },
+  {
+   "part": "transit",
+   "metric": "epa_walkability",
+   "mobility": {
+    "r": -0.151,
+    "positive": 3,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": -0.044,
+    "positive": 5,
+    "counties": 11
+   }
+  },
+  {
+   "part": "health",
+   "metric": "fqhc_dist_mi",
+   "mobility": {
+    "r": -0.369,
+    "positive": 2,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": -0.257,
+    "positive": 2,
+    "counties": 11
+   }
+  },
+  {
+   "part": "health",
+   "metric": "places_uninsured",
+   "mobility": {
+    "r": 0.554,
+    "positive": 11,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.52,
+    "positive": 9,
+    "counties": 11
+   }
+  },
+  {
+   "part": "health",
+   "metric": "food_low_access_share",
+   "mobility": {
+    "r": -0.293,
+    "positive": 2,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": -0.231,
+    "positive": 3,
+    "counties": 11
+   }
+  },
+  {
+   "part": "environment",
+   "metric": "hud_env_health",
+   "mobility": {
+    "r": 0.19,
+    "positive": 8,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.117,
+    "positive": 5,
+    "counties": 11
+   }
+  },
+  {
+   "part": "mobility",
+   "metric": "PART mobility",
+   "mobility": null,
+   "life_expectancy": {
+    "r": 0.492,
+    "positive": 8,
+    "counties": 11
+   }
+  },
+  {
+   "part": "schools",
+   "metric": "PART schools",
+   "mobility": {
+    "r": 0.483,
+    "positive": 11,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.428,
+    "positive": 9,
+    "counties": 11
+   }
+  },
+  {
+   "part": "jobs",
+   "metric": "PART jobs",
+   "mobility": {
+    "r": -0.168,
+    "positive": 2,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": -0.064,
+    "positive": 3,
+    "counties": 11
+   }
+  },
+  {
+   "part": "transit",
+   "metric": "PART transit",
+   "mobility": {
+    "r": -0.193,
+    "positive": 4,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": -0.107,
+    "positive": 6,
+    "counties": 11
+   }
+  },
+  {
+   "part": "health",
+   "metric": "PART health",
+   "mobility": {
+    "r": 0.028,
+    "positive": 7,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.109,
+    "positive": 8,
+    "counties": 11
+   }
+  },
+  {
+   "part": "environment",
+   "metric": "PART environment",
+   "mobility": {
+    "r": 0.19,
+    "positive": 8,
+    "counties": 11
+   },
+   "life_expectancy": {
+    "r": 0.117,
+    "positive": 5,
+    "counties": 11
+   }
+  }
+ ],
+ "historical_backtest": {
+  "inputs": "2011 school results (CRCT, EOCT, graduation), jobs 2005 and 2010 (LODES), 2010 food access (USDA), MARTA rail stations (all open by 2000), health centers open by 2010 (HRSA)",
+  "parts_used": [
+   "health",
+   "jobs",
+   "schools",
+   "transit"
+  ],
+  "school_match_rates": {
+   "elem/middle": 0.8517279821627648,
+   "high": 0.8432343234323433,
+   "grad": 0.8195652173913044
+  },
+  "health_centers_open_by_2010": 63,
+  "results": {
+   "life_exp": {
+    "label": "Life expectancy 2010-15 (CDC USALEEP)",
+    "score_2010": {
+     "r": 0.295,
+     "positive": 8,
+     "counties": 11
+    },
+    "score_2010_with_mobility": {
+     "r": 0.464,
+     "positive": 9,
+     "counties": 11
+    },
+    "poverty_2010_only": {
+     "r": 0.486,
+     "positive": 11,
+     "counties": 11
+    },
+    "todays_score": {
+     "r": 0.527,
+     "positive": 9,
+     "counties": 11
+    },
+    "r2_poverty_only": 0.313,
+    "r2_poverty_plus_score_2010": 0.37
+   },
+   "good_health": {
+    "label": "Adults not in poor health 2022-23 (CDC PLACES)",
+    "score_2010": {
+     "r": 0.381,
+     "positive": 8,
+     "counties": 11
+    },
+    "score_2010_with_mobility": {
+     "r": 0.519,
+     "positive": 10,
+     "counties": 11
+    },
+    "poverty_2010_only": {
+     "r": 0.562,
+     "positive": 11,
+     "counties": 11
+    },
+    "todays_score": {
+     "r": 0.66,
+     "positive": 11,
+     "counties": 11
+    },
+    "r2_poverty_only": 0.357,
+    "r2_poverty_plus_score_2010": 0.458
+   },
+   "mobility": {
+    "label": "Children's adult income (Opportunity Atlas), for the score without mobility",
+    "score_2010": {
+     "r": 0.384,
+     "positive": 9,
+     "counties": 11
+    },
+    "poverty_2010_only": {
+     "r": 0.62,
+     "positive": 11,
+     "counties": 11
+    }
+   }
+  },
+  "top_fifth_2010_still_top_fifth_now": 0.755,
+  "rank_corr_2010_vs_today": 0.923
+ },
+ "stability": [
+  {
+   "metric": "Elementary proficiency (3 nearest)",
+   "years": "2019 vs 2025",
+   "rank_corr": 0.846
+  },
+  {
+   "metric": "Elementary proficiency (3 nearest)",
+   "years": "2011 vs 2025",
+   "rank_corr": 0.528
+  },
+  {
+   "metric": "Middle school proficiency",
+   "years": "2019 vs 2025",
+   "rank_corr": 0.8
+  },
+  {
+   "metric": "Middle school proficiency",
+   "years": "2011 vs 2025",
+   "rank_corr": 0.632
+  },
+  {
+   "metric": "Graduation rate",
+   "years": "2019 vs 2025",
+   "rank_corr": 0.736
+  },
+  {
+   "metric": "Graduation rate",
+   "years": "2011 vs 2025",
+   "rank_corr": 0.504
+  },
+  {
+   "metric": "Jobs within 5 miles",
+   "years": "2010 vs 2023",
+   "rank_corr": 0.988
+  },
+  {
+   "metric": "Non-degree jobs within 5 miles",
+   "years": "2010 vs 2023",
+   "rank_corr": 0.988
+  },
+  {
+   "metric": "Non-degree jobs per non-degree worker",
+   "years": "2010 vs 2023",
+   "rank_corr": 0.988
+  },
+  {
+   "metric": "Job growth within 5 miles",
+   "years": "2005-10 vs 2018-23",
+   "rank_corr": 0.315
+  },
+  {
+   "metric": "Grocery access (share over 1 mile)",
+   "years": "2010 vs 2025",
+   "rank_corr": 0.64
+  },
+  {
+   "metric": "Distance to a health center",
+   "years": "2010 sites vs today",
+   "rank_corr": 0.507
+  },
+  {
+   "metric": "Overall score",
+   "years": "2010 rebuild vs today",
+   "rank_corr": 0.923
+  }
+ ]
+}

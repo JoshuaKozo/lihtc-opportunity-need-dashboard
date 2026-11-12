@@ -1,0 +1,165 @@
+{
+ "current_qap_rounds": [
+  2024,
+  2025
+ ],
+ "lines": [
+  {
+   "round": 2020,
+   "pool": "Rural",
+   "applications": 46,
+   "funded": 15,
+   "line": 54.0,
+   "funded_median": 55.0,
+   "funded_min": 54.0
+  },
+  {
+   "round": 2021,
+   "pool": "Atlanta Metro",
+   "applications": 13,
+   "funded": 7,
+   "line": 65.0,
+   "funded_median": 67.0,
+   "funded_min": 64.5
+  },
+  {
+   "round": 2021,
+   "pool": "Other Metro",
+   "applications": 22,
+   "funded": 9,
+   "line": 63.0,
+   "funded_median": 65.5,
+   "funded_min": 63.5
+  },
+  {
+   "round": 2021,
+   "pool": "Rural",
+   "applications": 26,
+   "funded": 10,
+   "line": 64.0,
+   "funded_median": 65.25,
+   "funded_min": 64.5
+  },
+  {
+   "round": 2022,
+   "pool": "Atlanta Metro",
+   "applications": 9,
+   "funded": 8,
+   "line": 73.0,
+   "funded_median": 70.0,
+   "funded_min": 43.0
+  },
+  {
+   "round": 2022,
+   "pool": "Other Metro",
+   "applications": 25,
+   "funded": 11,
+   "line": 71.5,
+   "funded_median": 73.0,
+   "funded_min": 42.0
+  },
+  {
+   "round": 2022,
+   "pool": "Rural",
+   "applications": 27,
+   "funded": 11,
+   "line": 71.0,
+   "funded_median": 73.0,
+   "funded_min": 27.0
+  },
+  {
+   "round": 2023,
+   "pool": "Atlanta Metro",
+   "applications": 18,
+   "funded": 7,
+   "line": 73.0,
+   "funded_median": 74.5,
+   "funded_min": 73.5
+  },
+  {
+   "round": 2023,
+   "pool": "Other Metro",
+   "applications": 20,
+   "funded": 8,
+   "line": 71.0,
+   "funded_median": 73.0,
+   "funded_min": 71.5
+  },
+  {
+   "round": 2023,
+   "pool": "Rural",
+   "applications": 19,
+   "funded": 9,
+   "line": 71.5,
+   "funded_median": 73.0,
+   "funded_min": 72.0
+  },
+  {
+   "round": 2024,
+   "pool": "Atlanta Metro",
+   "applications": 16,
+   "funded": 8,
+   "line": 80.5,
+   "funded_median": 84.0,
+   "funded_min": 76.5
+  },
+  {
+   "round": 2024,
+   "pool": "Other Metro",
+   "applications": 29,
+   "funded": 9,
+   "line": 83.0,
+   "funded_median": 84.5,
+   "funded_min": 67.0
+  },
+  {
+   "round": 2024,
+   "pool": "Rural",
+   "applications": 27,
+   "funded": 13,
+   "line": 81.5,
+   "funded_median": 82.0,
+   "funded_min": 70.0
+  },
+  {
+   "round": 2025,
+   "pool": "Atlanta Metro",
+   "applications": 14,
+   "funded": 8,
+   "line": 82.5,
+   "funded_median": 83.25,
+   "funded_min": 76.5
+  },
+  {
+   "round": 2025,
+   "pool": "Other Metro",
+   "applications": 27,
+   "funded": 12,
+   "line": 85.5,
+   "funded_median": 86.25,
+   "funded_min": 71.5
+  },
+  {
+   "round": 2025,
+   "pool": "Rural",
+   "applications": 34,
+   "funded": 14,
+   "line": 83.5,
+   "funded_median": 84.25,
+   "funded_min": 75.0
+  }
+ ],
+ "deal_points_of_funded_arc": {
+  "rounds": [
+   2024,
+   2025
+  ],
+  "funded_arc_applications": 16,
+  "median": 48.5,
+  "p25": 44.0,
+  "p75": 50.0,
+  "median_location": 35.0,
+  "median_total": 84.0
+ },
+ "note": "line = highest DCA score turned down for score/threshold reasons in that round and pool. Set-aside winners (nonprofit, preservation, USDA) can be funded below it."
+}

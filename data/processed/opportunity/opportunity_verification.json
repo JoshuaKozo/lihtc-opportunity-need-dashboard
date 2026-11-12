@@ -1,0 +1,941 @@
+{
+ "generated": "2026-11-01",
+ "sources": [
+  {
+   "key": "oa_tract_outcomes",
+   "file": "oa_tract_outcomes_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "children born 1978-83, incomes measured 2014-15",
+   "present": true
+  },
+  {
+   "key": "oa_crosswalk",
+   "file": "oa_tract_2010_2020_crosswalk_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2010 to 2020 tracts",
+   "present": true
+  },
+  {
+   "key": "tract_centroids",
+   "file": "cenpop2020_tract_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2020 Census",
+   "present": true
+  },
+  {
+   "key": "zcta_tract",
+   "file": "zcta520_tract20_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2020 Census",
+   "present": true
+  },
+  {
+   "key": "osm_parks",
+   "file": "osm_parks_arc.csv",
+   "retrieved": "2026-10-15",
+   "vintage": "current as downloaded",
+   "present": true
+  },
+  {
+   "key": "usaleep",
+   "file": "usaleep_ga_2010_15.csv",
+   "retrieved": "2026-10-15",
+   "vintage": "2010-15",
+   "present": true
+  },
+  {
+   "key": "census_county_pop",
+   "file": "census_county_pop_ga.csv",
+   "retrieved": "2026-10-22",
+   "vintage": "2020 estimates base",
+   "present": true
+  },
+  {
+   "key": "ga_counties",
+   "file": "ga_counties_2020.txt",
+   "retrieved": "2026-10-15",
+   "vintage": "2020",
+   "present": true
+  },
+  {
+   "key": "lodes_wac_2023",
+   "file": "ga_wac_S000_JT00_2023.csv.gz",
+   "retrieved": "2026-10-14",
+   "vintage": "2023",
+   "present": true
+  },
+  {
+   "key": "lodes_wac_2018",
+   "file": "ga_wac_S000_JT00_2018.csv.gz",
+   "retrieved": "2026-10-14",
+   "vintage": "2018",
+   "present": true
+  },
+  {
+   "key": "lodes_rac_2023",
+   "file": "ga_rac_S000_JT01_2023.csv.gz",
+   "retrieved": "2026-11-01",
+   "vintage": "",
+   "present": true
+  },
+  {
+   "key": "acs_b23006",
+   "file": "acs_b23006_ga.csv",
+   "retrieved": "2026-11-01",
+   "vintage": "",
+   "present": true
+  },
+  {
+   "key": "lodes_xwalk",
+   "file": "ga_lodes_block_xwalk.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2020 blocks",
+   "present": true
+  },
+  {
+   "key": "epa_sld",
+   "file": "epa_sld_v3_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2017-19 inputs, released 2021",
+   "present": true
+  },
+  {
+   "key": "nces_schools",
+   "file": "nces_public_schools_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2024-25 school year",
+   "present": true
+  },
+  {
+   "key": "cdc_places",
+   "file": "cdc_places_tract_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2025 release (mostly 2022-23 survey data)",
+   "present": true
+  },
+  {
+   "key": "usda_sram",
+   "file": "usda_sram_straight_line_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2025 release",
+   "present": true
+  },
+  {
+   "key": "usda_sram_general",
+   "file": "usda_sram_general_ga.csv",
+   "retrieved": "2026-10-22",
+   "vintage": "2025 release (ACS-based)",
+   "present": true
+  },
+  {
+   "key": "hrsa_sites",
+   "file": "hrsa_health_center_sites_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "current as downloaded",
+   "present": true
+  },
+  {
+   "key": "marta_gtfs",
+   "file": "marta_gtfs.zip",
+   "retrieved": "2026-10-14",
+   "vintage": "current schedule as downloaded",
+   "present": true
+  },
+  {
+   "key": "gosa_eog",
+   "file": "EOG_2024-25__GA_TST_AGGR_2026-02-19_00_31_27.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2024-25 school year",
+   "present": true
+  },
+  {
+   "key": "gosa_eoc",
+   "file": "EOC_2024-25__GA_TST_AGGR_2026-02-19_00_31_27.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2024-25 school year",
+   "present": true
+  },
+  {
+   "key": "gosa_grad",
+   "file": "Graduation_Rate_2024-25_2026-02-19_00_32_26.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "2024-25 school year",
+   "present": true
+  },
+  {
+   "key": "hud_school_proficiency",
+   "file": "hud_school_proficiency_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "AFFH-T 0006 (about 2014-17 data)",
+   "present": true
+  },
+  {
+   "key": "hud_jobs_proximity",
+   "file": "hud_jobs_proximity_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "AFFH-T 0006",
+   "present": true
+  },
+  {
+   "key": "hud_labor_market",
+   "file": "hud_labor_market_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "AFFH-T 0006",
+   "present": true
+  },
+  {
+   "key": "hud_transport_cost",
+   "file": "hud_transport_cost_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "AFFH-T 0006",
+   "present": true
+  },
+  {
+   "key": "hud_env_health",
+   "file": "hud_env_health_ga.csv",
+   "retrieved": "2026-10-14",
+   "vintage": "AFFH-T 0006 (2014 air toxics)",
+   "present": true
+  }
+ ],
+ "metric_stats": {
+  "oa_kfr_p25": {
+   "coverage": 0.9984,
+   "min": 0.18128948,
+   "median": 0.39734802,
+   "max": 0.6502283337405139
+  },
+  "oa_jail_p25": {
+   "coverage": 0.9984,
+   "min": -0.043536622,
+   "median": 0.026381658990728796,
+   "max": 0.20706424
+  },
+  "epa_jobs_45min_transit": {
+   "coverage": 1.0,
+   "min": 0.0,
+   "median": 1244.8327740051081,
+   "max": 695198.0678825998
+  },
+  "epa_jobs_45min_auto": {
+   "coverage": 1.0,
+   "min": 6255.11732747346,
+   "median": 114720.5395696795,
+   "max": 330278.17798622773
+  },
+  "jobs_nondegree_5mi": {
+   "coverage": 1.0,
+   "min": 549.0,
+   "median": 48219.0,
+   "max": 281244.0
+  },
+  "jobs_per_nondegree_worker_5mi": {
+   "coverage": 1.0,
+   "min": 0.11273006134969325,
+   "median": 1.1578369868568565,
+   "max": 3.8068779151551047
+  },
+  "jobs_growth_5mi": {
+   "coverage": 1.0,
+   "min": -0.34550195567144715,
+   "median": 0.07983884696135735,
+   "max": 0.9844284736481861
+  },
+  "school_prof_elem3": {
+   "coverage": 1.0,
+   "min": 17.9325207850093,
+   "median": 43.508891481170735,
+   "max": 83.18339518529348
+  },
+  "school_prof_middle": {
+   "coverage": 1.0,
+   "min": 7.625649913344887,
+   "median": 39.74683544303797,
+   "max": 99.35424354243543
+  },
+  "school_prof_high": {
+   "coverage": 1.0,
+   "min": 12.363636363636363,
+   "median": 41.361256544502616,
+   "max": 98.64864864864865
+  },
+  "school_grad_rate_high": {
+   "coverage": 1.0,
+   "min": 67.05,
+   "median": 91.12,
+   "max": 100.0
+  },
+  "marta_rail_dist_mi": {
+   "coverage": 1.0,
+   "min": 0.09452629190226555,
+   "median": 8.505530452903331,
+   "max": 33.09983829218609
+  },
+  "marta_stops_half_mi": {
+   "coverage": 1.0,
+   "min": 0.0,
+   "median": 0.0,
+   "max": 61.0
+  },
+  "epa_walkability": {
+   "coverage": 1.0,
+   "min": 3.546326433169512,
+   "median": 8.646487867696047,
+   "max": 19.16666667
+  },
+  "fqhc_dist_mi": {
+   "coverage": 1.0,
+   "min": 0.023543533038469806,
+   "median": 3.0751478288221104,
+   "max": 12.48072477942489
+  },
+  "places_uninsured": {
+   "coverage": 1.0,
+   "min": 3.6,
+   "median": 11.2,
+   "max": 59.0
+  },
+  "food_low_access_share": {
+   "coverage": 1.0,
+   "min": 0.0,
+   "median": 1.19,
+   "max": 100.0
+  },
+  "hud_env_health": {
+   "coverage": 0.9992,
+   "min": 0.0,
+   "median": 15.0,
+   "max": 49.0
+  },
+  "park_dist_mi": {
+   "coverage": 1.0,
+   "min": 0.0,
+   "median": 0.6458828474041117,
+   "max": 4.319336406520175
+  },
+  "bb_wired_100_20_share": {
+   "coverage": 1.0,
+   "min": 57.612128869235626,
+   "median": 99.83164983164983,
+   "max": 100.0
+  },
+  "hud_school_proficiency": {
+   "coverage": 1.0,
+   "min": 1.0,
+   "median": 63.0,
+   "max": 99.0
+  },
+  "hud_jobs_proximity": {
+   "coverage": 1.0,
+   "min": 0.6666666666666666,
+   "median": 52.666666666666664,
+   "max": 99.0
+  },
+  "hud_labor_market": {
+   "coverage": 1.0,
+   "min": 0.0,
+   "median": 61.00306132865122,
+   "max": 99.00000000000001
+  },
+  "hud_transport_cost": {
+   "coverage": 0.9984,
+   "min": 16.0,
+   "median": 51.76526037295781,
+   "max": 93.0
+  }
+ },
+ "checks": [
+  {
+   "section": "Sources",
+   "check": "All raw files present",
+   "status": "PASS",
+   "detail": "28 sources in the manifest"
+  },
+  {
+   "section": "Sources",
+   "check": "Optional manual files",
+   "status": "INFO",
+   "detail": "FCC broadband file present; Child Opportunity Index file used only for comparison, not committed"
+  },
+  {
+   "section": "Geography",
+   "check": "Georgia 2020 tract count",
+   "status": "PASS",
+   "detail": "2796 tracts (Census 2020 count for Georgia: 2,796)"
+  },
+  {
+   "section": "Geography",
+   "check": "Tract IDs unique and well formed",
+   "status": "PASS",
+   "detail": "11-digit GEOIDs, no duplicates"
+  },
+  {
+   "section": "Geography",
+   "check": "ARC population matches official county totals",
+   "status": "PASS",
+   "detail": "tract sum 4,967,514 vs Census county totals 4,969,483 (0.04% apart)",
+   "value": 4967514
+  },
+  {
+   "section": "Geography",
+   "check": "Each county's population matches",
+   "status": "PASS",
+   "detail": "largest county gap 0.60%"
+  },
+  {
+   "section": "Geography",
+   "check": "Scored tracts",
+   "status": "PASS",
+   "detail": "1245 populated tracts in the 11 ARC counties are scored; 3 with no residents are not"
+  },
+  {
+   "section": "Geography",
+   "check": "2010-to-2020 crosswalk weights sum to 1",
+   "status": "PASS",
+   "detail": "per 2020 tract: min 1.000, max 1.000"
+  },
+  {
+   "section": "Geography",
+   "check": "ZIP (ZCTA) rollup keeps the population",
+   "status": "PASS",
+   "detail": "ZCTA rollup holds 100.0% of ARC residents"
+  },
+  {
+   "section": "Geography",
+   "check": "Applications placed in their own county",
+   "status": "PASS",
+   "detail": "864 of 927 applications have a 2020 tract; all in the county DCA lists"
+  },
+  {
+   "section": "Metrics",
+   "check": "oa_kfr_p25: coverage",
+   "status": "PASS",
+   "detail": "99.8% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "oa_kfr_p25: within possible range",
+   "status": "PASS",
+   "detail": "min 0.181, max 0.65 (allowed 0 to 1)"
+  },
+  {
+   "section": "Metrics",
+   "check": "oa_kfr_p25: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 0.397 (expected 0.3 to 0.5)"
+  },
+  {
+   "section": "Metrics",
+   "check": "oa_jail_p25: coverage",
+   "status": "PASS",
+   "detail": "99.8% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "oa_jail_p25: within possible range",
+   "status": "PASS",
+   "detail": "min -0.0435, max 0.207 (allowed -0.1 to 0.5)"
+  },
+  {
+   "section": "Metrics",
+   "check": "oa_jail_p25: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 0.0264 (expected 0 to 0.06)"
+  },
+  {
+   "section": "Metrics",
+   "check": "epa_jobs_45min_transit: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "epa_jobs_45min_transit: within possible range",
+   "status": "PASS",
+   "detail": "min 0, max 6.95e+05 (allowed 0 to 2000000.0)"
+  },
+  {
+   "section": "Metrics",
+   "check": "epa_jobs_45min_auto: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "epa_jobs_45min_auto: within possible range",
+   "status": "PASS",
+   "detail": "min 6.26e+03, max 3.3e+05 (allowed 0 to 2000000.0)"
+  },
+  {
+   "section": "Metrics",
+   "check": "epa_jobs_45min_auto: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 1.15e+05 (expected 50000.0 to 300000.0)"
+  },
+  {
+   "section": "Metrics",
+   "check": "jobs_nondegree_5mi: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "jobs_nondegree_5mi: within possible range",
+   "status": "PASS",
+   "detail": "min 549, max 2.81e+05 (allowed 0 to 3000000.0)"
+  },
+  {
+   "section": "Metrics",
+   "check": "jobs_nondegree_5mi: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 4.82e+04 (expected 10000.0 to 200000.0)"
+  },
+  {
+   "section": "Metrics",
+   "check": "jobs_per_nondegree_worker_5mi: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "jobs_per_nondegree_worker_5mi: within possible range",
+   "status": "PASS",
+   "detail": "min 0.113, max 3.81 (allowed 0 to 50)"
+  },
+  {
+   "section": "Metrics",
+   "check": "jobs_per_nondegree_worker_5mi: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 1.16 (expected 0.5 to 3)"
+  },
+  {
+   "section": "Metrics",
+   "check": "jobs_growth_5mi: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "jobs_growth_5mi: within possible range",
+   "status": "PASS",
+   "detail": "min -0.346, max 0.984 (allowed -1 to 5)"
+  },
+  {
+   "section": "Metrics",
+   "check": "jobs_growth_5mi: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 0.0798 (expected -0.1 to 0.4)"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_prof_elem3: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_prof_elem3: within possible range",
+   "status": "PASS",
+   "detail": "min 17.9, max 83.2 (allowed 0 to 100)"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_prof_elem3: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 43.5 (expected 25 to 65)"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_prof_middle: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_prof_middle: within possible range",
+   "status": "PASS",
+   "detail": "min 7.63, max 99.4 (allowed 0 to 100)"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_prof_middle: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 39.7 (expected 25 to 65)"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_prof_high: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_prof_high: within possible range",
+   "status": "PASS",
+   "detail": "min 12.4, max 98.6 (allowed 0 to 100)"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_prof_high: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 41.4 (expected 25 to 65)"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_grad_rate_high: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_grad_rate_high: within possible range",
+   "status": "PASS",
+   "detail": "min 67, max 100 (allowed 0 to 100)"
+  },
+  {
+   "section": "Metrics",
+   "check": "school_grad_rate_high: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 91.1 (expected 80 to 98)"
+  },
+  {
+   "section": "Metrics",
+   "check": "marta_rail_dist_mi: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "marta_rail_dist_mi: within possible range",
+   "status": "PASS",
+   "detail": "min 0.0945, max 33.1 (allowed 0 to 60)"
+  },
+  {
+   "section": "Metrics",
+   "check": "marta_rail_dist_mi: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 8.51 (expected 1 to 20)"
+  },
+  {
+   "section": "Metrics",
+   "check": "marta_stops_half_mi: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "marta_stops_half_mi: within possible range",
+   "status": "PASS",
+   "detail": "min 0, max 61 (allowed 0 to 500)"
+  },
+  {
+   "section": "Metrics",
+   "check": "epa_walkability: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "epa_walkability: within possible range",
+   "status": "PASS",
+   "detail": "min 3.55, max 19.2 (allowed 1 to 20)"
+  },
+  {
+   "section": "Metrics",
+   "check": "epa_walkability: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 8.65 (expected 5 to 15)"
+  },
+  {
+   "section": "Metrics",
+   "check": "fqhc_dist_mi: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "fqhc_dist_mi: within possible range",
+   "status": "PASS",
+   "detail": "min 0.0235, max 12.5 (allowed 0 to 40)"
+  },
+  {
+   "section": "Metrics",
+   "check": "fqhc_dist_mi: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 3.08 (expected 1 to 8)"
+  },
+  {
+   "section": "Metrics",
+   "check": "places_uninsured: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "places_uninsured: within possible range",
+   "status": "PASS",
+   "detail": "min 3.6, max 59 (allowed 0 to 100)"
+  },
+  {
+   "section": "Metrics",
+   "check": "places_uninsured: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 11.2 (expected 6 to 20)"
+  },
+  {
+   "section": "Metrics",
+   "check": "food_low_access_share: coverage",
+   "status": "PASS",
+   "detail": "100.0% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "food_low_access_share: within possible range",
+   "status": "PASS",
+   "detail": "min 0, max 100 (allowed 0 to 100)"
+  },
+  {
+   "section": "Metrics",
+   "check": "hud_env_health: coverage",
+   "status": "PASS",
+   "detail": "99.9% of scored tracts have a value"
+  },
+  {
+   "section": "Metrics",
+   "check": "hud_env_health: within possible range",
+   "status": "PASS",
+   "detail": "min 0, max 49 (allowed 0 to 100)"
+  },
+  {
+   "section": "Metrics",
+   "check": "hud_env_health: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 15 (expected 5 to 50)"
+  },
+  {
+   "section": "Metrics",
+   "check": "park_dist_mi: within possible range",
+   "status": "PASS",
+   "detail": "min 0, max 4.32 (allowed 0 to 20)"
+  },
+  {
+   "section": "Metrics",
+   "check": "park_dist_mi: plausible median",
+   "status": "PASS",
+   "detail": "ARC median 0.646 (expected 0.2 to 2)"
+  },
+  {
+   "section": "Metrics",
+   "check": "MARTA rail stations",
+   "status": "PASS",
+   "detail": "38 rail stations (MARTA operates 38)"
+  },
+  {
+   "section": "Metrics",
+   "check": "Rail distance recomputed independently",
+   "status": "PASS",
+   "detail": "25 random tracts, largest difference 0.0000 mi"
+  },
+  {
+   "section": "Metrics",
+   "check": "Health-center distance recomputed independently",
+   "status": "PASS",
+   "detail": "largest difference 0.0000 mi"
+  },
+  {
+   "section": "Metrics",
+   "check": "Total jobs located in the ARC counties",
+   "status": "PASS",
+   "detail": "2,667,976 jobs (LODES); metro Atlanta has roughly 2.5-3 million",
+   "value": 2667976
+  },
+  {
+   "section": "Metrics",
+   "check": "Jobs within 5 miles recomputed independently",
+   "status": "PASS",
+   "detail": "tract 13135050530: 138,859 vs stored 138,859"
+  },
+  {
+   "section": "Metrics",
+   "check": "Opportunity Atlas crosswalk recomputed independently",
+   "status": "PASS",
+   "detail": "10 tracts, largest difference 0.00e+00"
+  },
+  {
+   "section": "Metrics",
+   "check": "School proficiency read correctly",
+   "status": "PASS",
+   "detail": "Morningside Elementary (APS): 78.6% proficient or distinguished in ELA + math, 690 tests; one of the metro's highest, as expected",
+   "value": 78.6
+  },
+  {
+   "section": "Scoring",
+   "check": "Percentiles reproduce from raw metrics",
+   "status": "PASS",
+   "detail": "largest difference 0.0e+00"
+  },
+  {
+   "section": "Scoring",
+   "check": "Part scores reproduce from percentiles",
+   "status": "PASS",
+   "detail": "largest difference 0.0e+00"
+  },
+  {
+   "section": "Scoring",
+   "check": "Opportunity score reproduces from part scores",
+   "status": "PASS",
+   "detail": "largest difference 0.0e+00"
+  },
+  {
+   "section": "Scoring",
+   "check": "Weights sum to 100%",
+   "status": "PASS",
+   "detail": "mobility 34%, schools 27%, jobs 11%, transit 5%, health 11%, environment 12%"
+  },
+  {
+   "section": "Scoring",
+   "check": "Tiers split evenly",
+   "status": "PASS",
+   "detail": "Moderate 20.0%, High 20.0%, Low 20.0%, Very high 20.0%, Very low 20.0%"
+  },
+  {
+   "section": "Validity",
+   "check": "Predicts children's upward mobility (held-out counties)",
+   "status": "PASS",
+   "detail": "within-county rank correlation 0.45 (research-only weights 0.34; mobility part excluded so the score isn't graded on its own input)",
+   "value": 0.45
+  },
+  {
+   "section": "Validity",
+   "check": "Predicts life expectancy (held-out counties)",
+   "status": "PASS",
+   "detail": "within-county rank correlation 0.52",
+   "value": 0.523
+  },
+  {
+   "section": "Validity",
+   "check": "Agrees with the Child Opportunity Index 3.0",
+   "status": "PASS",
+   "detail": "rank correlation 0.81 with COI 2024 (metro-normed), 1245 tracts",
+   "value": 0.814304
+  },
+  {
+   "section": "Validity",
+   "check": "Robust to the exact weights",
+   "status": "PASS",
+   "detail": "moving every weight up or down by up to 50% (300 draws): median rank correlation 0.991, 91% of Very high tracts stay Very high",
+   "value": 0.9906702602785971
+  },
+  {
+   "section": "Validity",
+   "check": "Stable under the Opportunity Atlas margins of error",
+   "status": "PASS",
+   "detail": "redrawing mobility data within its standard errors (100 runs): 81% of tracts keep their tier on average; 32% keep it in at least 95 of 100 runs",
+   "value": 0.8099357429718878
+  },
+  {
+   "section": "Validity",
+   "check": "Overlap with need",
+   "status": "WARN",
+   "detail": "rank correlation with a need stand-in (poverty, income, SNAP) -0.73: strongly opposite but not identical. Poverty alone -0.53, median family income 0.70. A need-vs-opportunity slider mostly trades one for the other",
+   "value": -0.730204
+  },
+  {
+   "section": "Validity",
+   "check": "Which parts overlap with need",
+   "status": "INFO",
+   "detail": "rank correlation of each part with the need stand-in: mobility -0.62, schools -0.67, jobs 0.13, transit 0.24, health -0.08, environment -0.31",
+   "value": {
+    "mobility": -0.62,
+    "schools": -0.67,
+    "jobs": 0.13,
+    "transit": 0.24,
+    "health": -0.08,
+    "environment": -0.31
+   }
+  },
+  {
+   "section": "Validity",
+   "check": "Metrics that behave most like need",
+   "status": "INFO",
+   "detail": "most negative with need (high need, low score): places_uninsured -0.83, school_prof_elem3 -0.66, oa_kfr_p25 -0.63. The Need page should avoid repeating these measures.",
+   "value": {
+    "oa_kfr_p25": -0.63,
+    "oa_jail_p25": -0.4,
+    "epa_jobs_45min_transit": 0.3,
+    "epa_jobs_45min_auto": 0.19,
+    "jobs_nondegree_5mi": 0.01,
+    "jobs_per_nondegree_worker_5mi": -0.04,
+    "jobs_growth_5mi": -0.21,
+    "school_prof_elem3": -0.66,
+    "school_prof_middle": -0.6,
+    "school_prof_high": -0.51,
+    "school_grad_rate_high": -0.43,
+    "marta_rail_dist_mi": 0.19,
+    "marta_stops_half_mi": 0.3,
+    "epa_walkability": 0.18,
+    "fqhc_dist_mi": 0.46,
+    "places_uninsured": -0.83,
+    "food_low_access_share": 0.44,
+    "hud_env_health": -0.31
+   }
+  },
+  {
+   "section": "Validity",
+   "check": "Adds information beyond need",
+   "status": "PASS",
+   "detail": "within counties, need explains 40% of mobility differences; adding the opportunity parts raises it to 47%. Life expectancy: 37% to 47%",
+   "value": {
+    "mobility": [
+     0.40142340022836265,
+     0.46551026062052236
+    ],
+    "life_exp": [
+     0.36976144093678065,
+     0.4661389635257851
+    ]
+   }
+  },
+  {
+   "section": "Validity",
+   "check": "Fairness: relation to a tract's Black population share",
+   "status": "WARN",
+   "detail": "rank correlation -0.81; -0.60 after accounting for need. Driven by mobility (-0.46) and schools (-0.46); jobs, transit and health are near zero",
+   "value": {
+    "raw": -0.806232,
+    "after_need": -0.603673,
+    "by_part_after_need": {
+     "mobility": -0.46,
+     "schools": -0.46,
+     "jobs": -0.06,
+     "transit": 0.07,
+     "health": 0.11,
+     "environment": -0.19
+    }
+   }
+  },
+  {
+   "section": "Validity",
+   "check": "Mobility metric mixes place with who lives there",
+   "status": "WARN",
+   "detail": "the pooled Opportunity Atlas mobility measure correlates -0.70 with Black share; the same measure for Black children only -0.34, white children only -0.43. About half of the pooled gap reflects national racial income gaps rather than the place",
+   "value": {
+    "pooled": -0.703185,
+    "black_children": -0.336019,
+    "white_children": -0.430099
+   }
+  },
+  {
+   "section": "Validity",
+   "check": "Distinct from feasibility (SiteLine location score)",
+   "status": "PASS",
+   "detail": "rank correlation 0.40 at 192 past application sites (transit part 0.05, health part 0.17)",
+   "value": 0.399004
+  }
+ ],
+ "summary": {
+  "PASS": 81,
+  "INFO": 3,
+  "WARN": 3
+ }
+}

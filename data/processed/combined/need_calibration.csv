@@ -1,0 +1,7 @@
+weighting,w_income,w_rent_burden,w_supply,w_market,w_barriers,heldout_county_evictions_2023_2025,heldout_county_low_income_renter_loss,heldout_county_housing_insecurity,heldout_county_evictions_2026,heldout_county_utility_shutoff,heldout_county_cdc_svi
+Need team (starting point),0.25,0.25,0.15,0.15,0.2,0.285,0.2,0.606,0.272,0.605,0.613
+equal,0.2,0.2,0.2,0.2,0.2,0.281,0.188,0.592,0.268,0.59,0.6
+HUD worst-case needs (Need team's variant),0.25,0.4,0.15,0.15,0.05,0.261,0.224,0.572,0.252,0.57,0.579
+income only,1.0,0.0,0.0,0.0,0.0,0.333,0.126,0.804,0.329,0.797,0.782
+data only,0.53,0.225,0.166,0.0,0.078,0.318,0.196,0.725,0.309,0.723,0.712
+"final (half data, half start, kept in ranges)",0.35,0.248,0.168,0.085,0.149,0.298,0.202,0.658,0.288,0.657,0.658

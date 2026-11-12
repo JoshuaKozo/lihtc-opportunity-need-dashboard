@@ -1,0 +1,78 @@
+{
+  "tracts": 1225,
+  "excluded": {
+    "no residents": 3,
+    "student tracts": 20
+  },
+  "candidates": {
+    "need": 22,
+    "opportunity": 23
+  },
+  "excluded_metrics": {
+    "bb_wired_100_20_share": "FCC broadband: not scriptable, kept out of the combined tool"
+  },
+  "thresholds": {
+    "cross_duplicate": 0.7,
+    "wrong_side": 0.5,
+    "within_duplicate": 0.85,
+    "reliable_min": 0.5
+  },
+  "dropped": [
+    "hud_labor_market",
+    "places_uninsured"
+  ],
+  "review": [],
+  "need_vs_opportunity_rho": {
+    "before": -0.6,
+    "after": -0.545
+  },
+  "rank_stability": {
+    "need_rho": 1.0,
+    "opportunity_rho": 0.993,
+    "need_top10_kept": 1.0,
+    "opportunity_top10_kept": 0.886
+  },
+  "cross_pairs_by_threshold": {
+    "0.6": [
+      "below_200pct_poverty / hud_labor_market (-0.69)",
+      "below_200pct_poverty / hud_school_proficiency (-0.65)",
+      "below_200pct_poverty / places_uninsured (-0.83)",
+      "below_200pct_poverty / school_prof_elem3 (-0.61)",
+      "below_60ami_share / hud_labor_market (-0.64)",
+      "below_60ami_share / hud_school_proficiency (-0.64)",
+      "below_60ami_share / places_uninsured (-0.74)",
+      "limited_english_share / places_uninsured (-0.75)",
+      "median_hh_income / hud_labor_market (-0.71)",
+      "median_hh_income / hud_school_proficiency (-0.71)",
+      "median_hh_income / oa_kfr_p25 (-0.60)",
+      "median_hh_income / places_uninsured (-0.81)",
+      "median_hh_income / school_prof_elem3 (-0.68)",
+      "median_hh_income / school_prof_middle (-0.61)",
+      "poverty_rate / places_uninsured (-0.71)",
+      "renter_share / food_low_access_share (+0.64)",
+      "renter_share / hud_transport_cost (+0.75)",
+      "senior_poverty / food_low_access_share (+0.60)",
+      "senior_poverty / hud_transport_cost (+0.63)",
+      "snap_share / hud_labor_market (-0.69)",
+      "snap_share / hud_school_proficiency (-0.66)",
+      "snap_share / oa_kfr_p25 (-0.64)"
+    ],
+    "0.7": [
+      "below_200pct_poverty / places_uninsured (-0.83)",
+      "below_60ami_share / places_uninsured (-0.74)",
+      "limited_english_share / places_uninsured (-0.75)",
+      "median_hh_income / hud_labor_market (-0.71)",
+      "median_hh_income / hud_school_proficiency (-0.71)",
+      "median_hh_income / places_uninsured (-0.81)",
+      "poverty_rate / places_uninsured (-0.71)",
+      "renter_share / hud_transport_cost (+0.75)"
+    ],
+    "0.8": [
+      "below_200pct_poverty / places_uninsured (-0.83)",
+      "median_hh_income / places_uninsured (-0.81)"
+    ]
+  },
+  "both_high": {
+    "top_third_on_both": 37
+  }
+}

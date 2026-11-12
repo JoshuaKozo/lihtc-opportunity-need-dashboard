@@ -1,0 +1,386 @@
+{
+  "weights_status": {
+    "need": "final: research ranges around the Need team's weights, calibrated to later evictions, low-income renter loss and housing insecurity, one per kind of hardship (pipelines/combined/calibrate_need.py)",
+    "opportunity": "final: calibrated on this metric set with the Opportunity team's method (pipelines/combined/calibrate_opportunity.py)"
+  },
+  "tracts": 1225,
+  "excluded": {
+    "no_residents": 3,
+    "student_tracts": 20
+  },
+  "scores": {
+    "need": [
+      {
+        "key": "income",
+        "label": "Income and poverty",
+        "weight": 35,
+        "question": "How many households have low incomes?",
+        "metrics": [
+          {
+            "key": "poverty_rate",
+            "label": "Poverty rate",
+            "source": "need",
+            "direction": 1,
+            "weight": 18,
+            "coverage": 0.642
+          },
+          {
+            "key": "below_200pct_poverty",
+            "label": "Below 200% of poverty",
+            "source": "need",
+            "direction": 1,
+            "weight": 22,
+            "coverage": 0.886
+          },
+          {
+            "key": "below_60ami_share",
+            "label": "Households under ~60% of area income",
+            "source": "need",
+            "direction": 1,
+            "weight": 22,
+            "coverage": 0.925
+          },
+          {
+            "key": "median_hh_income",
+            "label": "Median household income",
+            "source": "need",
+            "direction": -1,
+            "weight": 21,
+            "coverage": 0.917
+          },
+          {
+            "key": "snap_share",
+            "label": "Households on SNAP",
+            "source": "need",
+            "direction": 1,
+            "weight": 17,
+            "coverage": 0.471
+          }
+        ]
+      },
+      {
+        "key": "rent_burden",
+        "label": "Rent burden",
+        "weight": 25,
+        "question": "How many renters pay more than they can afford?",
+        "metrics": [
+          {
+            "key": "chas_li_renter_burden",
+            "label": "Renters under 80% of area income paying 30%+ (CHAS)",
+            "source": "chas",
+            "direction": 1,
+            "weight": 31,
+            "coverage": 0.533
+          },
+          {
+            "key": "rent_burden_30plus",
+            "label": "Renters paying 30%+ of income",
+            "source": "need",
+            "direction": 1,
+            "weight": 37,
+            "coverage": 0.721
+          },
+          {
+            "key": "severe_rent_burden_50plus",
+            "label": "Renters paying 50%+ of income",
+            "source": "need",
+            "direction": 1,
+            "weight": 32,
+            "coverage": 0.479
+          }
+        ]
+      },
+      {
+        "key": "supply",
+        "label": "Affordable housing supply gap",
+        "weight": 17,
+        "question": "How many low-income renters have no assisted housing?",
+        "metrics": [
+          {
+            "key": "unassisted_li_renter_share",
+            "label": "Low-income renters without assisted housing, share of households",
+            "source": "need",
+            "direction": 1,
+            "weight": 100,
+            "coverage": 0.233
+          }
+        ]
+      },
+      {
+        "key": "market",
+        "label": "Rental market and housing stock",
+        "weight": 8,
+        "question": "Is it a renter area under price pressure, with older housing?",
+        "metrics": [
+          {
+            "key": "renter_share",
+            "label": "Renter households",
+            "source": "need",
+            "direction": 1,
+            "weight": 50,
+            "coverage": 0.867
+          },
+          {
+            "key": "rent_growth",
+            "label": "Median rent growth",
+            "source": "need",
+            "direction": 1,
+            "weight": 1,
+            "coverage": 0.276
+          },
+          {
+            "key": "pre1980_share",
+            "label": "Homes built before 1980",
+            "source": "need",
+            "direction": 1,
+            "weight": 50,
+            "coverage": 0.756
+          }
+        ]
+      },
+      {
+        "key": "barriers",
+        "label": "Work and access barriers",
+        "weight": 15,
+        "question": "Do residents face barriers to work and services?",
+        "metrics": [
+          {
+            "key": "unemployment_rate",
+            "label": "Unemployment rate",
+            "source": "need",
+            "direction": 1,
+            "weight": 47,
+            "coverage": 0.47
+          },
+          {
+            "key": "part_time_share",
+            "label": "Workers usually part-time",
+            "source": "need",
+            "direction": 1,
+            "weight": 18,
+            "coverage": 0.923
+          },
+          {
+            "key": "no_vehicle_share",
+            "label": "Households with no vehicle",
+            "source": "need",
+            "direction": 1,
+            "weight": 35,
+            "coverage": 0.247
+          },
+          {
+            "key": "limited_english_share",
+            "label": "Limited-English households",
+            "source": "need",
+            "direction": 1,
+            "weight": 1,
+            "coverage": 0.172
+          }
+        ]
+      }
+    ],
+    "opportunity": [
+      {
+        "key": "mobility",
+        "label": "Upward mobility",
+        "weight": 35,
+        "question": "How do children from low-income families here do as adults?",
+        "metrics": [
+          {
+            "key": "oa_kfr_p25",
+            "label": "Adult income of kids raised here by low-income parents",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.7,
+            "coverage": 0.998
+          },
+          {
+            "key": "oa_jail_p25",
+            "label": "Incarceration of those kids as adults",
+            "source": "opportunity",
+            "direction": -1,
+            "weight": 0.3,
+            "coverage": 0.998
+          }
+        ]
+      },
+      {
+        "key": "schools",
+        "label": "Schools",
+        "weight": 30,
+        "question": "How well do the nearby public schools do?",
+        "metrics": [
+          {
+            "key": "school_prof_elem3",
+            "label": "Proficiency, 3 nearest elementary schools",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.4,
+            "coverage": 1.0
+          },
+          {
+            "key": "school_prof_middle",
+            "label": "Proficiency, nearest middle school",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.2,
+            "coverage": 1.0
+          },
+          {
+            "key": "school_prof_high",
+            "label": "Proficiency, nearest high school",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.2,
+            "coverage": 1.0
+          },
+          {
+            "key": "school_grad_rate_high",
+            "label": "Graduation rate, nearest high school",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.2,
+            "coverage": 1.0
+          }
+        ]
+      },
+      {
+        "key": "environment",
+        "label": "Environment",
+        "weight": 12,
+        "question": "How clean is the air?",
+        "metrics": [
+          {
+            "key": "hud_env_health",
+            "label": "HUD environmental health index",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 1.0,
+            "coverage": 0.999
+          }
+        ]
+      },
+      {
+        "key": "health",
+        "label": "Health and daily needs",
+        "weight": 5,
+        "question": "How close are health care, groceries and parks?",
+        "metrics": [
+          {
+            "key": "fqhc_dist_mi",
+            "label": "Miles to a community health center",
+            "source": "opportunity",
+            "direction": -1,
+            "weight": 0.4,
+            "coverage": 1.0
+          },
+          {
+            "key": "food_low_access_share",
+            "label": "Share over 1 mile from a grocery store",
+            "source": "opportunity",
+            "direction": -1,
+            "weight": 0.2,
+            "coverage": 1.0
+          },
+          {
+            "key": "park_dist_mi",
+            "label": "Miles to a park of 1+ acres",
+            "source": "opportunity",
+            "direction": -1,
+            "weight": 0.0,
+            "coverage": 1.0
+          }
+        ]
+      },
+      {
+        "key": "jobs",
+        "label": "Jobs access",
+        "weight": 12,
+        "question": "How many jobs can residents, especially those without a degree, reach?",
+        "metrics": [
+          {
+            "key": "epa_jobs_45min_transit",
+            "label": "Jobs reachable in 45 minutes by transit",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.25,
+            "coverage": 1.0
+          },
+          {
+            "key": "epa_jobs_45min_auto",
+            "label": "Jobs reachable in 45 minutes by car",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.25,
+            "coverage": 1.0
+          },
+          {
+            "key": "jobs_nondegree_5mi",
+            "label": "Jobs for workers without a degree within 5 miles",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.2,
+            "coverage": 1.0
+          },
+          {
+            "key": "jobs_per_nondegree_worker_5mi",
+            "label": "Those jobs per non-degree worker nearby",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.2,
+            "coverage": 1.0
+          },
+          {
+            "key": "jobs_growth_5mi",
+            "label": "Job growth within 5 miles, 2018-2023",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.1,
+            "coverage": 1.0
+          }
+        ]
+      },
+      {
+        "key": "transit",
+        "label": "Transit",
+        "weight": 6,
+        "question": "How easy is it to get around without a car?",
+        "metrics": [
+          {
+            "key": "marta_rail_dist_mi",
+            "label": "Miles to MARTA rail",
+            "source": "opportunity",
+            "direction": -1,
+            "weight": 0.4,
+            "coverage": 1.0
+          },
+          {
+            "key": "marta_stops_half_mi",
+            "label": "MARTA stops within half a mile",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.3,
+            "coverage": 1.0
+          },
+          {
+            "key": "epa_walkability",
+            "label": "Walkability index",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.3,
+            "coverage": 1.0
+          },
+          {
+            "key": "hud_transport_cost",
+            "label": "HUD transportation cost index",
+            "source": "opportunity",
+            "direction": 1,
+            "weight": 0.0,
+            "coverage": 0.998
+          }
+        ]
+      }
+    ]
+  },
+  "need_vs_opportunity_rho": -0.601
+}

@@ -1,0 +1,166 @@
+{
+  "n_ranked": 1224,
+  "top10": 122,
+  "verification": {
+    "spot_check": {
+      "tracts": 10,
+      "values": 70,
+      "matched": 70,
+      "release": "ACS 2024 5-year",
+      "pass": true
+    },
+    "hud_placement": {
+      "compared": 1144,
+      "agree": 1126,
+      "share": 0.984,
+      "pass": true
+    },
+    "coverage": {
+      "tracts": 1248,
+      "with_acs": 1248,
+      "with_boundary": 1248,
+      "pass": true
+    },
+    "tool_matches_pipeline": {
+      "date": "2026-11-01",
+      "method": "Map tool loaded in a browser with default settings (original group weights, corrected supply gap); window.NEED_DEBUG.scores() compared with data/processed/validation/python_scores.json",
+      "compared": 1224,
+      "max_abs_diff_points": 0.0005,
+      "only_python": 0,
+      "only_tool": 0,
+      "pass": true,
+      "history": "First run (Oct 22) differed by up to 0.04 points: the tool's data file rounded percentiles to 3 decimals and the tract CSV rounded values to 5 significant figures. Both now keep full precision. Rerun Nov 1 after each change to the defaults."
+    }
+  },
+  "convergent": {
+    "svi_overall": {
+      "rho": 0.7242,
+      "n": 1222,
+      "pass": true
+    },
+    "svi_socioeconomic": {
+      "rho": 0.7557,
+      "n": 1222,
+      "pass": true
+    },
+    "svi_housing_transport": {
+      "rho": 0.4968,
+      "n": 1222
+    },
+    "vouchers": {
+      "rho": 0.1376,
+      "n": 1145,
+      "pass": false,
+      "rho_without_supply_group": 0.1434
+    },
+    "qct_auc": {
+      "auc": 0.929,
+      "n": 1224,
+      "pass": true
+    },
+    "disagreements": {
+      "higher_than_svi": 12,
+      "lower_than_svi": 3,
+      "renter_share_median": 0.18,
+      "renter_share_all": 0.29
+    }
+  },
+  "criterion": {
+    "tracts": 922,
+    "counties": [
+      "Clayton",
+      "Cobb",
+      "DeKalb",
+      "Fulton",
+      "Gwinnett"
+    ],
+    "rho": 0.3478,
+    "avg_rate": 24.7,
+    "top10_rate": 33.5,
+    "lift": 1.36,
+    "by_county": {
+      "Clayton": -0.0417,
+      "Cobb": 0.2768,
+      "DeKalb": 0.3709,
+      "Fulton": 0.3949,
+      "Gwinnett": 0.0688
+    },
+    "pass_rho": false,
+    "pass_lift": false,
+    "pass_county": false,
+    "svi_rho": 0.3508,
+    "svi_lift": 1.2,
+    "by_group": {
+      "income": 0.4023,
+      "burden": 0.1913,
+      "market": 0.1192,
+      "vulnerable": 0.0785,
+      "work": 0.1853,
+      "quality": 0.0436,
+      "supply": 0.3252
+    }
+  },
+  "uncertainty": {
+    "data_error": {
+      "draws": 200,
+      "median_interval_width": 304,
+      "p90_interval_width": 539,
+      "baseline_top10_kept_half": 110,
+      "pass": false
+    },
+    "modeling_choices": {
+      "combinations": 162,
+      "min_rho": 0.8444,
+      "median_rho": 0.92675,
+      "worst": {
+        "normalization": "minmax",
+        "aggregation": "geo",
+        "cv_cutoff": 0.3,
+        "student_threshold": 0.3,
+        "weights": "expert",
+        "rho": 0.8444,
+        "n_common": 1221
+      },
+      "by_choice": {
+        "normalization": {
+          "minmax": 0.893,
+          "pct": 0.95,
+          "z": 0.95
+        },
+        "aggregation": {
+          "arith": 0.938,
+          "geo": 0.924
+        },
+        "cv_cutoff": {
+          "0.3": 0.894,
+          "0.4": 0.961,
+          "0.5": 0.938
+        },
+        "student_threshold": {
+          "0.2": 0.931,
+          "0.25": 0.931,
+          "0.3": 0.931
+        },
+        "weights": {
+          "equal": 0.93,
+          "expert": 0.928,
+          "fa": 0.934
+        }
+      },
+      "pass": false
+    },
+    "combined": {
+      "draws": 500,
+      "robust_top10": 23,
+      "likely_top10": 71,
+      "median_interval_width": 487
+    },
+    "data_year": {
+      "rho": 0.856,
+      "n": 1223,
+      "pass": false,
+      "top10_overlap": 84,
+      "median_rank_change": 84
+    }
+  }
+}

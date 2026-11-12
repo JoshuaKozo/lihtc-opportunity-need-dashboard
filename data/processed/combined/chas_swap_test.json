@@ -1,0 +1,185 @@
+{
+  "tracts": 1225,
+  "usable_share": {
+    "acs": 0.297,
+    "chas": 0.533
+  },
+  "rank_corr_acs_vs_chas": 0.992,
+  "results": [
+    {
+      "outcome": "evictions_2023_2025",
+      "label": "Eviction filings, 2023-2025",
+      "version": "acs",
+      "tracts": 923,
+      "rho": 0.374,
+      "ci_lo": 0.272,
+      "ci_hi": 0.458
+    },
+    {
+      "outcome": "evictions_2023_2025",
+      "label": "Eviction filings, 2023-2025",
+      "version": "chas",
+      "tracts": 923,
+      "rho": 0.379,
+      "ci_lo": 0.275,
+      "ci_hi": 0.464,
+      "diff_vs_acs": 0.005,
+      "diff_ci_lo": -0.003,
+      "diff_ci_hi": 0.015,
+      "diff_significant": false
+    },
+    {
+      "outcome": "evictions_2023_2025",
+      "label": "Eviction filings, 2023-2025",
+      "version": "none",
+      "tracts": 923,
+      "rho": 0.372,
+      "ci_lo": 0.269,
+      "ci_hi": 0.456,
+      "diff_vs_acs": -0.002,
+      "diff_ci_lo": -0.006,
+      "diff_ci_hi": 0.002,
+      "diff_significant": false
+    },
+    {
+      "outcome": "evictions_2026",
+      "label": "Eviction filings, Jan-May 2026 (held out)",
+      "version": "acs",
+      "tracts": 923,
+      "rho": 0.33,
+      "ci_lo": 0.229,
+      "ci_hi": 0.417
+    },
+    {
+      "outcome": "evictions_2026",
+      "label": "Eviction filings, Jan-May 2026 (held out)",
+      "version": "chas",
+      "tracts": 923,
+      "rho": 0.334,
+      "ci_lo": 0.232,
+      "ci_hi": 0.422,
+      "diff_vs_acs": 0.005,
+      "diff_ci_lo": -0.005,
+      "diff_ci_hi": 0.013,
+      "diff_significant": false
+    },
+    {
+      "outcome": "evictions_2026",
+      "label": "Eviction filings, Jan-May 2026 (held out)",
+      "version": "none",
+      "tracts": 923,
+      "rho": 0.329,
+      "ci_lo": 0.227,
+      "ci_hi": 0.418,
+      "diff_vs_acs": -0.001,
+      "diff_ci_lo": -0.006,
+      "diff_ci_hi": 0.003,
+      "diff_significant": false
+    },
+    {
+      "outcome": "housing_insecurity",
+      "label": "Housing insecurity (CDC PLACES)",
+      "version": "acs",
+      "tracts": 1225,
+      "rho": 0.764,
+      "ci_lo": 0.714,
+      "ci_hi": 0.802
+    },
+    {
+      "outcome": "housing_insecurity",
+      "label": "Housing insecurity (CDC PLACES)",
+      "version": "chas",
+      "tracts": 1225,
+      "rho": 0.772,
+      "ci_lo": 0.722,
+      "ci_hi": 0.809,
+      "diff_vs_acs": 0.008,
+      "diff_ci_lo": 0.002,
+      "diff_ci_hi": 0.014,
+      "diff_significant": true
+    },
+    {
+      "outcome": "housing_insecurity",
+      "label": "Housing insecurity (CDC PLACES)",
+      "version": "none",
+      "tracts": 1225,
+      "rho": 0.765,
+      "ci_lo": 0.713,
+      "ci_hi": 0.802,
+      "diff_vs_acs": 0.0,
+      "diff_ci_lo": -0.002,
+      "diff_ci_hi": 0.004,
+      "diff_significant": false
+    },
+    {
+      "outcome": "utility_shutoff",
+      "label": "Utility shutoff threat (CDC PLACES)",
+      "version": "acs",
+      "tracts": 1225,
+      "rho": 0.767,
+      "ci_lo": 0.718,
+      "ci_hi": 0.806
+    },
+    {
+      "outcome": "utility_shutoff",
+      "label": "Utility shutoff threat (CDC PLACES)",
+      "version": "chas",
+      "tracts": 1225,
+      "rho": 0.775,
+      "ci_lo": 0.726,
+      "ci_hi": 0.814,
+      "diff_vs_acs": 0.008,
+      "diff_ci_lo": 0.002,
+      "diff_ci_hi": 0.013,
+      "diff_significant": true
+    },
+    {
+      "outcome": "utility_shutoff",
+      "label": "Utility shutoff threat (CDC PLACES)",
+      "version": "none",
+      "tracts": 1225,
+      "rho": 0.767,
+      "ci_lo": 0.718,
+      "ci_hi": 0.806,
+      "diff_vs_acs": -0.0,
+      "diff_ci_lo": -0.003,
+      "diff_ci_hi": 0.003,
+      "diff_significant": false
+    },
+    {
+      "outcome": "cdc_svi",
+      "label": "CDC Social Vulnerability Index",
+      "version": "acs",
+      "tracts": 1219,
+      "rho": 0.736,
+      "ci_lo": 0.687,
+      "ci_hi": 0.77
+    },
+    {
+      "outcome": "cdc_svi",
+      "label": "CDC Social Vulnerability Index",
+      "version": "chas",
+      "tracts": 1219,
+      "rho": 0.748,
+      "ci_lo": 0.699,
+      "ci_hi": 0.782,
+      "diff_vs_acs": 0.012,
+      "diff_ci_lo": 0.007,
+      "diff_ci_hi": 0.018,
+      "diff_significant": true
+    },
+    {
+      "outcome": "cdc_svi",
+      "label": "CDC Social Vulnerability Index",
+      "version": "none",
+      "tracts": 1219,
+      "rho": 0.74,
+      "ci_lo": 0.69,
+      "ci_hi": 0.774,
+      "diff_vs_acs": 0.004,
+      "diff_ci_lo": 0.0,
+      "diff_ci_hi": 0.008,
+      "diff_significant": true
+    }
+  ]
+}

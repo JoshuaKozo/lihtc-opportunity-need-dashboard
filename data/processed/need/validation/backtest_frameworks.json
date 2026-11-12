@@ -1,0 +1,899 @@
+{
+  "frameworks": {},
+  "outcomes": {
+    "evictions_2023_2025": {
+      "tracts": 905
+    },
+    "evictions_2026": {
+      "tracts": 905
+    },
+    "rent_growth": {
+      "tracts": 1052
+    },
+    "housing_insecurity": {
+      "tracts": 1202
+    },
+    "utility_shutoff": {
+      "tracts": 1202
+    },
+    "low_income_renter_loss": {
+      "tracts": 782
+    },
+    "combined_4": {
+      "tracts": 663
+    },
+    "combined_dedup": {
+      "tracts": 663
+    }
+  },
+  "rows": [
+    {
+      "outcome": "evictions_2023_2025",
+      "framework": "original",
+      "tracts": 905,
+      "rho": 0.387,
+      "rho_lo": 0.328,
+      "rho_hi": 0.446,
+      "lift": 1.37,
+      "county_rho_mean": 0.267,
+      "county_rho_min": 0.026
+    },
+    {
+      "outcome": "evictions_2023_2025",
+      "framework": "hud",
+      "tracts": 905,
+      "rho": 0.355,
+      "rho_lo": 0.295,
+      "rho_hi": 0.414,
+      "lift": 1.36,
+      "county_rho_mean": 0.222,
+      "county_rho_min": -0.091,
+      "diff_vs_original": -0.032,
+      "diff_ci": [
+        -0.051,
+        -0.014
+      ]
+    },
+    {
+      "outcome": "evictions_2023_2025",
+      "framework": "hud_chas",
+      "tracts": 905,
+      "rho": 0.208,
+      "rho_lo": 0.142,
+      "rho_hi": 0.272,
+      "lift": 1.19,
+      "county_rho_mean": 0.168,
+      "county_rho_min": 0.084,
+      "diff_vs_original": -0.179,
+      "diff_ci": [
+        -0.229,
+        -0.132
+      ]
+    },
+    {
+      "outcome": "evictions_2023_2025",
+      "framework": "hud_chas_prevalence",
+      "tracts": 905,
+      "rho": 0.311,
+      "rho_lo": 0.247,
+      "rho_hi": 0.372,
+      "lift": 1.29,
+      "county_rho_mean": 0.239,
+      "county_rho_min": 0.077,
+      "diff_vs_original": -0.076,
+      "diff_ci": [
+        -0.111,
+        -0.039
+      ]
+    },
+    {
+      "outcome": "evictions_2023_2025",
+      "framework": "equal",
+      "tracts": 905,
+      "rho": 0.331,
+      "rho_lo": 0.272,
+      "rho_hi": 0.392,
+      "lift": 1.32,
+      "county_rho_mean": 0.218,
+      "county_rho_min": 0.016,
+      "diff_vs_original": -0.056,
+      "diff_ci": [
+        -0.077,
+        -0.032
+      ]
+    },
+    {
+      "outcome": "evictions_2023_2025",
+      "framework": "income_only",
+      "tracts": 905,
+      "rho": 0.426,
+      "rho_lo": 0.367,
+      "rho_hi": 0.486,
+      "lift": 1.26,
+      "county_rho_mean": 0.286,
+      "county_rho_min": -0.022,
+      "diff_vs_original": 0.039,
+      "diff_ci": [
+        0.006,
+        0.071
+      ]
+    },
+    {
+      "outcome": "evictions_2023_2025",
+      "framework": "cdc_svi",
+      "tracts": 905,
+      "rho": 0.365,
+      "rho_lo": 0.305,
+      "rho_hi": 0.424,
+      "lift": 1.2,
+      "county_rho_mean": 0.23,
+      "county_rho_min": -0.094,
+      "diff_vs_original": -0.022,
+      "diff_ci": [
+        -0.069,
+        0.022
+      ]
+    },
+    {
+      "outcome": "evictions_2026",
+      "framework": "original",
+      "tracts": 905,
+      "rho": 0.348,
+      "rho_lo": 0.289,
+      "rho_hi": 0.403,
+      "lift": 1.44,
+      "county_rho_mean": 0.258,
+      "county_rho_min": 0.05
+    },
+    {
+      "outcome": "evictions_2026",
+      "framework": "hud",
+      "tracts": 905,
+      "rho": 0.316,
+      "rho_lo": 0.254,
+      "rho_hi": 0.373,
+      "lift": 1.42,
+      "county_rho_mean": 0.209,
+      "county_rho_min": -0.094,
+      "diff_vs_original": -0.032,
+      "diff_ci": [
+        -0.051,
+        -0.014
+      ]
+    },
+    {
+      "outcome": "evictions_2026",
+      "framework": "hud_chas",
+      "tracts": 905,
+      "rho": 0.188,
+      "rho_lo": 0.121,
+      "rho_hi": 0.254,
+      "lift": 1.24,
+      "county_rho_mean": 0.155,
+      "county_rho_min": 0.03,
+      "diff_vs_original": -0.159,
+      "diff_ci": [
+        -0.208,
+        -0.11
+      ]
+    },
+    {
+      "outcome": "evictions_2026",
+      "framework": "hud_chas_prevalence",
+      "tracts": 905,
+      "rho": 0.271,
+      "rho_lo": 0.205,
+      "rho_hi": 0.331,
+      "lift": 1.36,
+      "county_rho_mean": 0.22,
+      "county_rho_min": 0.037,
+      "diff_vs_original": -0.077,
+      "diff_ci": [
+        -0.117,
+        -0.04
+      ]
+    },
+    {
+      "outcome": "evictions_2026",
+      "framework": "equal",
+      "tracts": 905,
+      "rho": 0.299,
+      "rho_lo": 0.236,
+      "rho_hi": 0.354,
+      "lift": 1.43,
+      "county_rho_mean": 0.211,
+      "county_rho_min": 0.049,
+      "diff_vs_original": -0.049,
+      "diff_ci": [
+        -0.071,
+        -0.025
+      ]
+    },
+    {
+      "outcome": "evictions_2026",
+      "framework": "income_only",
+      "tracts": 905,
+      "rho": 0.378,
+      "rho_lo": 0.317,
+      "rho_hi": 0.435,
+      "lift": 1.38,
+      "county_rho_mean": 0.285,
+      "county_rho_min": 0.019,
+      "diff_vs_original": 0.03,
+      "diff_ci": [
+        -0.003,
+        0.064
+      ]
+    },
+    {
+      "outcome": "evictions_2026",
+      "framework": "cdc_svi",
+      "tracts": 905,
+      "rho": 0.321,
+      "rho_lo": 0.261,
+      "rho_hi": 0.382,
+      "lift": 1.18,
+      "county_rho_mean": 0.224,
+      "county_rho_min": -0.095,
+      "diff_vs_original": -0.027,
+      "diff_ci": [
+        -0.076,
+        0.019
+      ]
+    },
+    {
+      "outcome": "rent_growth",
+      "framework": "original",
+      "tracts": 1052,
+      "rho": 0.127,
+      "rho_lo": 0.069,
+      "rho_hi": 0.192,
+      "top10_minus_all": 0.03,
+      "top10_mean": 0.313,
+      "all_mean": 0.283
+    },
+    {
+      "outcome": "rent_growth",
+      "framework": "hud",
+      "tracts": 1052,
+      "rho": 0.126,
+      "rho_lo": 0.07,
+      "rho_hi": 0.191,
+      "top10_minus_all": 0.019,
+      "top10_mean": 0.303,
+      "all_mean": 0.283,
+      "diff_vs_original": -0.001,
+      "diff_ci": [
+        -0.022,
+        0.016
+      ]
+    },
+    {
+      "outcome": "rent_growth",
+      "framework": "hud_chas",
+      "tracts": 1052,
+      "rho": 0.029,
+      "rho_lo": -0.031,
+      "rho_hi": 0.097,
+      "top10_minus_all": -0.019,
+      "top10_mean": 0.265,
+      "all_mean": 0.283,
+      "diff_vs_original": -0.098,
+      "diff_ci": [
+        -0.148,
+        -0.046
+      ]
+    },
+    {
+      "outcome": "rent_growth",
+      "framework": "hud_chas_prevalence",
+      "tracts": 1052,
+      "rho": 0.099,
+      "rho_lo": 0.032,
+      "rho_hi": 0.167,
+      "top10_minus_all": 0.004,
+      "top10_mean": 0.287,
+      "all_mean": 0.283,
+      "diff_vs_original": -0.028,
+      "diff_ci": [
+        -0.063,
+        0.006
+      ]
+    },
+    {
+      "outcome": "rent_growth",
+      "framework": "equal",
+      "tracts": 1052,
+      "rho": 0.098,
+      "rho_lo": 0.039,
+      "rho_hi": 0.166,
+      "top10_minus_all": 0.058,
+      "top10_mean": 0.341,
+      "all_mean": 0.283,
+      "diff_vs_original": -0.029,
+      "diff_ci": [
+        -0.05,
+        -0.009
+      ]
+    },
+    {
+      "outcome": "rent_growth",
+      "framework": "income_only",
+      "tracts": 1052,
+      "rho": 0.163,
+      "rho_lo": 0.101,
+      "rho_hi": 0.225,
+      "top10_minus_all": 0.063,
+      "top10_mean": 0.346,
+      "all_mean": 0.283,
+      "diff_vs_original": 0.036,
+      "diff_ci": [
+        0.004,
+        0.067
+      ]
+    },
+    {
+      "outcome": "rent_growth",
+      "framework": "cdc_svi",
+      "tracts": 1052,
+      "rho": 0.136,
+      "rho_lo": 0.078,
+      "rho_hi": 0.203,
+      "top10_minus_all": -0.01,
+      "top10_mean": 0.273,
+      "all_mean": 0.283,
+      "diff_vs_original": 0.008,
+      "diff_ci": [
+        -0.037,
+        0.056
+      ]
+    },
+    {
+      "outcome": "housing_insecurity",
+      "framework": "original",
+      "tracts": 1202,
+      "rho": 0.737,
+      "rho_lo": 0.707,
+      "rho_hi": 0.762,
+      "top10_minus_all": 11.897,
+      "top10_mean": 27.447,
+      "all_mean": 15.55
+    },
+    {
+      "outcome": "housing_insecurity",
+      "framework": "hud",
+      "tracts": 1202,
+      "rho": 0.682,
+      "rho_lo": 0.649,
+      "rho_hi": 0.713,
+      "top10_minus_all": 9.658,
+      "top10_mean": 25.207,
+      "all_mean": 15.55,
+      "diff_vs_original": -0.054,
+      "diff_ci": [
+        -0.069,
+        -0.041
+      ]
+    },
+    {
+      "outcome": "housing_insecurity",
+      "framework": "hud_chas",
+      "tracts": 1202,
+      "rho": 0.522,
+      "rho_lo": 0.478,
+      "rho_hi": 0.562,
+      "top10_minus_all": 7.869,
+      "top10_mean": 23.419,
+      "all_mean": 15.55,
+      "diff_vs_original": -0.214,
+      "diff_ci": [
+        -0.255,
+        -0.181
+      ]
+    },
+    {
+      "outcome": "housing_insecurity",
+      "framework": "hud_chas_prevalence",
+      "tracts": 1202,
+      "rho": 0.725,
+      "rho_lo": 0.692,
+      "rho_hi": 0.75,
+      "top10_minus_all": 12.977,
+      "top10_mean": 28.526,
+      "all_mean": 15.55,
+      "diff_vs_original": -0.012,
+      "diff_ci": [
+        -0.039,
+        0.012
+      ]
+    },
+    {
+      "outcome": "housing_insecurity",
+      "framework": "equal",
+      "tracts": 1202,
+      "rho": 0.643,
+      "rho_lo": 0.605,
+      "rho_hi": 0.675,
+      "top10_minus_all": 11.503,
+      "top10_mean": 27.053,
+      "all_mean": 15.55,
+      "diff_vs_original": -0.094,
+      "diff_ci": [
+        -0.112,
+        -0.076
+      ]
+    },
+    {
+      "outcome": "housing_insecurity",
+      "framework": "income_only",
+      "tracts": 1202,
+      "rho": 0.868,
+      "rho_lo": 0.85,
+      "rho_hi": 0.881,
+      "top10_minus_all": 13.956,
+      "top10_mean": 29.506,
+      "all_mean": 15.55,
+      "diff_vs_original": 0.131,
+      "diff_ci": [
+        0.112,
+        0.151
+      ]
+    },
+    {
+      "outcome": "housing_insecurity",
+      "framework": "cdc_svi",
+      "tracts": 1202,
+      "rho": 0.821,
+      "rho_lo": 0.802,
+      "rho_hi": 0.839,
+      "top10_minus_all": 12.59,
+      "top10_mean": 28.14,
+      "all_mean": 15.55,
+      "diff_vs_original": 0.085,
+      "diff_ci": [
+        0.058,
+        0.114
+      ]
+    },
+    {
+      "outcome": "utility_shutoff",
+      "framework": "original",
+      "tracts": 1202,
+      "rho": 0.736,
+      "rho_lo": 0.704,
+      "rho_hi": 0.763,
+      "top10_minus_all": 9.283,
+      "top10_mean": 19.37,
+      "all_mean": 10.087
+    },
+    {
+      "outcome": "utility_shutoff",
+      "framework": "hud",
+      "tracts": 1202,
+      "rho": 0.682,
+      "rho_lo": 0.649,
+      "rho_hi": 0.712,
+      "top10_minus_all": 7.495,
+      "top10_mean": 17.582,
+      "all_mean": 10.087,
+      "diff_vs_original": -0.054,
+      "diff_ci": [
+        -0.068,
+        -0.041
+      ]
+    },
+    {
+      "outcome": "utility_shutoff",
+      "framework": "hud_chas",
+      "tracts": 1202,
+      "rho": 0.518,
+      "rho_lo": 0.473,
+      "rho_hi": 0.559,
+      "top10_minus_all": 5.929,
+      "top10_mean": 16.016,
+      "all_mean": 10.087,
+      "diff_vs_original": -0.218,
+      "diff_ci": [
+        -0.254,
+        -0.183
+      ]
+    },
+    {
+      "outcome": "utility_shutoff",
+      "framework": "hud_chas_prevalence",
+      "tracts": 1202,
+      "rho": 0.717,
+      "rho_lo": 0.685,
+      "rho_hi": 0.747,
+      "top10_minus_all": 9.971,
+      "top10_mean": 20.058,
+      "all_mean": 10.087,
+      "diff_vs_original": -0.019,
+      "diff_ci": [
+        -0.042,
+        0.005
+      ]
+    },
+    {
+      "outcome": "utility_shutoff",
+      "framework": "equal",
+      "tracts": 1202,
+      "rho": 0.643,
+      "rho_lo": 0.607,
+      "rho_hi": 0.677,
+      "top10_minus_all": 9.037,
+      "top10_mean": 19.124,
+      "all_mean": 10.087,
+      "diff_vs_original": -0.093,
+      "diff_ci": [
+        -0.111,
+        -0.075
+      ]
+    },
+    {
+      "outcome": "utility_shutoff",
+      "framework": "income_only",
+      "tracts": 1202,
+      "rho": 0.866,
+      "rho_lo": 0.848,
+      "rho_hi": 0.881,
+      "top10_minus_all": 10.98,
+      "top10_mean": 21.067,
+      "all_mean": 10.087,
+      "diff_vs_original": 0.13,
+      "diff_ci": [
+        0.111,
+        0.15
+      ]
+    },
+    {
+      "outcome": "utility_shutoff",
+      "framework": "cdc_svi",
+      "tracts": 1202,
+      "rho": 0.81,
+      "rho_lo": 0.788,
+      "rho_hi": 0.827,
+      "top10_minus_all": 9.307,
+      "top10_mean": 19.394,
+      "all_mean": 10.087,
+      "diff_vs_original": 0.074,
+      "diff_ci": [
+        0.049,
+        0.103
+      ]
+    },
+    {
+      "outcome": "low_income_renter_loss",
+      "framework": "original",
+      "tracts": 782,
+      "rho": 0.166,
+      "rho_lo": 0.098,
+      "rho_hi": 0.233,
+      "top10_minus_all": 0.213,
+      "top10_mean": 0.194,
+      "all_mean": -0.019
+    },
+    {
+      "outcome": "low_income_renter_loss",
+      "framework": "hud",
+      "tracts": 782,
+      "rho": 0.202,
+      "rho_lo": 0.134,
+      "rho_hi": 0.268,
+      "top10_minus_all": 0.259,
+      "top10_mean": 0.241,
+      "all_mean": -0.019,
+      "diff_vs_original": 0.035,
+      "diff_ci": [
+        0.015,
+        0.057
+      ]
+    },
+    {
+      "outcome": "low_income_renter_loss",
+      "framework": "hud_chas",
+      "tracts": 782,
+      "rho": 0.166,
+      "rho_lo": 0.101,
+      "rho_hi": 0.232,
+      "top10_minus_all": 0.131,
+      "top10_mean": 0.112,
+      "all_mean": -0.019,
+      "diff_vs_original": -0.001,
+      "diff_ci": [
+        -0.065,
+        0.065
+      ]
+    },
+    {
+      "outcome": "low_income_renter_loss",
+      "framework": "hud_chas_prevalence",
+      "tracts": 782,
+      "rho": 0.103,
+      "rho_lo": 0.037,
+      "rho_hi": 0.172,
+      "top10_minus_all": 0.114,
+      "top10_mean": 0.095,
+      "all_mean": -0.019,
+      "diff_vs_original": -0.063,
+      "diff_ci": [
+        -0.11,
+        -0.02
+      ]
+    },
+    {
+      "outcome": "low_income_renter_loss",
+      "framework": "equal",
+      "tracts": 782,
+      "rho": 0.134,
+      "rho_lo": 0.065,
+      "rho_hi": 0.205,
+      "top10_minus_all": 0.177,
+      "top10_mean": 0.158,
+      "all_mean": -0.019,
+      "diff_vs_original": -0.033,
+      "diff_ci": [
+        -0.055,
+        -0.011
+      ]
+    },
+    {
+      "outcome": "low_income_renter_loss",
+      "framework": "income_only",
+      "tracts": 782,
+      "rho": 0.113,
+      "rho_lo": 0.046,
+      "rho_hi": 0.178,
+      "top10_minus_all": 0.177,
+      "top10_mean": 0.158,
+      "all_mean": -0.019,
+      "diff_vs_original": -0.053,
+      "diff_ci": [
+        -0.091,
+        -0.015
+      ]
+    },
+    {
+      "outcome": "low_income_renter_loss",
+      "framework": "cdc_svi",
+      "tracts": 782,
+      "rho": -0.001,
+      "rho_lo": -0.069,
+      "rho_hi": 0.062,
+      "top10_minus_all": 0.105,
+      "top10_mean": 0.086,
+      "all_mean": -0.019,
+      "diff_vs_original": -0.168,
+      "diff_ci": [
+        -0.235,
+        -0.106
+      ]
+    },
+    {
+      "outcome": "combined_4",
+      "framework": "original",
+      "tracts": 663,
+      "rho": 0.664,
+      "rho_lo": 0.62,
+      "rho_hi": 0.707,
+      "top10_minus_all": 0.221,
+      "top10_mean": 0.723,
+      "all_mean": 0.501
+    },
+    {
+      "outcome": "combined_4",
+      "framework": "hud",
+      "tracts": 663,
+      "rho": 0.609,
+      "rho_lo": 0.558,
+      "rho_hi": 0.655,
+      "top10_minus_all": 0.203,
+      "top10_mean": 0.704,
+      "all_mean": 0.501,
+      "diff_vs_original": -0.055,
+      "diff_ci": [
+        -0.076,
+        -0.034
+      ]
+    },
+    {
+      "outcome": "combined_4",
+      "framework": "hud_chas",
+      "tracts": 663,
+      "rho": 0.385,
+      "rho_lo": 0.32,
+      "rho_hi": 0.445,
+      "top10_minus_all": 0.13,
+      "top10_mean": 0.631,
+      "all_mean": 0.501,
+      "diff_vs_original": -0.279,
+      "diff_ci": [
+        -0.332,
+        -0.226
+      ]
+    },
+    {
+      "outcome": "combined_4",
+      "framework": "hud_chas_prevalence",
+      "tracts": 663,
+      "rho": 0.592,
+      "rho_lo": 0.541,
+      "rho_hi": 0.641,
+      "top10_minus_all": 0.205,
+      "top10_mean": 0.706,
+      "all_mean": 0.501,
+      "diff_vs_original": -0.071,
+      "diff_ci": [
+        -0.109,
+        -0.034
+      ]
+    },
+    {
+      "outcome": "combined_4",
+      "framework": "equal",
+      "tracts": 663,
+      "rho": 0.6,
+      "rho_lo": 0.549,
+      "rho_hi": 0.65,
+      "top10_minus_all": 0.217,
+      "top10_mean": 0.718,
+      "all_mean": 0.501,
+      "diff_vs_original": -0.064,
+      "diff_ci": [
+        -0.088,
+        -0.042
+      ]
+    },
+    {
+      "outcome": "combined_4",
+      "framework": "income_only",
+      "tracts": 663,
+      "rho": 0.755,
+      "rho_lo": 0.722,
+      "rho_hi": 0.785,
+      "top10_minus_all": 0.242,
+      "top10_mean": 0.743,
+      "all_mean": 0.501,
+      "diff_vs_original": 0.092,
+      "diff_ci": [
+        0.061,
+        0.121
+      ]
+    },
+    {
+      "outcome": "combined_4",
+      "framework": "cdc_svi",
+      "tracts": 663,
+      "rho": 0.648,
+      "rho_lo": 0.598,
+      "rho_hi": 0.692,
+      "top10_minus_all": 0.21,
+      "top10_mean": 0.711,
+      "all_mean": 0.501,
+      "diff_vs_original": -0.015,
+      "diff_ci": [
+        -0.066,
+        0.032
+      ]
+    },
+    {
+      "outcome": "combined_dedup",
+      "framework": "original",
+      "tracts": 663,
+      "rho": 0.584,
+      "rho_lo": 0.528,
+      "rho_hi": 0.635,
+      "top10_minus_all": 0.184,
+      "top10_mean": 0.685,
+      "all_mean": 0.501
+    },
+    {
+      "outcome": "combined_dedup",
+      "framework": "hud",
+      "tracts": 663,
+      "rho": 0.547,
+      "rho_lo": 0.492,
+      "rho_hi": 0.598,
+      "top10_minus_all": 0.18,
+      "top10_mean": 0.681,
+      "all_mean": 0.501,
+      "diff_vs_original": -0.037,
+      "diff_ci": [
+        -0.059,
+        -0.016
+      ]
+    },
+    {
+      "outcome": "combined_dedup",
+      "framework": "hud_chas",
+      "tracts": 663,
+      "rho": 0.344,
+      "rho_lo": 0.278,
+      "rho_hi": 0.406,
+      "top10_minus_all": 0.103,
+      "top10_mean": 0.604,
+      "all_mean": 0.501,
+      "diff_vs_original": -0.24,
+      "diff_ci": [
+        -0.296,
+        -0.185
+      ]
+    },
+    {
+      "outcome": "combined_dedup",
+      "framework": "hud_chas_prevalence",
+      "tracts": 663,
+      "rho": 0.494,
+      "rho_lo": 0.436,
+      "rho_hi": 0.551,
+      "top10_minus_all": 0.152,
+      "top10_mean": 0.653,
+      "all_mean": 0.501,
+      "diff_vs_original": -0.089,
+      "diff_ci": [
+        -0.13,
+        -0.05
+      ]
+    },
+    {
+      "outcome": "combined_dedup",
+      "framework": "equal",
+      "tracts": 663,
+      "rho": 0.523,
+      "rho_lo": 0.466,
+      "rho_hi": 0.577,
+      "top10_minus_all": 0.179,
+      "top10_mean": 0.68,
+      "all_mean": 0.501,
+      "diff_vs_original": -0.061,
+      "diff_ci": [
+        -0.084,
+        -0.038
+      ]
+    },
+    {
+      "outcome": "combined_dedup",
+      "framework": "income_only",
+      "tracts": 663,
+      "rho": 0.638,
+      "rho_lo": 0.591,
+      "rho_hi": 0.682,
+      "top10_minus_all": 0.192,
+      "top10_mean": 0.693,
+      "all_mean": 0.501,
+      "diff_vs_original": 0.054,
+      "diff_ci": [
+        0.022,
+        0.089
+      ]
+    },
+    {
+      "outcome": "combined_dedup",
+      "framework": "cdc_svi",
+      "tracts": 663,
+      "rho": 0.526,
+      "rho_lo": 0.469,
+      "rho_hi": 0.574,
+      "top10_minus_all": 0.163,
+      "top10_mean": 0.664,
+      "all_mean": 0.501,
+      "diff_vs_original": -0.058,
+      "diff_ci": [
+        -0.114,
+        -0.006
+      ]
+    }
+  ],
+  "chas": {
+    "tracts_with_value": 1165,
+    "usable_25plus_renters": 1078
+  },
+  "agreement_with_original": {
+    "hud": 0.955,
+    "hud_chas": 0.657,
+    "hud_chas_prevalence": 0.811,
+    "equal": 0.944,
+    "income_only": 0.874,
+    "cdc_svi": 0.716
+  }
+}

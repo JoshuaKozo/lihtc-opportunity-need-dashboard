@@ -1,0 +1,485 @@
+{
+ "run_date": "2026-10-22",
+ "applications": 190,
+ "funded": 105,
+ "rows": [
+  {
+   "metric": "SiteLine location score (total)",
+   "group": "current map metric",
+   "qap_link": "\u00a7XI\u2013\u00a7XXII",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.07368421052631578,
+   "id": "s_siteline",
+   "metric_id": "sl_total",
+   "single_auc": 0.6231101511879049,
+   "single_auc_ci": [
+    0.5156586642043706,
+    0.7138090583251873
+   ],
+   "lift_over_siteline": null,
+   "lift_ci": null,
+   "r_with_siteline": 1.0,
+   "map_share": 1.0000000000000004
+  },
+  {
+   "metric": "Basis boost (QCT or DDA)",
+   "group": "current map metric",
+   "qap_link": "Core \u00a7V",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.5,
+   "id": "s_basis",
+   "metric_id": "basis_boost",
+   "single_auc": 0.5399568034557235,
+   "single_auc_ci": [
+    0.45053989117376864,
+    0.6338681245214449
+   ],
+   "lift_over_siteline": -0.04751619870410362,
+   "lift_ci": [
+    -0.1592282612421168,
+    0.0446032339287119
+   ],
+   "r_with_siteline": -0.013551806150978687,
+   "map_share": 0.0
+  },
+  {
+   "metric": "Years since last local award",
+   "group": "current map metric",
+   "qap_link": "Core \u00a7V tiebreak",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.3684210526315789,
+   "id": "s_years",
+   "metric_id": "years_since_local_award",
+   "single_auc": 0.5107991360691144,
+   "single_auc_ci": [
+    0.41919116312828886,
+    0.6041025893796004
+   ],
+   "lift_over_siteline": -0.0399568034557235,
+   "lift_ci": [
+    -0.09722791438979962,
+    0.0
+   ],
+   "r_with_siteline": 0.044062872536923904,
+   "map_share": 0.0
+  },
+  {
+   "metric": "LIHTC saturation",
+   "group": "current map metric",
+   "qap_link": "Threshold \u00a7IV",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.5789473684210527,
+   "id": "s_saturation",
+   "metric_id": "lihtc_saturation",
+   "single_auc": 0.45788336933045354,
+   "single_auc_ci": [
+    0.3605698529411765,
+    0.5522896806944122
+   ],
+   "lift_over_siteline": -0.015118790496760237,
+   "lift_ci": [
+    -0.16507695437454395,
+    0.12056165762296515
+   ],
+   "r_with_siteline": 0.027024277403019242,
+   "map_share": 0.0
+  },
+  {
+   "metric": "Tract flood risk (FEMA)",
+   "group": "current map metric",
+   "qap_link": "Threshold \u00a7VI",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.031578947368421054,
+   "id": "s_flood",
+   "metric_id": "flood_risk",
+   "single_auc": 0.42764578833693306,
+   "single_auc_ci": [
+    0.3133942610062893,
+    0.5481940921581061
+   ],
+   "lift_over_siteline": -0.005399568034557212,
+   "lift_ci": [
+    -0.06862986697775662,
+    0.05253384468119492
+   ],
+   "r_with_siteline": 0.15851830025899014,
+   "map_share": 0.0
+  },
+  {
+   "metric": "\u00a7XI Desirable / undesirable activities",
+   "group": "SiteLine section",
+   "qap_link": "\u00a7XI",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.8894736842105263,
+   "id": "sec_XI",
+   "metric_id": "XI",
+   "single_auc": 0.5118790496760259,
+   "single_auc_ci": [
+    0.47833223972003497,
+    0.5454576845806127
+   ],
+   "lift_over_siteline": -0.017278617710583144,
+   "lift_ci": [
+    -0.05357262543086943,
+    0.0046511627906976605
+   ],
+   "r_with_siteline": 0.7071828123163532,
+   "map_share": 0.0
+  },
+  {
+   "metric": "\u00a7XII Transit",
+   "group": "SiteLine section",
+   "qap_link": "\u00a7XII",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.3263157894736842,
+   "id": "sec_XII",
+   "metric_id": "XII",
+   "single_auc": 0.6231101511879049,
+   "single_auc_ci": [
+    0.5633237032831235,
+    0.6828137422703181
+   ],
+   "lift_over_siteline": 0.01403887688984884,
+   "lift_ci": [
+    -0.04989300837233983,
+    0.07631507107494534
+   ],
+   "r_with_siteline": 0.23666759644328236,
+   "map_share": 0.0
+  },
+  {
+   "metric": "\u00a7XIII Quality schools",
+   "group": "SiteLine section",
+   "qap_link": "\u00a7XIII",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.4421052631578947,
+   "id": "sec_XIII",
+   "metric_id": "XIII",
+   "single_auc": 0.5734341252699784,
+   "single_auc_ci": [
+    0.5136753724342378,
+    0.6282066508313539
+   ],
+   "lift_over_siteline": 0.002159827213822907,
+   "lift_ci": [
+    -0.04127192982456148,
+    0.035001288659793836
+   ],
+   "r_with_siteline": 0.06461475626598828,
+   "map_share": 0.0
+  },
+  {
+   "metric": "\u00a7XV Stable communities",
+   "group": "SiteLine section",
+   "qap_link": "\u00a7XV",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.22105263157894736,
+   "id": "sec_XV",
+   "metric_id": "XV",
+   "single_auc": 0.531317494600432,
+   "single_auc_ci": [
+    0.4125245379786011,
+    0.659108481724461
+   ],
+   "lift_over_siteline": -0.022678185745140356,
+   "lift_ci": [
+    -0.09744549850941801,
+    0.03463345864661658
+   ],
+   "r_with_siteline": 0.6876792432297172,
+   "map_share": 0.0
+  },
+  {
+   "metric": "\u00a7XVI Community designations",
+   "group": "SiteLine section",
+   "qap_link": "\u00a7XVI",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.9631578947368421,
+   "id": "sec_XVI",
+   "metric_id": "XVI",
+   "single_auc": 0.5259179265658748,
+   "single_auc_ci": [
+    0.49407026222113953,
+    0.5588266253869969
+   ],
+   "lift_over_siteline": 0.011879049676025932,
+   "lift_ci": [
+    -0.0022628299611416242,
+    0.03296832884097034
+   ],
+   "r_with_siteline": 0.19916286269328315,
+   "map_share": 0.0
+  },
+  {
+   "metric": "\u00a7XVIII Previous projects (as of round)",
+   "group": "SiteLine section",
+   "qap_link": "\u00a7XVIII",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.631578947368421,
+   "id": "sec_XVIII",
+   "metric_id": "XVIII",
+   "single_auc": 0.5107991360691144,
+   "single_auc_ci": [
+    0.39654725745935326,
+    0.6300601036998549
+   ],
+   "lift_over_siteline": -0.05291576673866083,
+   "lift_ci": [
+    -0.10511238363547279,
+    -0.002468532101783908
+   ],
+   "r_with_siteline": 0.15472244788304698,
+   "map_share": 0.0
+  },
+  {
+   "metric": "\u00a7XXII Historic district",
+   "group": "SiteLine section",
+   "qap_link": "\u00a7XXII",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.8894736842105263,
+   "id": "sec_XXII",
+   "metric_id": "XXII",
+   "single_auc": 0.5431965442764579,
+   "single_auc_ci": [
+    0.48692463247095075,
+    0.5963868274582559
+   ],
+   "lift_over_siteline": -0.017278617710583144,
+   "lift_ci": [
+    -0.0535470840696794,
+    0.011731067793686482
+   ],
+   "r_with_siteline": 0.24550833353966556,
+   "map_share": 0.0
+  },
+  {
+   "metric": "10-point block (best of \u00a7XV/\u00a7XVI/\u00a7XIX)",
+   "group": "SiteLine section",
+   "qap_link": "\u00a7XV/\u00a7XVI/\u00a7XIX",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.22105263157894736,
+   "id": "sec_block",
+   "metric_id": "block",
+   "single_auc": 0.5604751619870411,
+   "single_auc_ci": [
+    0.43046103967975796,
+    0.6881736242884251
+   ],
+   "lift_over_siteline": -0.030237580993520474,
+   "lift_ci": [
+    -0.06579124221844933,
+    -0.003281124967248015
+   ],
+   "r_with_siteline": 0.7033712293361905,
+   "map_share": 0.0
+  },
+  {
+   "metric": "QCT alone (as recorded by DCA)",
+   "group": "candidate",
+   "qap_link": "\u00a7XIV +1, Core \u00a7V",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.5526315789473685,
+   "id": "c_qct",
+   "metric_id": null,
+   "single_auc": 0.5367170626349892,
+   "single_auc_ci": [
+    0.46353487855450237,
+    0.6101950058608319
+   ],
+   "lift_over_siteline": -0.03239740820734338,
+   "lift_ci": [
+    -0.13872613820647298,
+    0.058117620282115416
+   ],
+   "r_with_siteline": -0.02002288410830465,
+   "map_share": 0.0
+  },
+  {
+   "metric": "DDA alone (as recorded by DCA)",
+   "group": "candidate",
+   "qap_link": "Core \u00a7V",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.9526315789473684,
+   "id": "c_dda",
+   "metric_id": null,
+   "single_auc": 0.5043196544276458,
+   "single_auc_ci": [
+    0.4812191263523168,
+    0.5254321636962649
+   ],
+   "lift_over_siteline": -0.023758099352051754,
+   "lift_ci": [
+    -0.05781480934082173,
+    -0.0034717724525043067
+   ],
+   "r_with_siteline": 0.067964622240964,
+   "map_share": 0.0
+  },
+  {
+   "metric": "Local-government crowding: past applications per round",
+   "group": "candidate",
+   "qap_link": "Core \u00a7V award cap (2 per local govt)",
+   "direction": "lower",
+   "coverage": 1.0,
+   "modal_share": 0.29473684210526313,
+   "id": "c_lg_crowding",
+   "metric_id": null,
+   "single_auc": 0.4762419006479482,
+   "single_auc_ci": [
+    0.3701812386396565,
+    0.5722561529792416
+   ],
+   "lift_over_siteline": -0.048596112311015016,
+   "lift_ci": [
+    -0.07338899826023255,
+    -0.018616856290586573
+   ],
+   "r_with_siteline": 0.0022814621199150767,
+   "map_share": 0.0
+  },
+  {
+   "metric": "Local government's past win rate",
+   "group": "candidate",
+   "qap_link": "Core \u00a7V caps + tiebreaks",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.29473684210526313,
+   "id": "c_lg_winrate",
+   "metric_id": null,
+   "single_auc": 0.5302375809935205,
+   "single_auc_ci": [
+    0.4283590675648636,
+    0.6135074356337148
+   ],
+   "lift_over_siteline": -0.02699784017278617,
+   "lift_ci": [
+    -0.05492946335983409,
+    -0.002967062331233143
+   ],
+   "r_with_siteline": 0.052726302982184316,
+   "map_share": 0.0
+  },
+  {
+   "metric": "Inside an Atlanta Tax Allocation District (\u00a7XIV plan-area proxy)",
+   "group": "candidate",
+   "qap_link": "\u00a7XIV revitalization plans",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.8578947368421053,
+   "id": "c_tad",
+   "metric_id": null,
+   "single_auc": 0.4794816414686825,
+   "single_auc_ci": [
+    0.41208638243716195,
+    0.539070991847826
+   ],
+   "lift_over_siteline": -0.04643628509719222,
+   "lift_ci": [
+    -0.11512218523460396,
+    0.01675851404724645
+   ],
+   "r_with_siteline": 0.04318776381578312,
+   "map_share": 0.0
+  },
+  {
+   "metric": "Credits per low-income unit (cheaper)",
+   "group": "deal feature",
+   "qap_link": "Core \u00a7V tiebreak",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.021052631578947368,
+   "id": "d_cost",
+   "metric_id": null,
+   "single_auc": 0.49352051835853133,
+   "single_auc_ci": [
+    0.37120832247981245,
+    0.586402313217447
+   ],
+   "lift_over_siteline": -0.016198704103671635,
+   "lift_ci": [
+    -0.033950908455625366,
+    0.004683932230679161
+   ],
+   "r_with_siteline": 0.02520720310339607,
+   "map_share": 0.0
+  },
+  {
+   "metric": "Owner has won before",
+   "group": "deal feature",
+   "qap_link": "Core \u00a7V tiebreak / \u00a7VI",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.6842105263157895,
+   "id": "d_prior",
+   "metric_id": null,
+   "single_auc": 0.49352051835853133,
+   "single_auc_ci": [
+    0.43836431393678166,
+    0.5570561647895673
+   ],
+   "lift_over_siteline": -0.02051835853131745,
+   "lift_ci": [
+    -0.04282731722239216,
+    -0.004983660130718912
+   ],
+   "r_with_siteline": -0.025254323149972495,
+   "map_share": 0.0
+  },
+  {
+   "metric": "Nonprofit set-aside",
+   "group": "deal feature",
+   "qap_link": "Core \u00a7V set-aside",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.8105263157894737,
+   "id": "d_nonprofit",
+   "metric_id": null,
+   "single_auc": 0.5377969762419006,
+   "single_auc_ci": [
+    0.4957980981866431,
+    0.5839593678582513
+   ],
+   "lift_over_siteline": -0.0075593952483801186,
+   "lift_ci": [
+    -0.0463714873628201,
+    0.028703722668851475
+   ],
+   "r_with_siteline": 0.06811572429548803,
+   "map_share": 0.0
+  },
+  {
+   "metric": "Applicant's self-score (reference)",
+   "group": "reference",
+   "qap_link": "whole QAP",
+   "direction": "higher",
+   "coverage": 1.0,
+   "modal_share": 0.07368421052631578,
+   "id": "self_score",
+   "metric_id": null,
+   "single_auc": 0.8142548596112311,
+   "single_auc_ci": [
+    0.741811952632522,
+    0.8803440988634427
+   ],
+   "lift_over_siteline": null,
+   "lift_ci": null,
+   "r_with_siteline": 0.1001704690396833,
+   "map_share": 0.0
+  }
+ ]
+}

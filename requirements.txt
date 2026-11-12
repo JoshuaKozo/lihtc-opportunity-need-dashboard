@@ -1,0 +1,14 @@
+# Python 3.10–3.12. SiteLine must be installed separately (see README):
+#   pip install -e "../SitelineLIHTCStartUp[geo]"
+pandas>=2.0,<3
+numpy>=1.24
+pyarrow>=14
+requests>=2.31
+beautifulsoup4>=4.12
+openpyxl>=3.1
+xlrd>=2.0.1
+scikit-learn>=1.4
+scipy>=1.11
+statsmodels>=0.14
+fairlearn>=0.10
+jupyter

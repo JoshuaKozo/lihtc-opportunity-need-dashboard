@@ -1,0 +1,127 @@
+{
+ "run_date": "2026-10-26",
+ "model": "Logistic regression: P(funded) = 1 / (1 + exp(-(a + b*margin + c*nonprofit)))",
+ "features": [
+  "margin"
+ ],
+ "coef": {
+  "intercept": -0.2061722612241035,
+  "margin": 0.5782166606050343
+ },
+ "se": {
+  "intercept": 0.08464987163679584,
+  "margin": 0.04632359340681034
+ },
+ "data": {
+  "applications": 810,
+  "funded": 374,
+  "rounds": "2013-2025",
+  "competitions": 31,
+  "region": "statewide 9% competition"
+ },
+ "validation": {
+  "held_out": {
+   "margin": {
+    "auc": 0.822125055193053,
+    "within_competition_auc": 0.846775610613249,
+    "brier": 0.1700972040451536
+   },
+   "margin + nonprofit": {
+    "auc": 0.8243665064023942,
+    "within_competition_auc": 0.8489720611491829,
+    "brier": 0.17018582393787537
+   }
+  },
+  "chosen": "margin",
+  "base_rate_brier": 0.24853528425544888,
+  "calibration": [
+   {
+    "bin": "(-0.001, 0.1]",
+    "n": 78,
+    "predicted": 0.0377620110954658,
+    "observed": 0.08974358974358974
+   },
+   {
+    "bin": "(0.1, 0.2]",
+    "n": 89,
+    "predicted": 0.1521402133456959,
+    "observed": 0.15730337078651685
+   },
+   {
+    "bin": "(0.2, 0.3]",
+    "n": 77,
+    "predicted": 0.24071758388403258,
+    "observed": 0.15584415584415584
+   },
+   {
+    "bin": "(0.3, 0.4]",
+    "n": 97,
+    "predicted": 0.3305664060021985,
+    "observed": 0.23711340206185566
+   },
+   {
+    "bin": "(0.4, 0.5]",
+    "n": 141,
+    "predicted": 0.4496087411507297,
+    "observed": 0.4397163120567376
+   },
+   {
+    "bin": "(0.5, 0.6]",
+    "n": 86,
+    "predicted": 0.5683452856450513,
+    "observed": 0.6976744186046512
+   },
+   {
+    "bin": "(0.6, 0.7]",
+    "n": 35,
+    "predicted": 0.6350228782208464,
+    "observed": 0.6857142857142857
+   },
+   {
+    "bin": "(0.7, 0.8]",
+    "n": 69,
+    "predicted": 0.7378395831900659,
+    "observed": 0.7681159420289855
+   },
+   {
+    "bin": "(0.8, 0.9]",
+    "n": 87,
+    "predicted": 0.8400272224514956,
+    "observed": 0.8505747126436781
+   },
+   {
+    "bin": "(0.9, 1.0]",
+    "n": 51,
+    "predicted": 0.9578313256469347,
+    "observed": 0.8823529411764706
+   }
+  ]
+ },
+ "next_round": {
+  "based_on": 2025,
+  "pools": {
+   "Atlanta Metro": {
+    "field_median": 83.75,
+    "applications": 10,
+    "funded": 7
+   },
+   "Other Metro": {
+    "field_median": 85.5,
+    "applications": 20,
+    "funded": 8
+   },
+   "Rural": {
+    "field_median": 83.5,
+    "applications": 21,
+    "funded": 10
+   }
+  },
+  "drift_mean": 0.9583333333333334,
+  "drift_sd": 1.4354151548129435,
+  "drift_pairs": [
+   "2022->2023",
+   "2024->2025"
+  ]
+ },
+ "notes": "Margin uses applicants' claimed scores; DCA's review lowers some claims, which the model absorbs on average. Set-aside, tiebreaker, and award-limit outcomes are part of the data, not modeled separately. The 2026 round may use a new QAP, which can shift the scale."
+}

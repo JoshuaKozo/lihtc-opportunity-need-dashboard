@@ -1,0 +1,16 @@
+outcome,label,version,tracts,rho,ci_lo,ci_hi,diff_vs_acs,diff_ci_lo,diff_ci_hi,diff_significant
+evictions_2023_2025,"Eviction filings, 2023-2025",acs,923,0.374,0.272,0.458,,,,
+evictions_2023_2025,"Eviction filings, 2023-2025",chas,923,0.379,0.275,0.464,0.005,-0.003,0.015,False
+evictions_2023_2025,"Eviction filings, 2023-2025",none,923,0.372,0.269,0.456,-0.002,-0.006,0.002,False
+evictions_2026,"Eviction filings, Jan-May 2026 (held out)",acs,923,0.33,0.229,0.417,,,,
+evictions_2026,"Eviction filings, Jan-May 2026 (held out)",chas,923,0.334,0.232,0.422,0.005,-0.005,0.013,False
+evictions_2026,"Eviction filings, Jan-May 2026 (held out)",none,923,0.329,0.227,0.418,-0.001,-0.006,0.003,False
+housing_insecurity,Housing insecurity (CDC PLACES),acs,1225,0.764,0.714,0.802,,,,
+housing_insecurity,Housing insecurity (CDC PLACES),chas,1225,0.772,0.722,0.809,0.008,0.002,0.014,True
+housing_insecurity,Housing insecurity (CDC PLACES),none,1225,0.765,0.713,0.802,0.0,-0.002,0.004,False
+utility_shutoff,Utility shutoff threat (CDC PLACES),acs,1225,0.767,0.718,0.806,,,,
+utility_shutoff,Utility shutoff threat (CDC PLACES),chas,1225,0.775,0.726,0.814,0.008,0.002,0.013,True
+utility_shutoff,Utility shutoff threat (CDC PLACES),none,1225,0.767,0.718,0.806,-0.0,-0.003,0.003,False
+cdc_svi,CDC Social Vulnerability Index,acs,1219,0.736,0.687,0.77,,,,
+cdc_svi,CDC Social Vulnerability Index,chas,1219,0.748,0.699,0.782,0.012,0.007,0.018,True
+cdc_svi,CDC Social Vulnerability Index,none,1219,0.74,0.69,0.774,0.004,0.0,0.008,True

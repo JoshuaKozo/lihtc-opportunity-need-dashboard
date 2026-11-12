@@ -1,0 +1,11 @@
+#!/bin/sh
+# Blocks `git push` to main so work goes through pull requests. Enable once per clone: `make hooks`.
+# Bypass on purpose with `git push --no-verify`.
+while read local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    echo "Blocked: don't push straight to main. Push a branch and open a pull request instead"
+    echo "(see CONTRIBUTING.md)."
+    exit 1
+  fi
+done
+exit 0

@@ -1,0 +1,692 @@
+{
+  "test1_incremental": {
+    "outcome": "evictions 2023-2025",
+    "tracts": 918,
+    "rho_full": 0.376,
+    "groups": {
+      "income": {
+        "rho_without": 0.236,
+        "change_when_dropped": -0.14,
+        "ci": [
+          -0.199,
+          -0.081
+        ],
+        "verdict": "adds value",
+        "partial_rho_given_income": null
+      },
+      "burden": {
+        "rho_without": 0.385,
+        "change_when_dropped": 0.009,
+        "ci": [
+          -0.018,
+          0.039
+        ],
+        "verdict": "no clear effect",
+        "partial_rho_given_income": 0.049
+      },
+      "market": {
+        "rho_without": 0.377,
+        "change_when_dropped": 0.0,
+        "ci": [
+          -0.015,
+          0.017
+        ],
+        "verdict": "no clear effect",
+        "partial_rho_given_income": -0.035
+      },
+      "vulnerable": {
+        "rho_without": 0.383,
+        "change_when_dropped": 0.007,
+        "ci": [
+          -0.001,
+          0.015
+        ],
+        "verdict": "no clear effect",
+        "partial_rho_given_income": -0.111
+      },
+      "work": {
+        "rho_without": 0.371,
+        "change_when_dropped": -0.006,
+        "ci": [
+          -0.021,
+          0.011
+        ],
+        "verdict": "no clear effect",
+        "partial_rho_given_income": 0.074
+      },
+      "quality": {
+        "rho_without": 0.383,
+        "change_when_dropped": 0.007,
+        "ci": [
+          -0.001,
+          0.015
+        ],
+        "verdict": "no clear effect",
+        "partial_rho_given_income": -0.099
+      },
+      "supply": {
+        "rho_without": 0.376,
+        "change_when_dropped": -0.0,
+        "ci": [
+          -0.006,
+          0.005
+        ],
+        "verdict": "no clear effect",
+        "partial_rho_given_income": 0.011
+      }
+    }
+  },
+  "test2_effective_weights": {
+    "original": {
+      "income": {
+        "nominal": 0.25,
+        "effective": 0.254,
+        "ratio": 1.02
+      },
+      "burden": {
+        "nominal": 0.25,
+        "effective": 0.134,
+        "ratio": 0.53
+      },
+      "market": {
+        "nominal": 0.1,
+        "effective": 0.109,
+        "ratio": 1.09
+      },
+      "vulnerable": {
+        "nominal": 0.1,
+        "effective": 0.134,
+        "ratio": 1.34
+      },
+      "work": {
+        "nominal": 0.1,
+        "effective": 0.078,
+        "ratio": 0.78
+      },
+      "quality": {
+        "nominal": 0.05,
+        "effective": 0.041,
+        "ratio": 0.83
+      },
+      "supply": {
+        "nominal": 0.15,
+        "effective": 0.25,
+        "ratio": 1.67
+      }
+    },
+    "hud": {
+      "income": {
+        "nominal": 0.25,
+        "effective": 0.249,
+        "ratio": 0.99
+      },
+      "burden": {
+        "nominal": 0.4,
+        "effective": 0.255,
+        "ratio": 0.64
+      },
+      "market": {
+        "nominal": 0.05,
+        "effective": 0.07,
+        "ratio": 1.4
+      },
+      "vulnerable": {
+        "nominal": 0.05,
+        "effective": 0.11,
+        "ratio": 2.2
+      },
+      "work": {
+        "nominal": 0.0,
+        "effective": 0.0,
+        "ratio": null
+      },
+      "quality": {
+        "nominal": 0.1,
+        "effective": 0.062,
+        "ratio": 0.62
+      },
+      "supply": {
+        "nominal": 0.15,
+        "effective": 0.254,
+        "ratio": 1.69
+      }
+    }
+  },
+  "test3_discriminant": {
+    "original": {
+      "convergent_svi": 0.724,
+      "population_density": 0.242,
+      "land_area": -0.275,
+      "population": -0.149,
+      "miles_to_downtown": -0.333,
+      "pass": true
+    },
+    "hud": {
+      "convergent_svi": 0.657,
+      "population_density": 0.195,
+      "land_area": -0.224,
+      "population": -0.124,
+      "miles_to_downtown": -0.317,
+      "pass": true
+    }
+  },
+  "test3_fairness": {
+    "county": {
+      "Cherokee": {
+        "tracts": 56,
+        "data_coverage": 0.419,
+        "rho_housing_insecurity": 0.517,
+        "rho_evictions": null,
+        "share_of_high_hardship_tracts_flagged": 1.0
+      },
+      "Clayton": {
+        "tracts": 69,
+        "data_coverage": 0.632,
+        "rho_housing_insecurity": 0.599,
+        "rho_evictions": 0.026,
+        "share_of_high_hardship_tracts_flagged": 0.455
+      },
+      "Cobb": {
+        "tracts": 181,
+        "data_coverage": 0.478,
+        "rho_housing_insecurity": 0.661,
+        "rho_evictions": 0.316,
+        "share_of_high_hardship_tracts_flagged": 0.6
+      },
+      "DeKalb": {
+        "tracts": 199,
+        "data_coverage": 0.593,
+        "rho_housing_insecurity": 0.71,
+        "rho_evictions": 0.372,
+        "share_of_high_hardship_tracts_flagged": 0.615
+      },
+      "Douglas": {
+        "tracts": 30,
+        "data_coverage": 0.472,
+        "rho_housing_insecurity": 0.548,
+        "rho_evictions": null,
+        "share_of_high_hardship_tracts_flagged": 0.25
+      },
+      "Fayette": {
+        "tracts": 24,
+        "data_coverage": 0.464,
+        "rho_housing_insecurity": 0.317,
+        "rho_evictions": null,
+        "share_of_high_hardship_tracts_flagged": 0.0
+      },
+      "Forsyth": {
+        "tracts": 48,
+        "data_coverage": 0.416,
+        "rho_housing_insecurity": 0.36,
+        "rho_evictions": null,
+        "share_of_high_hardship_tracts_flagged": 0.0
+      },
+      "Fulton": {
+        "tracts": 314,
+        "data_coverage": 0.516,
+        "rho_housing_insecurity": 0.825,
+        "rho_evictions": 0.451,
+        "share_of_high_hardship_tracts_flagged": 0.795
+      },
+      "Gwinnett": {
+        "tracts": 220,
+        "data_coverage": 0.51,
+        "rho_housing_insecurity": 0.615,
+        "rho_evictions": 0.129,
+        "share_of_high_hardship_tracts_flagged": 0.613
+      },
+      "Henry": {
+        "tracts": 59,
+        "data_coverage": 0.413,
+        "rho_housing_insecurity": 0.481,
+        "rho_evictions": null,
+        "share_of_high_hardship_tracts_flagged": 0.5
+      },
+      "Rockdale": {
+        "tracts": 24,
+        "data_coverage": 0.48,
+        "rho_housing_insecurity": 0.789,
+        "rho_evictions": null,
+        "share_of_high_hardship_tracts_flagged": 0.25
+      }
+    },
+    "majority_minority": {
+      "majority-minority": {
+        "tracts": 772,
+        "data_coverage": 0.569,
+        "rho_housing_insecurity": 0.653,
+        "rho_evictions": 0.207,
+        "share_of_high_hardship_tracts_flagged": 0.626
+      },
+      "majority-white": {
+        "tracts": 452,
+        "data_coverage": 0.416,
+        "rho_housing_insecurity": 0.479,
+        "rho_evictions": 0.227,
+        "share_of_high_hardship_tracts_flagged": 0.0
+      }
+    },
+    "density": {
+      "high density": {
+        "tracts": 400,
+        "data_coverage": 0.603,
+        "rho_housing_insecurity": 0.778,
+        "rho_evictions": 0.426,
+        "share_of_high_hardship_tracts_flagged": 0.645
+      },
+      "low density": {
+        "tracts": 412,
+        "data_coverage": 0.42,
+        "rho_housing_insecurity": 0.626,
+        "rho_evictions": 0.313,
+        "share_of_high_hardship_tracts_flagged": 0.444
+      },
+      "mid density": {
+        "tracts": 412,
+        "data_coverage": 0.517,
+        "rho_housing_insecurity": 0.752,
+        "rho_evictions": 0.384,
+        "share_of_high_hardship_tracts_flagged": 0.7
+      }
+    }
+  },
+  "test4_best_achievable": {
+    "tracts": 183,
+    "weights_all_counties": {
+      "income": 39.9,
+      "burden": 8.4,
+      "market": 7.8,
+      "vulnerable": 0.0,
+      "work": 43.5,
+      "quality": 0.0,
+      "supply": 0.4
+    },
+    "leave_one_county_out": [
+      {
+        "county": "Clayton",
+        "weights": [
+          25.1,
+          18.9,
+          12.4,
+          0.0,
+          43.6,
+          0.0,
+          0.0
+        ],
+        "rho_fitted": 0.397,
+        "rho_original": 0.216,
+        "rho_hud": 0.212
+      },
+      {
+        "county": "Cobb",
+        "weights": [
+          35.4,
+          12.7,
+          3.9,
+          0.0,
+          48.0,
+          0.0,
+          0.0
+        ],
+        "rho_fitted": 0.462,
+        "rho_original": 0.441,
+        "rho_hud": 0.39
+      },
+      {
+        "county": "DeKalb",
+        "weights": [
+          48.5,
+          0.0,
+          28.3,
+          0.0,
+          17.8,
+          5.5,
+          0.0
+        ],
+        "rho_fitted": 0.273,
+        "rho_original": 0.287,
+        "rho_hud": 0.295
+      },
+      {
+        "county": "Fulton",
+        "weights": [
+          22.4,
+          10.3,
+          0.0,
+          0.0,
+          55.0,
+          0.0,
+          12.3
+        ],
+        "rho_fitted": 0.507,
+        "rho_original": 0.553,
+        "rho_hud": 0.489
+      },
+      {
+        "county": "Gwinnett",
+        "weights": [
+          52.2,
+          4.1,
+          0.7,
+          0.0,
+          43.0,
+          0.0,
+          0.0
+        ],
+        "rho_fitted": -0.12,
+        "rho_original": 0.177,
+        "rho_hud": 0.186
+      }
+    ],
+    "mean_rho_fitted": 0.304,
+    "mean_rho_original": 0.335,
+    "mean_rho_hud": 0.314
+  },
+  "weight_sets": {
+    "original": {
+      "income": 25.0,
+      "burden": 25.0,
+      "market": 10.0,
+      "vulnerable": 10.0,
+      "work": 10.0,
+      "quality": 5.0,
+      "supply": 15.0
+    },
+    "hud": {
+      "income": 25.0,
+      "burden": 40.0,
+      "market": 5.0,
+      "vulnerable": 5.0,
+      "work": 0.0,
+      "quality": 10.0,
+      "supply": 15.0
+    },
+    "calibrated": {
+      "income": 39.9,
+      "burden": 8.4,
+      "market": 7.8,
+      "vulnerable": 0.0,
+      "work": 43.5,
+      "quality": 0.0,
+      "supply": 0.4
+    },
+    "blended": {
+      "income": 32.5,
+      "burden": 16.7,
+      "market": 8.9,
+      "vulnerable": 5.0,
+      "work": 26.7,
+      "quality": 2.5,
+      "supply": 7.7
+    },
+    "pruned": {
+      "income": 25.0,
+      "burden": 25.0,
+      "market": 10.0,
+      "vulnerable": 10.0,
+      "work": 10.0,
+      "quality": 5.0,
+      "supply": 15.0
+    }
+  },
+  "backtest": {
+    "svi": {
+      "tracts": 1218,
+      "results": {
+        "original": {
+          "rho": 0.716,
+          "ci": [
+            0.661,
+            0.756
+          ]
+        },
+        "hud": {
+          "rho": 0.672,
+          "ci": [
+            0.612,
+            0.716
+          ],
+          "diff_vs_original": -0.044,
+          "diff_ci": [
+            -0.062,
+            -0.024
+          ]
+        },
+        "calibrated": {
+          "rho": 0.67,
+          "ci": [
+            0.602,
+            0.719
+          ],
+          "diff_vs_original": -0.046,
+          "diff_ci": [
+            -0.078,
+            -0.017
+          ]
+        },
+        "blended": {
+          "rho": 0.705,
+          "ci": [
+            0.644,
+            0.75
+          ],
+          "diff_vs_original": -0.011,
+          "diff_ci": [
+            -0.029,
+            0.005
+          ]
+        },
+        "pruned": {
+          "rho": 0.716,
+          "ci": [
+            0.661,
+            0.756
+          ],
+          "diff_vs_original": 0.0,
+          "diff_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "income_only": {
+          "rho": 0.838,
+          "ci": [
+            0.799,
+            0.865
+          ],
+          "diff_vs_original": 0.122,
+          "diff_ci": [
+            0.099,
+            0.15
+          ]
+        }
+      }
+    },
+    "housing_insecurity": {
+      "tracts": 1220,
+      "results": {
+        "original": {
+          "rho": 0.726,
+          "ci": [
+            0.664,
+            0.768
+          ]
+        },
+        "hud": {
+          "rho": 0.676,
+          "ci": [
+            0.618,
+            0.718
+          ],
+          "diff_vs_original": -0.05,
+          "diff_ci": [
+            -0.066,
+            -0.035
+          ]
+        },
+        "calibrated": {
+          "rho": 0.684,
+          "ci": [
+            0.61,
+            0.737
+          ],
+          "diff_vs_original": -0.042,
+          "diff_ci": [
+            -0.08,
+            -0.013
+          ]
+        },
+        "blended": {
+          "rho": 0.719,
+          "ci": [
+            0.652,
+            0.765
+          ],
+          "diff_vs_original": -0.007,
+          "diff_ci": [
+            -0.027,
+            0.008
+          ]
+        },
+        "pruned": {
+          "rho": 0.726,
+          "ci": [
+            0.664,
+            0.768
+          ],
+          "diff_vs_original": 0.0,
+          "diff_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "income_only": {
+          "rho": 0.868,
+          "ci": [
+            0.832,
+            0.892
+          ],
+          "diff_vs_original": 0.141,
+          "diff_ci": [
+            0.118,
+            0.171
+          ]
+        }
+      }
+    },
+    "evictions_2026": {
+      "tracts": 918,
+      "results": {
+        "original": {
+          "rho": 0.336,
+          "ci": [
+            0.244,
+            0.417
+          ]
+        },
+        "hud": {
+          "rho": 0.303,
+          "ci": [
+            0.213,
+            0.384
+          ],
+          "diff_vs_original": -0.033,
+          "diff_ci": [
+            -0.05,
+            -0.016
+          ]
+        },
+        "calibrated": {
+          "rho": 0.345,
+          "ci": [
+            0.254,
+            0.425
+          ],
+          "diff_vs_original": 0.008,
+          "diff_ci": [
+            -0.03,
+            0.043
+          ]
+        },
+        "blended": {
+          "rho": 0.35,
+          "ci": [
+            0.261,
+            0.431
+          ],
+          "diff_vs_original": 0.014,
+          "diff_ci": [
+            -0.009,
+            0.035
+          ]
+        },
+        "pruned": {
+          "rho": 0.336,
+          "ci": [
+            0.244,
+            0.417
+          ],
+          "diff_vs_original": 0.0,
+          "diff_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "income_only": {
+          "rho": 0.378,
+          "ci": [
+            0.275,
+            0.472
+          ],
+          "diff_vs_original": 0.041,
+          "diff_ci": [
+            -0.001,
+            0.085
+          ]
+        }
+      }
+    },
+    "stability": {
+      "original": {
+        "rho_2023_vs_2024": 0.856,
+        "ci": [
+          0.828,
+          0.877
+        ],
+        "rho_2021_vs_2024": 0.749
+      },
+      "hud": {
+        "rho_2023_vs_2024": 0.827,
+        "ci": [
+          0.794,
+          0.853
+        ],
+        "rho_2021_vs_2024": 0.691
+      },
+      "calibrated": {
+        "rho_2023_vs_2024": 0.825,
+        "ci": [
+          0.785,
+          0.854
+        ],
+        "rho_2021_vs_2024": 0.704
+      },
+      "blended": {
+        "rho_2023_vs_2024": 0.849,
+        "ci": [
+          0.813,
+          0.873
+        ],
+        "rho_2021_vs_2024": 0.743
+      },
+      "pruned": {
+        "rho_2023_vs_2024": 0.856,
+        "ci": [
+          0.827,
+          0.877
+        ],
+        "rho_2021_vs_2024": 0.749
+      }
+    }
+  }
+}

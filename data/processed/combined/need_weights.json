@@ -1,0 +1,334 @@
+{
+  "method": "research ranges, calibrated to later outcomes, one per kind of hardship (Opportunity team's method, Need team's backtest design)",
+  "tracts": 1225,
+  "fit_outcomes": {
+    "evictions_2023_2025": "Eviction filings, 2023-2025",
+    "low_income_renter_loss": "Low-income renters leaving, 2021-2024",
+    "housing_insecurity": "Housing insecurity (CDC PLACES)"
+  },
+  "held_out_outcomes": {
+    "evictions_2026": "Eviction filings, Jan-May 2026",
+    "utility_shutoff": "Utility shutoff threat (CDC PLACES)",
+    "cdc_svi": "CDC Social Vulnerability Index"
+  },
+  "ranges": {
+    "income": {
+      "low": 0.2,
+      "start": 0.25,
+      "high": 0.35
+    },
+    "rent_burden": {
+      "low": 0.2,
+      "start": 0.25,
+      "high": 0.4
+    },
+    "supply": {
+      "low": 0.1,
+      "start": 0.15,
+      "high": 0.2
+    },
+    "market": {
+      "low": 0.05,
+      "start": 0.15,
+      "high": 0.15
+    },
+    "barriers": {
+      "low": 0.05,
+      "start": 0.2,
+      "high": 0.2
+    }
+  },
+  "group_weights_from_need_team": {
+    "income": 25,
+    "burden": 25,
+    "market": 10,
+    "vulnerable": 10,
+    "work": 10,
+    "quality": 5,
+    "supply": 15
+  },
+  "data_weights": {
+    "income": 0.53,
+    "rent_burden": 0.225,
+    "supply": 0.166,
+    "market": 0.0,
+    "barriers": 0.078
+  },
+  "final_weights": {
+    "income": 0.35,
+    "rent_burden": 0.248,
+    "supply": 0.168,
+    "market": 0.085,
+    "barriers": 0.149
+  },
+  "final_percent": {
+    "income": 35,
+    "rent_burden": 25,
+    "supply": 17,
+    "market": 8,
+    "barriers": 15
+  },
+  "weights_by_blend": {
+    "0.25": {
+      "income": 0.32,
+      "rent_burden": 0.244,
+      "supply": 0.154,
+      "market": 0.112,
+      "barriers": 0.17
+    },
+    "0.50": {
+      "income": 0.35,
+      "rent_burden": 0.248,
+      "supply": 0.168,
+      "market": 0.085,
+      "barriers": 0.149
+    },
+    "0.75": {
+      "income": 0.35,
+      "rent_burden": 0.256,
+      "supply": 0.187,
+      "market": 0.074,
+      "barriers": 0.133
+    }
+  },
+  "held_out_counties": {
+    "Need team (starting point)": {
+      "evictions_2023_2025": 0.285,
+      "low_income_renter_loss": 0.2,
+      "housing_insecurity": 0.606,
+      "evictions_2026": 0.272,
+      "utility_shutoff": 0.605,
+      "cdc_svi": 0.613
+    },
+    "equal": {
+      "evictions_2023_2025": 0.281,
+      "low_income_renter_loss": 0.188,
+      "housing_insecurity": 0.592,
+      "evictions_2026": 0.268,
+      "utility_shutoff": 0.59,
+      "cdc_svi": 0.6
+    },
+    "HUD worst-case needs (Need team's variant)": {
+      "evictions_2023_2025": 0.261,
+      "low_income_renter_loss": 0.224,
+      "housing_insecurity": 0.572,
+      "evictions_2026": 0.252,
+      "utility_shutoff": 0.57,
+      "cdc_svi": 0.579
+    },
+    "income only": {
+      "evictions_2023_2025": 0.333,
+      "low_income_renter_loss": 0.126,
+      "housing_insecurity": 0.804,
+      "evictions_2026": 0.329,
+      "utility_shutoff": 0.797,
+      "cdc_svi": 0.782
+    },
+    "data only": {
+      "evictions_2023_2025": 0.318,
+      "low_income_renter_loss": 0.196,
+      "housing_insecurity": 0.725,
+      "evictions_2026": 0.309,
+      "utility_shutoff": 0.723,
+      "cdc_svi": 0.712
+    },
+    "final (half data, half start, kept in ranges)": {
+      "evictions_2023_2025": 0.298,
+      "low_income_renter_loss": 0.202,
+      "housing_insecurity": 0.658,
+      "evictions_2026": 0.288,
+      "utility_shutoff": 0.657,
+      "cdc_svi": 0.658
+    }
+  },
+  "metro_vs_start": {
+    "evictions_2023_2025": {
+      "rho": 0.384,
+      "ci": [
+        0.279,
+        0.463
+      ],
+      "diff_vs_start": 0.023,
+      "diff_ci": [
+        0.01,
+        0.038
+      ]
+    },
+    "low_income_renter_loss": {
+      "rho": 0.181,
+      "ci": [
+        0.107,
+        0.254
+      ],
+      "diff_vs_start": 0.005,
+      "diff_ci": [
+        -0.004,
+        0.014
+      ]
+    },
+    "housing_insecurity": {
+      "rho": 0.737,
+      "ci": [
+        0.675,
+        0.784
+      ],
+      "diff_vs_start": 0.056,
+      "diff_ci": [
+        0.042,
+        0.073
+      ]
+    },
+    "evictions_2026": {
+      "rho": 0.346,
+      "ci": [
+        0.232,
+        0.439
+      ],
+      "diff_vs_start": 0.021,
+      "diff_ci": [
+        0.008,
+        0.035
+      ]
+    },
+    "utility_shutoff": {
+      "rho": 0.737,
+      "ci": [
+        0.674,
+        0.784
+      ],
+      "diff_vs_start": 0.055,
+      "diff_ci": [
+        0.04,
+        0.073
+      ]
+    },
+    "cdc_svi": {
+      "rho": 0.715,
+      "ci": [
+        0.652,
+        0.761
+      ],
+      "diff_vs_start": 0.047,
+      "diff_ci": [
+        0.034,
+        0.062
+      ]
+    }
+  },
+  "categories": {
+    "income": {
+      "label": "Income and poverty",
+      "pc1_share": 0.823,
+      "metrics": {
+        "poverty_rate": {
+          "weight": 18,
+          "loading": 0.87,
+          "flag": null
+        },
+        "below_200pct_poverty": {
+          "weight": 22,
+          "loading": 0.94,
+          "flag": null
+        },
+        "below_60ami_share": {
+          "weight": 22,
+          "loading": 0.94,
+          "flag": null
+        },
+        "median_hh_income": {
+          "weight": 21,
+          "loading": 0.94,
+          "flag": null
+        },
+        "snap_share": {
+          "weight": 17,
+          "loading": 0.84,
+          "flag": null
+        }
+      },
+      "weight": 35
+    },
+    "rent_burden": {
+      "label": "Rent burden",
+      "pc1_share": 0.697,
+      "metrics": {
+        "chas_li_renter_burden": {
+          "weight": 31,
+          "loading": 0.8,
+          "flag": null
+        },
+        "rent_burden_30plus": {
+          "weight": 37,
+          "loading": 0.88,
+          "flag": null
+        },
+        "severe_rent_burden_50plus": {
+          "weight": 32,
+          "loading": 0.82,
+          "flag": null
+        }
+      },
+      "weight": 25
+    },
+    "supply": {
+      "label": "Affordable housing supply gap",
+      "metrics": {
+        "unassisted_li_renter_share": {
+          "weight": 100,
+          "loading": 1.0,
+          "flag": null
+        }
+      },
+      "weight": 17
+    },
+    "market": {
+      "label": "Rental market and housing stock",
+      "pc1_share": 0.423,
+      "metrics": {
+        "renter_share": {
+          "weight": 50,
+          "loading": 0.8,
+          "flag": null
+        },
+        "rent_growth": {
+          "weight": 1,
+          "loading": 0.07,
+          "flag": "weak link"
+        },
+        "pre1980_share": {
+          "weight": 50,
+          "loading": 0.79,
+          "flag": null
+        }
+      },
+      "weight": 8
+    },
+    "barriers": {
+      "label": "Work and access barriers",
+      "pc1_share": 0.312,
+      "metrics": {
+        "unemployment_rate": {
+          "weight": 47,
+          "loading": 0.76,
+          "flag": null
+        },
+        "part_time_share": {
+          "weight": 18,
+          "loading": 0.47,
+          "flag": null
+        },
+        "no_vehicle_share": {
+          "weight": 35,
+          "loading": 0.65,
+          "flag": null
+        },
+        "limited_english_share": {
+          "weight": 1,
+          "loading": 0.11,
+          "flag": "weak link"
+        }
+      },
+      "weight": 15
+    }
+  }
+}

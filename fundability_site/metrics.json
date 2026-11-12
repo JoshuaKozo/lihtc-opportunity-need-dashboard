@@ -1,0 +1,228 @@
+{
+  "_readme": "Every metric that can enter the Fundability score. Rule: each metric must tie to a LIHTC funding mechanism (QAP points, threshold, tiebreaker, award limit, basis boost); community need and opportunity belong to the Need and Opportunity tools. To add one: (1) add a column to fundability_site/data/tracts.geojson (build it in pipelines/fundability/build_fund_features.py), (2) add an entry below. Fields: id, column, label, group ('siteline' = scored, 'context' = shown but never scored), qap_section, qap_title, qap_ref, source, format (points|pct|count|number|years|flag|score), direction ('higher' or 'lower' is better for funding), scale ('points' uses max_points, 'percentile' ranks ARC tracts, 'flag' is 0/1), missing ('best'|'worst'|'skip'), in_fundability (default on/off), weight (default), description, measures (what the metric measures, one short paragraph), targets (which part of DCA's scoring it targets). Optional: 'breakdown' (sub-scores shown under the metric, never scored separately) and 'details' (supporting values shown under the metric).",
+  "weights_source": "Fundability = SiteLine's location score (weight 100). The 2026-10-15 backtest and metric audit found that SiteLine, driven by transit (§XII) and schools (§XIII), is the only location measure that predicted which ARC applications DCA funded; the other layers added nothing on held-out rounds, so they are shown as context, not scored. See Methodology → Why these weights.",
+  "qap": {
+    "title": "State of Georgia 2024-2025 Qualified Allocation Plan",
+    "short": "2024-2025 QAP"
+  },
+  "groups": [
+    {
+      "id": "siteline",
+      "title": "Scored: SiteLine location score",
+      "note": "SiteLine's geographic QAP scoring, used exactly as provided. The tract value is its best 0.25-mile grid cell (median cell shown for comparison). This is the whole Fundability score."
+    },
+    {
+      "id": "context",
+      "title": "Context (shown, not scored)",
+      "note": "Funding rules that matter for whether a deal works or how ties break, but that didn't predict past awards. Shown for judgment; they don't change the score."
+    }
+  ],
+  "metrics": [
+    {
+      "id": "sl_total",
+      "column": "total_score_max",
+      "column_median": "total_score_median",
+      "label": "SiteLine location score (best site in tract)",
+      "group": "siteline",
+      "qap_section": "XI-XXII",
+      "qap_title": "All location-based scoring criteria (46 points)",
+      "qap_ref": "Scoring Criteria §XI-§XXII, pp. 95-118",
+      "source": "SiteLine (as provided)",
+      "format": "points",
+      "max_points": 46,
+      "direction": "higher",
+      "scale": "points",
+      "missing": "skip",
+      "in_fundability": true,
+      "weight": 100,
+      "measures": "How many of DCA's location points the best spot in this tract earns, scored by SiteLine: nearby amenities, transit, school quality, neighborhood stability, special designations, distance from recent LIHTC awards, local housing need (Other Metro only), and historic districts.",
+      "targets": "The location-based scoring criteria of the 2024–2025 QAP (§XI–§XXII), worth up to 46 points. Every point here counts directly toward DCA's score.",
+      "description": "The highest total SiteLine score among the tract's grid cells: the best location score a site in this tract could earn.",
+      "breakdown": [
+        {
+          "label": "Desirable / undesirable activities",
+          "qap_section": "XI",
+          "qap_ref": "§XI, p. 95",
+          "column": "score_XI_max",
+          "column_median": "score_XI_median",
+          "max_points": 20
+        },
+        {
+          "label": "Transit access",
+          "qap_section": "XII",
+          "qap_ref": "§XII, p. 99",
+          "column": "score_XII_max",
+          "column_median": "score_XII_median",
+          "max_points": 6,
+          "deciding": true
+        },
+        {
+          "label": "Quality schools",
+          "qap_section": "XIII",
+          "qap_ref": "§XIII, p. 102",
+          "column": "score_XIII_max",
+          "column_median": "score_XIII_median",
+          "max_points": 3,
+          "deciding": true
+        },
+        {
+          "label": "Stable community",
+          "qap_section": "XV",
+          "qap_ref": "§XV, p. 110",
+          "column": "score_XV_max",
+          "column_median": "score_XV_median",
+          "max_points": 10,
+          "block": true
+        },
+        {
+          "label": "Community designation",
+          "qap_section": "XVI",
+          "qap_ref": "§XVI, p. 111",
+          "column": "score_XVI_max",
+          "column_median": "score_XVI_median",
+          "max_points": 10,
+          "block": true
+        },
+        {
+          "label": "No recent LIHTC nearby",
+          "qap_section": "XVIII",
+          "qap_ref": "§XVIII, p. 113",
+          "column": "score_XVIII_max",
+          "column_median": "score_XVIII_median",
+          "max_points": 5
+        },
+        {
+          "label": "Housing need (Other Metro only)",
+          "qap_section": "XIX",
+          "qap_ref": "§XIX, p. 115",
+          "column": "score_XIX_max",
+          "column_median": "score_XIX_median",
+          "max_points": 10,
+          "block": true
+        },
+        {
+          "label": "Historic district",
+          "qap_section": "XXII",
+          "qap_ref": "§XXII, p. 117",
+          "column": "score_XXII_max",
+          "column_median": "score_XXII_median",
+          "max_points": 2
+        }
+      ]
+    },
+    {
+      "id": "basis_boost",
+      "column": "basis_boost_2026",
+      "label": "Federal basis boost (QCT or DDA)",
+      "group": "context",
+      "qap_section": "Core V",
+      "qap_title": "Basis boost (IRC §42(d)(5)(B); state boost)",
+      "qap_ref": "Core Plan §V, State-Designated Basis Boost, p. 15; §XIV.A, p. 104",
+      "source": "HUD QCT and Small Area DDA, 2026",
+      "format": "flag",
+      "direction": "higher",
+      "scale": "flag",
+      "missing": "worst",
+      "in_fundability": false,
+      "weight": 0,
+      "measures": "Whether the tract is a 2026 Qualified Census Tract or sits in a 2026 Small Area Difficult Development Area, the two federal designations that unlock a 30% basis boost.",
+      "targets": "Deal feasibility rather than points: the boost raises eligible basis, so the project gets more credits and pencils more easily (Core Plan §V). A QCT also adds 1 point under §XIV when the site is in a revitalization plan area.",
+      "description": "Yes if the tract is a 2026 Qualified Census Tract or its center is in a 2026 Small Area DDA. Up to 30% more eligible basis means more credits per project. A QCT also adds 1 point under §XIV when the site is in a revitalization plan area.",
+      "details": [
+        {
+          "label": "Qualified Census Tract (2026)",
+          "column": "qct_2026",
+          "format": "flag"
+        },
+        {
+          "label": "Small Area DDA (2026)",
+          "column": "dda_2026",
+          "format": "flag"
+        }
+      ]
+    },
+    {
+      "id": "years_since_local_award",
+      "column": "years_since_local_award",
+      "label": "Years since last award in the local government",
+      "group": "context",
+      "qap_section": "Core V",
+      "qap_title": "Competitive Rounds: tiebreakers and award limits",
+      "qap_ref": "Core Plan §V, Tiebreakers, p. 21",
+      "source": "SiteLine lihtc_awards.csv (HUD + DCA lists)",
+      "format": "years",
+      "direction": "higher",
+      "scale": "percentile",
+      "missing": "best",
+      "in_fundability": false,
+      "weight": 0,
+      "measures": "How many years since the city (or the county, for unincorporated land) last received a LIHTC award. No award on record counts as best.",
+      "targets": "DCA's 9% tiebreaker, which favors the local government with the oldest last award, and the cap of two Metro Pool awards per local government per round (Core Plan §V).",
+      "description": "Years since the most recent LIHTC award in the tract's city (or the county, if unincorporated). In the 9% round, ties go to the local government whose last award is oldest, and each local government can win at most two Metro Pool awards per round. Blank = no award on record (best case).",
+      "details": [
+        {
+          "label": "Local government",
+          "column": "local_gov",
+          "format": "text"
+        }
+      ]
+    },
+    {
+      "id": "lihtc_saturation",
+      "column": "lihtc_units_per_100_renters",
+      "label": "Existing LIHTC units per 100 renter households",
+      "group": "context",
+      "qap_section": "Threshold IV",
+      "qap_title": "Market Feasibility (capture rate, adverse impact)",
+      "qap_ref": "Threshold Criteria §IV, p. 42",
+      "source": "HUD LIHTC database (through ~2019) + ACS 2020-2024",
+      "format": "number",
+      "direction": "lower",
+      "scale": "percentile",
+      "missing": "skip",
+      "in_fundability": false,
+      "weight": 0,
+      "measures": "Existing LIHTC low-income units per 100 renter households in the tract. Fewer is better.",
+      "targets": "The market study threshold (Threshold §IV): capture rates must stay at or under 30% in Metro Pools, and the project can't hurt existing tax-credit properties.",
+      "description": "How saturated the tract already is with LIHTC. The market study must show capture rates at or under 30% in Metro Pools and no adverse impact on existing tax-credit properties; failing it disqualifies the application.",
+      "details": [
+        {
+          "label": "Existing LIHTC low-income units",
+          "column": "lihtc_li_units",
+          "format": "count"
+        },
+        {
+          "label": "Renter households (denominator)",
+          "column": "acs_renter_hh",
+          "format": "count"
+        }
+      ]
+    },
+    {
+      "id": "flood_risk",
+      "column": "nri_inland_flood_score",
+      "label": "Inland flood risk (FEMA)",
+      "group": "context",
+      "qap_section": "Threshold VI",
+      "qap_title": "Environmental Requirements (floodplains)",
+      "qap_ref": "Threshold Criteria §VI, p. 44",
+      "source": "FEMA National Risk Index (Dec 2025)",
+      "format": "score",
+      "direction": "lower",
+      "scale": "percentile",
+      "missing": "skip",
+      "in_fundability": false,
+      "weight": 0,
+      "measures": "FEMA's inland flood risk score for the tract, which blends flood hazard with property exposure and community vulnerability. Off by default; lookups show the FEMA flood zone at the exact spot instead.",
+      "targets": "DCA's environmental review (Threshold §VI), where floodplains and floodways add cost and risk. It's pass/fail, not points.",
+      "description": "FEMA's inland flooding risk score (0-100) for the tract. Off by default: DCA treats floodplains as a pass/fail environmental issue, not as points, and this tract score also reflects property exposure and social vulnerability. The address lookup checks FEMA's flood map at the exact spot and shows a warning instead. The backtest can turn it back on if the evidence supports it.",
+      "details": [
+        {
+          "label": "FEMA rating",
+          "column": "nri_inland_flood_rating",
+          "format": "text"
+        }
+      ]
+    }
+  ]
+}

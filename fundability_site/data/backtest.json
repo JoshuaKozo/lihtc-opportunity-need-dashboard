@@ -1,0 +1,226 @@
+{
+ "_schema": "Written by the backtest script; read by the site's Methodology menu. status: 'not_run' or 'complete'. factors: [{metric_id (matches metrics.json id, or null for a deal feature not on the site), label, coef, ci_low, ci_high, weight (0-100, sums to 100), flag (e.g. 'unstable sign')}]. validation: {auc_mean, auc_by_round: {year: auc}, topk_hit_rate, baseline: {label, auc_mean}}. data: {rounds, applications, competitions}. notes: free text.",
+ "status": "complete",
+ "run_date": "2026-10-22",
+ "method": {
+  "model": "Conditional logistic regression (McFadden), grouped by round x pool",
+  "penalty": "L2 (ridge), alpha = 0.02 on standardized inputs",
+  "validation": "Leave one round out: fit on all other rounds, score the held-out round",
+  "weights": "Location coefficients on the site's 0-100 scale, set to 0 if they point the wrong way or flip sign in more than a quarter of held-out fits, then rescaled to sum to 100"
+ },
+ "data": {
+  "applications": 190,
+  "funded": 105,
+  "rounds": "2014-2025",
+  "competitions": 23,
+  "informative_competitions": 21,
+  "region": "11 ARC counties, 9% competitive round"
+ },
+ "factors": [
+  {
+   "metric_id": "sl_total",
+   "column": "s_siteline",
+   "label": "SiteLine location score (as of the round)",
+   "kind": "location",
+   "coef": 0.03377820138256681,
+   "ci_low": 0.0052471008944286164,
+   "ci_high": 0.07133396384389415,
+   "p_value": 0.023135197874071593,
+   "odds_ratio_per_10pts": 1.4018348894721238,
+   "sign_stable_share": 1.0,
+   "flag": null,
+   "weight": 88.3
+  },
+  {
+   "metric_id": "basis_boost",
+   "column": "s_basis",
+   "label": "Federal basis boost (QCT or DDA)",
+   "kind": "location",
+   "coef": 0.004462865695508179,
+   "ci_low": -0.002348155301655615,
+   "ci_high": 0.012857999223380143,
+   "p_value": 0.17553122613572125,
+   "odds_ratio_per_10pts": 1.0456394968505722,
+   "sign_stable_share": 1.0,
+   "flag": null,
+   "weight": 11.7
+  },
+  {
+   "metric_id": "years_since_local_award",
+   "column": "s_years",
+   "label": "Years since last award in the local government",
+   "kind": "location",
+   "coef": 0.00020052641731866668,
+   "ci_low": -0.010057912287560878,
+   "ci_high": 0.010928926887311438,
+   "p_value": 0.9351682389847481,
+   "odds_ratio_per_10pts": 1.002007276059952,
+   "sign_stable_share": 0.5833333333333334,
+   "flag": "unstable across rounds",
+   "weight": 0.0
+  },
+  {
+   "metric_id": "lihtc_saturation",
+   "column": "s_saturation",
+   "label": "LIHTC saturation (units per 100 renters)",
+   "kind": "location",
+   "coef": -0.007526060627365538,
+   "ci_low": -0.02104869067365528,
+   "ci_high": 0.003899455444619394,
+   "p_value": 0.17789336022647972,
+   "odds_ratio_per_10pts": 0.9275017420570778,
+   "sign_stable_share": 1.0,
+   "flag": "wrong direction",
+   "weight": 0.0
+  },
+  {
+   "metric_id": "flood_risk",
+   "column": "s_flood",
+   "label": "Inland flood risk (FEMA, tract)",
+   "kind": "location",
+   "coef": -0.008160497688363886,
+   "ci_low": -0.0233610065999787,
+   "ci_high": 0.0034166653147245816,
+   "p_value": 0.14434355835967252,
+   "odds_ratio_per_10pts": 0.9216359543050956,
+   "sign_stable_share": 1.0,
+   "flag": "wrong direction",
+   "weight": 0.0
+  },
+  {
+   "metric_id": null,
+   "column": "d_cost",
+   "label": "Credits requested per low-income unit (lower is better)",
+   "kind": "deal control",
+   "coef": -0.04785633090885511,
+   "ci_low": -1.371917068638242,
+   "ci_high": 1.2836982269663038,
+   "p_value": 0.9480868260685961,
+   "odds_ratio_per_10pts": 0.983737439535036,
+   "sign_stable_share": 0.6666666666666666,
+   "flag": null
+  },
+  {
+   "metric_id": null,
+   "column": "d_prior",
+   "label": "Owner has won a 9% award before",
+   "kind": "deal control",
+   "coef": 0.05184372496784117,
+   "ci_low": -0.661864981174603,
+   "ci_high": 0.8100174196406383,
+   "p_value": 0.8436081723852927,
+   "odds_ratio_per_10pts": 1.0244564326092562,
+   "sign_stable_share": 0.75,
+   "flag": null
+  },
+  {
+   "metric_id": null,
+   "column": "d_nonprofit",
+   "label": "Nonprofit set-aside",
+   "kind": "deal control",
+   "coef": 0.47019619752431707,
+   "ci_low": -0.4073528190313739,
+   "ci_high": 1.4168658006249453,
+   "p_value": 0.2780838999543028,
+   "odds_ratio_per_10pts": 1.2029169433140137,
+   "sign_stable_share": 1.0,
+   "flag": null
+  }
+ ],
+ "validation": {
+  "auc_mean": 0.5377969762419006,
+  "auc_ci": [
+   0.4227003138558109,
+   0.6608952541888804
+  ],
+  "topk_hit_rate": 0.6326530612244898,
+  "chance_topk": 0.5377625525734769,
+  "auc_by_round": {
+   "2014": 1.0,
+   "2015": 0.6875,
+   "2016": 0.38,
+   "2017": 0.5681818181818182,
+   "2018": 0.5416666666666666,
+   "2019": 1.0,
+   "2020": 0.5087719298245614,
+   "2021": 0.8333333333333334,
+   "2022": 0.5454545454545454,
+   "2023": 0.3783783783783784,
+   "2024": 0.639344262295082,
+   "2025": 0.3333333333333333
+  },
+  "baseline": {
+   "label": "SiteLine score alone",
+   "auc_mean": 0.6231101511879049
+  },
+  "models": [
+   {
+    "label": "Location + deal controls (fitted, held out)",
+    "kind": "model",
+    "auc": 0.5377969762419006,
+    "auc_ci": [
+     0.4227003138558109,
+     0.6608952541888804
+    ],
+    "topk_hit_rate": 0.6326530612244898,
+    "pairs": 463
+   },
+   {
+    "label": "Location metrics only (fitted, held out)",
+    "kind": "model",
+    "auc": 0.5658747300215983,
+    "auc_ci": [
+     0.4484796238244514,
+     0.6847691020778257
+    ],
+    "topk_hit_rate": 0.6224489795918368,
+    "pairs": 463
+   },
+   {
+    "label": "Backtest weighting on the map metrics (held out)",
+    "kind": "index",
+    "auc": 0.5745140388768899,
+    "auc_ci": [
+     0.47605560671168407,
+     0.6696747942473434
+    ],
+    "topk_hit_rate": 0.6428571428571429,
+    "pairs": 463
+   },
+   {
+    "label": "Earlier hand-set weights (70/10/10/10)",
+    "kind": "index",
+    "auc": 0.5766738660907127,
+    "auc_ci": [
+     0.5023787680209698,
+     0.6586521382858922
+    ],
+    "topk_hit_rate": 0.6326530612244898,
+    "pairs": 463
+   },
+   {
+    "label": "SiteLine score alone",
+    "kind": "baseline",
+    "auc": 0.6231101511879049,
+    "auc_ci": [
+     0.521441159331738,
+     0.7154682130584192
+    ],
+    "topk_hit_rate": 0.6632653061224489,
+    "pairs": 463
+   },
+   {
+    "label": "Applicant's own self-score (reference)",
+    "kind": "reference",
+    "auc": 0.8142548596112311,
+    "auc_ci": [
+     0.7420176760887933,
+     0.8777337006194781
+    ],
+    "topk_hit_rate": 0.7959183673469388,
+    "pairs": 463
+   }
+  ]
+ },
+ "notes": "AUC here = the share of funded-vs-unfunded pairs in the same competition that the score puts in the right order (0.5 = coin flip). Small sample: read confidence intervals before trusting a weight."
+}

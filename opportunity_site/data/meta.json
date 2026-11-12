@@ -1,0 +1,538 @@
+{
+ "verification": {
+  "date": "2026-11-01",
+  "summary": {
+   "PASS": 81,
+   "INFO": 3,
+   "WARN": 3
+  },
+  "items": [
+   "Tract populations match the Census Bureau's official county totals (within 0.6% for every county).",
+   "Distances, job counts and school results were recomputed independently from the raw files and matched exactly.",
+   "On counties held out of the weight fitting, the score lines up with children's upward mobility (0.45) and life expectancy (0.52).",
+   "It agrees closely with the Child Opportunity Index 3.0 (rank correlation 0.81).",
+   "Moving every weight up or down by as much as half barely changes the ranking (rank correlation 0.99).",
+   "Within the mobility data's margins of error, 81% of tracts keep their tier on average; tracts near a tier boundary can shift one step.",
+   "Backtest: rebuilt using only 2010-era data, the score predicted which tracts had healthier adults in 2022-23 (0.38, 0.52 with mobility; positive in 8 of 11 counties). Adding it to 2010 poverty raises the share of health differences explained from 36% to 46%.",
+   "The ranking is stable over time: the 2010 rebuild and today's score agree at 0.92, and 76% of 2010's top-fifth tracts are still in the top fifth.",
+   "Adults: once education is accounted for, no weighting predicts adult employment (0.02), matching the Moving to Opportunity finding that better neighborhoods didn't raise adults' earnings. Adult opportunity is measured through access to jobs that don't need a degree."
+  ],
+  "notes": [
+   "Opportunity runs strongly opposite to need (rank correlation -0.73): few tracts are high on both.",
+   "Scores are lower in tracts with a larger Black population share (-0.81; -0.60 after accounting for need), driven by the mobility and schools parts. About half of the mobility gap reflects who lives in a tract rather than the place. Lowering those weights reduces it."
+  ]
+ },
+ "weights": {
+  "mobility": 0.34,
+  "schools": 0.27,
+  "jobs": 0.11,
+  "transit": 0.05,
+  "health": 0.11,
+  "environment": 0.12
+ },
+ "presets": {
+  "Default": {
+   "mobility": 0.34,
+   "schools": 0.27,
+   "jobs": 0.11,
+   "transit": 0.05,
+   "health": 0.11,
+   "environment": 0.12
+  },
+  "Families with kids": {
+   "mobility": 0.3,
+   "schools": 0.35,
+   "jobs": 0.15,
+   "transit": 0.1,
+   "health": 0.05,
+   "environment": 0.05
+  },
+  "Seniors / no car": {
+   "mobility": 0.05,
+   "schools": 0.05,
+   "jobs": 0.15,
+   "transit": 0.35,
+   "health": 0.3,
+   "environment": 0.1
+  },
+  "Workforce": {
+   "mobility": 0.15,
+   "schools": 0.15,
+   "jobs": 0.35,
+   "transit": 0.25,
+   "health": 0.05,
+   "environment": 0.05
+  },
+  "Equal": {
+   "mobility": 0.1667,
+   "schools": 0.1667,
+   "jobs": 0.1667,
+   "transit": 0.1667,
+   "health": 0.1667,
+   "environment": 0.1667
+  },
+  "Access-focused": {
+   "mobility": 0.25,
+   "schools": 0.25,
+   "jobs": 0.2,
+   "transit": 0.15,
+   "health": 0.1,
+   "environment": 0.05
+  }
+ },
+ "tiers": [
+  "Very low",
+  "Low",
+  "Moderate",
+  "High",
+  "Very high"
+ ],
+ "domains": {
+  "mobility": {
+   "label": "Mobility",
+   "what": "How children from low-income families raised here did as adults.",
+   "source": "Opportunity Atlas (Opportunity Insights): children born 1978-83, observed as adults in 2014-15."
+  },
+  "schools": {
+   "label": "Schools",
+   "what": "Share of students proficient on Georgia Milestones at nearby public schools, plus the high school graduation rate.",
+   "source": "Georgia GOSA 2024-25 results, matched to NCES school locations. Charter and virtual schools excluded."
+  },
+  "jobs": {
+   "label": "Jobs",
+   "what": "Jobs reachable in 45 minutes by transit or car, jobs within 5 miles that don't need a college degree (also per worker competing for them), and 5-year job growth.",
+   "source": "Census LEHD LODES 2018 and 2023; EPA Smart Location Database v3 (2021)."
+  },
+  "transit": {
+   "label": "Transit",
+   "what": "Distance to MARTA rail, MARTA stops within half a mile, and walkability.",
+   "source": "MARTA GTFS schedule feed (2026); EPA National Walkability Index."
+  },
+  "health": {
+   "label": "Health",
+   "what": "Grocery access, distance to a community health center, and health insurance coverage.",
+   "source": "USDA SNAP Retailer Access Map (2025); HRSA health center sites; CDC PLACES (2025 release)."
+  },
+  "environment": {
+   "label": "Environment",
+   "what": "Exposure to air toxics (HUD environmental health index).",
+   "source": "HUD AFFH data (AFFHT0006). Based on older EPA air-toxics data, so it carries a small weight."
+  }
+ },
+ "indicators": {
+  "oa_kfr_p25": {
+   "domain": "mobility",
+   "direction": 1,
+   "weight": 0.7,
+   "label": "Adult income rank of kids from low-income families",
+   "optional": false,
+   "on_weight": 0.7
+  },
+  "oa_jail_p25": {
+   "domain": "mobility",
+   "direction": -1,
+   "weight": 0.3,
+   "label": "Incarceration rate of those kids",
+   "optional": false,
+   "on_weight": 0.3
+  },
+  "epa_jobs_45min_transit": {
+   "domain": "jobs",
+   "direction": 1,
+   "weight": 0.25,
+   "label": "Jobs reachable in 45 min by transit",
+   "optional": false,
+   "on_weight": 0.25
+  },
+  "epa_jobs_45min_auto": {
+   "domain": "jobs",
+   "direction": 1,
+   "weight": 0.25,
+   "label": "Jobs reachable in 45 min by car",
+   "optional": false,
+   "on_weight": 0.25
+  },
+  "jobs_nondegree_5mi": {
+   "domain": "jobs",
+   "direction": 1,
+   "weight": 0.2,
+   "label": "Jobs for workers without a degree within 5 miles",
+   "optional": false,
+   "on_weight": 0.2
+  },
+  "jobs_per_nondegree_worker_5mi": {
+   "domain": "jobs",
+   "direction": 1,
+   "weight": 0.2,
+   "label": "Those jobs per non-degree worker living within 5 miles",
+   "optional": false,
+   "on_weight": 0.2
+  },
+  "jobs_growth_5mi": {
+   "domain": "jobs",
+   "direction": 1,
+   "weight": 0.1,
+   "label": "Job growth within 5 miles (5 years)",
+   "optional": false,
+   "on_weight": 0.1
+  },
+  "school_prof_elem3": {
+   "domain": "schools",
+   "direction": 1,
+   "weight": 0.4,
+   "label": "Proficiency, 3 nearest elementary schools",
+   "optional": false,
+   "on_weight": 0.4
+  },
+  "school_prof_middle": {
+   "domain": "schools",
+   "direction": 1,
+   "weight": 0.2,
+   "label": "Proficiency, nearest middle school",
+   "optional": false,
+   "on_weight": 0.2
+  },
+  "school_prof_high": {
+   "domain": "schools",
+   "direction": 1,
+   "weight": 0.2,
+   "label": "Proficiency, nearest high school",
+   "optional": false,
+   "on_weight": 0.2
+  },
+  "school_grad_rate_high": {
+   "domain": "schools",
+   "direction": 1,
+   "weight": 0.2,
+   "label": "Graduation rate, nearest high school",
+   "optional": false,
+   "on_weight": 0.2
+  },
+  "marta_rail_dist_mi": {
+   "domain": "transit",
+   "direction": -1,
+   "weight": 0.4,
+   "label": "Distance to MARTA rail",
+   "optional": false,
+   "on_weight": 0.4
+  },
+  "marta_stops_half_mi": {
+   "domain": "transit",
+   "direction": 1,
+   "weight": 0.3,
+   "label": "MARTA stops within half a mile",
+   "optional": false,
+   "on_weight": 0.3
+  },
+  "epa_walkability": {
+   "domain": "transit",
+   "direction": 1,
+   "weight": 0.3,
+   "label": "Walkability",
+   "optional": false,
+   "on_weight": 0.3
+  },
+  "fqhc_dist_mi": {
+   "domain": "health",
+   "direction": -1,
+   "weight": 0.4,
+   "label": "Distance to a community health center",
+   "optional": false,
+   "on_weight": 0.4
+  },
+  "places_uninsured": {
+   "domain": "health",
+   "direction": -1,
+   "weight": 0.4,
+   "label": "Adults without health insurance",
+   "optional": false,
+   "on_weight": 0.4
+  },
+  "food_low_access_share": {
+   "domain": "health",
+   "direction": -1,
+   "weight": 0.2,
+   "label": "People over 1 mile from a grocery store",
+   "optional": false,
+   "on_weight": 0.2
+  },
+  "hud_env_health": {
+   "domain": "environment",
+   "direction": 1,
+   "weight": 1.0,
+   "label": "Environmental health index",
+   "optional": false,
+   "on_weight": 1.0
+  },
+  "park_dist_mi": {
+   "domain": "health",
+   "direction": -1,
+   "weight": 0,
+   "label": "Distance to a park of 1+ acres",
+   "optional": true,
+   "on_weight": 0.25
+  },
+  "bb_wired_100_20_share": {
+   "domain": "jobs",
+   "direction": 1,
+   "weight": 0,
+   "label": "Homes with wired 100/20 Mbps broadband",
+   "optional": true,
+   "on_weight": 0.15
+  },
+  "hud_school_proficiency": {
+   "domain": "schools",
+   "direction": 1,
+   "weight": 0,
+   "label": "HUD school proficiency index (older data)",
+   "optional": true,
+   "on_weight": 0.25
+  },
+  "hud_jobs_proximity": {
+   "domain": "jobs",
+   "direction": 1,
+   "weight": 0,
+   "label": "HUD jobs proximity index (older data)",
+   "optional": true,
+   "on_weight": 0.25
+  },
+  "hud_labor_market": {
+   "domain": "jobs",
+   "direction": 1,
+   "weight": 0,
+   "label": "HUD labor market index (describes residents)",
+   "optional": true,
+   "on_weight": 0.2
+  },
+  "hud_transport_cost": {
+   "domain": "transit",
+   "direction": 1,
+   "weight": 0,
+   "label": "HUD low transportation cost index (older data)",
+   "optional": true,
+   "on_weight": 0.25
+  }
+ },
+ "facts": {
+  "oa_kfr_p25": "rank",
+  "oa_jail_p25": "share",
+  "jobs_within_5mi": "int",
+  "jobs_growth_5mi": "growth",
+  "epa_jobs_45min_transit": "int",
+  "jobs_nondegree_5mi": "int",
+  "jobs_per_nondegree_worker_5mi": "ratio",
+  "epa_jobs_45min_auto": "int",
+  "school_prof_elem3": "pct",
+  "school_prof_middle": "pct",
+  "school_prof_high": "pct",
+  "school_grad_rate_high": "pct",
+  "nearest_high_school": "text",
+  "marta_rail_dist_mi": "mi",
+  "marta_stops_half_mi": "int",
+  "epa_walkability": "walk",
+  "fqhc_dist_mi": "mi",
+  "places_uninsured": "pct",
+  "food_low_access_share": "pct",
+  "hud_env_health": "index",
+  "bb_wired_100_20_share": "pct",
+  "park_dist_mi": "mi",
+  "hud_school_proficiency": "index",
+  "hud_jobs_proximity": "index",
+  "hud_labor_market": "index",
+  "hud_transport_cost": "index"
+ },
+ "caveats": [
+  "Schools are the nearest ones, not the zoned ones; a district choice school can count as nearest.",
+  "Mobility describes children born 1978-83, so it reflects the neighborhood a generation ago.",
+  "MARTA measures cover MARTA only. Other bus systems count through EPA's transit job access.",
+  "The environment index uses older air-toxics data, so it carries only 5% of the weight.",
+  "Scores rank tracts within the 11 ARC counties. A low score means low relative to metro Atlanta."
+ ],
+ "sources": [
+  {
+   "name": "Opportunity Atlas tract outcomes",
+   "publisher": "Opportunity Insights",
+   "use": "Mobility",
+   "period": "Children born 1978-83, incomes in 2014-15",
+   "url": "https://opportunityinsights.org/data/"
+  },
+  {
+   "name": "2010 to 2020 tract crosswalk",
+   "publisher": "Opportunity Insights",
+   "use": "Moving 2010-tract data to 2020 tracts",
+   "period": "",
+   "url": "https://opportunityinsights.org/data/"
+  },
+  {
+   "name": "LODES 8 workplace jobs",
+   "publisher": "U.S. Census Bureau (LEHD)",
+   "use": "Jobs within 5 miles, job growth",
+   "period": "2018 and 2023",
+   "url": "https://lehd.ces.census.gov/data/"
+  },
+  {
+   "name": "Smart Location Database v3",
+   "publisher": "U.S. EPA",
+   "use": "Jobs reachable by transit and car, walkability",
+   "period": "Inputs about 2017-19",
+   "url": "https://www.epa.gov/smartgrowth/smart-location-mapping"
+  },
+  {
+   "name": "Georgia Milestones results and graduation rates",
+   "publisher": "Georgia Governor's Office of Student Achievement",
+   "use": "School proficiency and graduation",
+   "period": "2024-25 school year",
+   "url": "https://download.gosa.ga.gov/"
+  },
+  {
+   "name": "Public school locations",
+   "publisher": "NCES (EDGE)",
+   "use": "Placing schools on the map",
+   "period": "2024-25",
+   "url": "https://nces.ed.gov/programs/edge/Geographic/SchoolLocations"
+  },
+  {
+   "name": "MARTA schedule (GTFS)",
+   "publisher": "MARTA",
+   "use": "Rail distance and stops nearby",
+   "period": "Current schedule",
+   "url": "https://itsmarta.com/app-developer-resources.aspx"
+  },
+  {
+   "name": "Health center service delivery sites",
+   "publisher": "HRSA",
+   "use": "Distance to a community health center",
+   "period": "Current",
+   "url": "https://data.hrsa.gov/data/download"
+  },
+  {
+   "name": "PLACES tract estimates",
+   "publisher": "CDC",
+   "use": "Adults without health insurance",
+   "period": "2025 release",
+   "url": "https://data.cdc.gov/resource/yjkw-uj5s"
+  },
+  {
+   "name": "SNAP Retailer Access Map",
+   "publisher": "USDA ERS",
+   "use": "Grocery access",
+   "period": "2025 release",
+   "url": "https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data"
+  },
+  {
+   "name": "AFFH opportunity indices",
+   "publisher": "HUD",
+   "use": "Environment; optional HUD metrics",
+   "period": "AFFH-T 0006 (2014 air toxics)",
+   "url": "https://hudgis-hud.opendata.arcgis.com/"
+  },
+  {
+   "name": "2020 tract population centers and ZIP-tract file",
+   "publisher": "U.S. Census Bureau",
+   "use": "Distances and ZIP rollup",
+   "period": "2020 Census",
+   "url": "https://www.census.gov/geographies/reference-files.html"
+  },
+  {
+   "name": "Parks",
+   "publisher": "OpenStreetMap contributors",
+   "use": "Optional park metric",
+   "period": "Current",
+   "url": "https://www.openstreetmap.org/copyright"
+  },
+  {
+   "name": "Fixed broadband Served/Unserved",
+   "publisher": "FCC",
+   "use": "Optional broadband metric",
+   "period": "Dec 2025 filing",
+   "url": "https://broadbandmap.fcc.gov/data-download"
+  },
+  {
+   "name": "Census Geocoder and Photon",
+   "publisher": "U.S. Census Bureau; komoot / OpenStreetMap",
+   "use": "Address search",
+   "period": "Live",
+   "url": "https://geocoding.geo.census.gov/"
+  },
+  {
+   "name": "Small-area life expectancy (USALEEP)",
+   "publisher": "CDC NCHS",
+   "use": "Checking the weights (not scored)",
+   "period": "2010-15",
+   "url": "https://www.cdc.gov/nchs/nvss/usaleep/usaleep.html"
+  },
+  {
+   "name": "Child Opportunity Index 3.0",
+   "publisher": "diversitydatakids.org",
+   "use": "Benchmark comparison (not scored)",
+   "period": "2024",
+   "url": "https://www.diversitydatakids.org/child-opportunity-index"
+  },
+  {
+   "name": "SiteLine location scores",
+   "publisher": "SiteLine",
+   "use": "Feasibility overlap check (not scored)",
+   "period": "2026",
+   "url": "https://github.com/kmcalist682336/SitelineLIHTCStartUp"
+  }
+ ],
+ "references": [
+  {
+   "cite": "Chetty & Hendren (2018). The Impacts of Neighborhoods on Intergenerational Mobility I. Quarterly Journal of Economics.",
+   "url": "https://www.nber.org/papers/w23001"
+  },
+  {
+   "cite": "Chetty, Hendren & Katz (2016). The Effects of Exposure to Better Neighborhoods on Children: Moving to Opportunity. American Economic Review.",
+   "url": "https://www.nber.org/papers/w21156"
+  },
+  {
+   "cite": "Chetty, Friedman, Hendren, Jones & Porter. The Opportunity Atlas: Mapping the Childhood Roots of Social Mobility.",
+   "url": "https://www.nber.org/papers/w25147"
+  },
+  {
+   "cite": "Lalibert\u00e9 (2021). Long-Term Contextual Effects in Education: Schools and Neighborhoods. AEJ: Economic Policy.",
+   "url": "https://ideas.repec.org/a/aea/aejpol/v13y2021i2p336-77.html"
+  },
+  {
+   "cite": "Gobillon, Selod & Zenou (2007). The Mechanisms of Spatial Mismatch. Urban Studies.",
+   "url": "https://halshs.archives-ouvertes.fr/halshs-00826212"
+  },
+  {
+   "cite": "Blumenberg & Pierce (2014). A Driving Factor in Mobility? Journal of the American Planning Association.",
+   "url": "https://poverty.ucdavis.edu/sites/main/files/file-attachments/blumenberg_and_pierce_a_driving_factor_in_mobility.pdf"
+  },
+  {
+   "cite": "Ludwig et al. (2012). Neighborhood Effects on the Long-Term Well-Being of Low-Income Adults. Science.",
+   "url": "https://harris.uchicago.edu/files/inline-files/SCIENCE_Ludwig_MTO_article_main.pdf"
+  },
+  {
+   "cite": "Allcott, Diamond & Dub\u00e9. The Geography of Poverty and Nutrition: Food Deserts and Food Choices.",
+   "url": "https://www.nber.org/digest/feb18/eliminating-food-deserts-wont-cure-nutritional-inequality"
+  },
+  {
+   "cite": "Isen, Rossin-Slater & Walker (2017). Every Breath You Take, Every Dollar You'll Make. Journal of Political Economy.",
+   "url": "https://www.nber.org/digest/jun14/earnings-consequences-clean-air-act"
+  },
+  {
+   "cite": "California TCAC/HCD Opportunity Map methodology (2024-25), used in California's LIHTC program.",
+   "url": "https://www.treasurer.ca.gov/ctcac/opportunity/2025/CTCAC-HCD-2025.pdf"
+  },
+  {
+   "cite": "Child Opportunity Index 2.0 method (APPAM 2019): weights from associations with mobility and health outcomes.",
+   "url": "https://appam.confex.com/appam/2019/webprogram/Paper33201.html"
+  }
+ ],
+ "counties": [
+  "Cherokee",
+  "Clayton",
+  "Cobb",
+  "DeKalb",
+  "Douglas",
+  "Fayette",
+  "Forsyth",
+  "Fulton",
+  "Gwinnett",
+  "Henry",
+  "Rockdale"
+ ]
+}

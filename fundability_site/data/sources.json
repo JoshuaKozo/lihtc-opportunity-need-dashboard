@@ -1,0 +1,167 @@
+{
+  "_readme": "Every dataset behind the Fundability Map. The site's Data and sources view and DATA_SOURCES.md are built from this list. status: 'score' (drives the score or chance of an award), 'context' (shown, not scored), 'reference' (rules or model inputs), 'tested' (evaluated, not used), 'planned', 'service' (map and search).",
+  "updated": "2026-10-26",
+  "sources": [
+    {
+      "name": "SiteLine StartUp pack (location scoring and its data)",
+      "publisher": "SiteLine (kmcalist682336)",
+      "used_for": "The location score: QAP §XI–§XXII points at every 0.25-mile grid point in the 11 ARC counties, used exactly as provided",
+      "vintage": "CSVs pulled July 2026",
+      "url": "https://github.com/kmcalist682336/SitelineLIHTCStartUp",
+      "access": "GitHub repository (CSVs in data/)",
+      "terms": "No license file yet; provided to the team for this project",
+      "status": "score",
+      "pipeline": "pipelines/fundability/score_grid_tracts.py",
+      "includes": [
+        "USDA SNAP authorized retailers (groceries, big-box stores)",
+        "Overture Maps places (retail, restaurants, services)",
+        "Trust for Public Land ParkServe (parks)",
+        "Georgia DECAL licensed childcare",
+        "School attendance zones with DCA's CCRPI-based quality tests",
+        "Transit agency GTFS feeds (MARTA, CobbLinc, Ride Gwinnett, and others)",
+        "EPA Toxics Release Inventory and Georgia EPD hazardous sites",
+        "DCA stable-communities tract indicators and HUD CHAS",
+        "HUD LIHTC database and DCA award lists (previous projects)",
+        "National Register of Historic Places districts (NPS)",
+        "Census tracts and places; USDA food desert flags"
+      ],
+      "details_url": "https://github.com/kmcalist682336/SitelineLIHTCStartUp/blob/main/data/DATA_DICTIONARY.md"
+    },
+    {
+      "name": "Georgia DCA 9% applicant and award lists, 2013–2025",
+      "publisher": "Georgia Department of Community Affairs",
+      "used_for": "Past applications and outcomes: the weighting backtest, metric audit, win-probability model, and funding lines",
+      "vintage": "Rounds 2013–2025",
+      "url": "https://dca.georgia.gov/applications-funding-and-funding-cycle-selections",
+      "access": "Public web page, one spreadsheet per round (contact details dropped on parsing)",
+      "terms": "Georgia public records",
+      "status": "reference",
+      "pipeline": "pipelines/scrape_dca.py, parse_applications.py"
+    },
+    {
+      "name": "Georgia 2024–2025 Qualified Allocation Plan (QAP)",
+      "publisher": "Georgia Department of Community Affairs",
+      "used_for": "The scoring rules: the rubric in the site's Methodology menu and the point values in the deal checklist",
+      "vintage": "Approved November 2023; governs the 2024 and 2025 rounds",
+      "url": "https://dca.georgia.gov/affordable-housing/housing-development/housing-tax-credit-program/qualified-allocation-plans-and",
+      "access": "PDF on DCA's QAP page",
+      "terms": "Georgia public document",
+      "status": "reference",
+      "pipeline": "fundability_site/app.js (deal checklist), fundability_site/index.html (rubric)"
+    },
+    {
+      "name": "HUD Qualified Census Tracts, 2025 and 2026",
+      "publisher": "U.S. Department of Housing and Urban Development",
+      "used_for": "Basis boost (context) and the QCT point under §XIV",
+      "vintage": "2025 and 2026 designations",
+      "url": "https://www.huduser.gov/portal/datasets/qct.html",
+      "access": "HUD map service: services.arcgis.com/VTyQ9soqVukalItT (QUALIFIED_CENSUS_TRACTS_2026)",
+      "terms": "Public domain",
+      "status": "context",
+      "pipeline": "pipelines/fundability/pull_open_data.py"
+    },
+    {
+      "name": "HUD Small Area Difficult Development Areas, 2026",
+      "publisher": "U.S. Department of Housing and Urban Development",
+      "used_for": "Basis boost (context)",
+      "vintage": "2026 designations",
+      "url": "https://www.huduser.gov/portal/datasets/qct.html",
+      "access": "HUD map service: services.arcgis.com/VTyQ9soqVukalItT (Difficult_Development_Areas_2026)",
+      "terms": "Public domain",
+      "status": "context",
+      "pipeline": "pipelines/fundability/pull_open_data.py"
+    },
+    {
+      "name": "HUD Low-Income Housing Tax Credit database",
+      "publisher": "U.S. Department of Housing and Urban Development",
+      "used_for": "Existing LIHTC units (saturation context) and award history for the backtest",
+      "vintage": "Allocations through about 2019",
+      "url": "https://www.huduser.gov/portal/datasets/lihtc.html",
+      "access": "HUD map service: services.arcgis.com/VTyQ9soqVukalItT (LIHTC)",
+      "terms": "Public domain",
+      "status": "context",
+      "pipeline": "pipelines/fundability/pull_open_data.py"
+    },
+    {
+      "name": "Census American Community Survey 5-year, 2020–2024 (tables B25002, B25003)",
+      "publisher": "U.S. Census Bureau",
+      "used_for": "Renter households (saturation denominator) and vacancy",
+      "vintage": "2020–2024 5-year estimates",
+      "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/",
+      "access": "Bulk table files (no API key needed)",
+      "terms": "Public domain",
+      "status": "context",
+      "pipeline": "pipelines/fundability/pull_bulk_files.py"
+    },
+    {
+      "name": "FEMA National Flood Hazard Layer",
+      "publisher": "Federal Emergency Management Agency",
+      "used_for": "Flood-zone warning at the exact looked-up spot (queried live)",
+      "vintage": "Current effective flood maps",
+      "url": "https://msc.fema.gov/portal/home",
+      "access": "Map service: hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28",
+      "terms": "Public domain",
+      "status": "context",
+      "pipeline": "fundability_site/app.js (live query)"
+    },
+    {
+      "name": "FEMA National Risk Index, census tracts",
+      "publisher": "Federal Emergency Management Agency",
+      "used_for": "Tract inland flood risk (context)",
+      "vintage": "December 2025 release",
+      "url": "https://hazards.fema.gov/nri/",
+      "access": "Map service: services.arcgis.com/XG15cJAlne2vxtgt (National_Risk_Index_Census_Tracts)",
+      "terms": "Public domain",
+      "status": "context",
+      "pipeline": "pipelines/fundability/pull_open_data.py"
+    },
+    {
+      "name": "HUD CHAS tract tables, 2018–2022",
+      "publisher": "U.S. Department of Housing and Urban Development",
+      "used_for": "Renter households by income, for the planned market capture-rate check",
+      "vintage": "2018–2022",
+      "url": "https://www.huduser.gov/portal/datasets/cp.html",
+      "access": "Bulk download (2018thru2022-140-csv.zip)",
+      "terms": "Public domain",
+      "status": "planned",
+      "pipeline": "pipelines/fundability/pull_bulk_files.py"
+    },
+    {
+      "name": "City of Atlanta Tax Allocation Districts",
+      "publisher": "City of Atlanta, via Atlanta BeltLine GIS",
+      "used_for": "Tested as a stand-in for §XIV revitalization plan areas; showed no signal, so not used",
+      "vintage": "Current districts with start dates",
+      "url": "https://gis.beltline.org/server/rest/services/COA_Tax_Allocation_Districts_public/FeatureServer/0",
+      "access": "Public map service",
+      "terms": "Public map service (no stated license)",
+      "status": "tested",
+      "pipeline": "pipelines/fundability/pull_open_data.py, metric_audit.py"
+    },
+    {
+      "name": "OpenStreetMap tiles and Nominatim address search",
+      "publisher": "OpenStreetMap contributors",
+      "used_for": "Basemap and the address lookup",
+      "vintage": "Live",
+      "url": "https://www.openstreetmap.org/copyright",
+      "access": "tile.openstreetmap.org and nominatim.openstreetmap.org (no key; light use)",
+      "terms": "Open Database License (ODbL); attribution required",
+      "status": "service",
+      "pipeline": "fundability_site/app.js"
+    }
+  ],
+  "downloads": [
+    {"file": "data/tracts.geojson", "what": "All 1,248 ARC census tracts with the location score (best and median per QAP section) and every context value"},
+    {"file": "data/downloads/fundability_tract_features.csv", "what": "The same tract table as a spreadsheet (no geometry)"},
+    {"file": "data/grid.json", "what": "SiteLine's section scores at all 52,369 grid points (0.25 mile)"},
+    {"file": "data/grid_detail.json", "what": "Why each grid point earned its points: amenity categories, transit distances, school grades, awards"},
+    {"file": "data/downloads/applications_9pct.csv", "what": "Every Georgia DCA 9% application 2013–2025 as parsed: scores, outcomes, location, units, credits (contact details removed)"},
+    {"file": "data/downloads/backtest_features.csv", "what": "The 190 ARC applications used in the backtest, with every model input as of its round"},
+    {"file": "data/downloads/metric_audit.csv", "what": "The metric audit: each metric's predictive power against past awards"},
+    {"file": "data/funding_lines.json", "what": "Funding lines by round and pool, and deal points of funded ARC applications"},
+    {"file": "data/win_model.json", "what": "The win-probability model: coefficients, validation, calibration, next-round inputs"},
+    {"file": "data/backtest.json", "what": "The weighting backtest: model, coefficients, held-out results"},
+    {"file": "data/metric_audit.json", "what": "The metric audit as used by the site's Methodology menu"},
+    {"file": "metrics.json", "what": "The metric registry: every metric, its QAP section, data source, and scaling"},
+    {"file": "data/sources.json", "what": "This list of sources, machine-readable"}
+  ]
+}

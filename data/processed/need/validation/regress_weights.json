@@ -1,0 +1,630 @@
+{
+  "tool_weights": {
+    "income": 0.25,
+    "burden": 0.25,
+    "market": 0.1,
+    "vulnerable": 0.1,
+    "work": 0.1,
+    "quality": 0.05,
+    "supply": 0.15
+  },
+  "outcomes": {
+    "evictions_2023_2025": {
+      "label": "Evictions 2023-25",
+      "tracts": 918,
+      "r2": 0.209,
+      "groups": {
+        "income": {
+          "beta": 0.659,
+          "se": 0.095,
+          "p": 3.731601620071276e-12,
+          "vif": 3.78,
+          "shapley_share": 0.613,
+          "share_ci": [
+            0.486,
+            0.689
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "burden": {
+          "beta": -0.111,
+          "se": 0.046,
+          "p": 0.015081455265085005,
+          "vif": 2.09,
+          "shapley_share": 0.051,
+          "share_ci": [
+            0.037,
+            0.079
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "market": {
+          "beta": -0.112,
+          "se": 0.073,
+          "p": 0.12654701146051514,
+          "vif": 2.39,
+          "shapley_share": 0.055,
+          "share_ci": [
+            0.039,
+            0.099
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": false
+        },
+        "vulnerable": {
+          "beta": -0.099,
+          "se": 0.046,
+          "p": 0.029287428098009667,
+          "vif": 1.89,
+          "shapley_share": 0.079,
+          "share_ci": [
+            0.057,
+            0.119
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "work": {
+          "beta": 0.06,
+          "se": 0.053,
+          "p": 0.2605079435096922,
+          "vif": 1.55,
+          "shapley_share": 0.102,
+          "share_ci": [
+            0.038,
+            0.203
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "quality": {
+          "beta": -0.156,
+          "se": 0.044,
+          "p": 0.0003813691227445208,
+          "vif": 1.35,
+          "shapley_share": 0.05,
+          "share_ci": [
+            0.031,
+            0.132
+          ],
+          "tool_weight": 0.05,
+          "tool_weight_in_ci": true
+        },
+        "supply": {
+          "beta": -0.0,
+          "se": 0.05,
+          "p": 0.9930333241965591,
+          "vif": 2.84,
+          "shapley_share": 0.05,
+          "share_ci": [
+            0.031,
+            0.082
+          ],
+          "tool_weight": 0.15,
+          "tool_weight_in_ci": false
+        }
+      }
+    },
+    "evictions_2026": {
+      "label": "Evictions 2026",
+      "tracts": 918,
+      "r2": 0.168,
+      "groups": {
+        "income": {
+          "beta": 0.583,
+          "se": 0.092,
+          "p": 1.9419751749857727e-10,
+          "vif": 3.78,
+          "shapley_share": 0.601,
+          "share_ci": [
+            0.444,
+            0.674
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "burden": {
+          "beta": -0.06,
+          "se": 0.042,
+          "p": 0.15480424715606442,
+          "vif": 2.09,
+          "shapley_share": 0.054,
+          "share_ci": [
+            0.033,
+            0.093
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "market": {
+          "beta": -0.089,
+          "se": 0.074,
+          "p": 0.23239602525809389,
+          "vif": 2.39,
+          "shapley_share": 0.049,
+          "share_ci": [
+            0.033,
+            0.111
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "vulnerable": {
+          "beta": -0.066,
+          "se": 0.043,
+          "p": 0.12233071882454435,
+          "vif": 1.89,
+          "shapley_share": 0.084,
+          "share_ci": [
+            0.052,
+            0.143
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "work": {
+          "beta": 0.05,
+          "se": 0.05,
+          "p": 0.31863386625406864,
+          "vif": 1.55,
+          "shapley_share": 0.1,
+          "share_ci": [
+            0.039,
+            0.222
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "quality": {
+          "beta": -0.168,
+          "se": 0.047,
+          "p": 0.00032023075677407685,
+          "vif": 1.35,
+          "shapley_share": 0.07,
+          "share_ci": [
+            0.03,
+            0.187
+          ],
+          "tool_weight": 0.05,
+          "tool_weight_in_ci": true
+        },
+        "supply": {
+          "beta": -0.047,
+          "se": 0.048,
+          "p": 0.32939292283767463,
+          "vif": 2.84,
+          "shapley_share": 0.043,
+          "share_ci": [
+            0.026,
+            0.082
+          ],
+          "tool_weight": 0.15,
+          "tool_weight_in_ci": false
+        }
+      }
+    },
+    "housing_insecurity": {
+      "label": "Housing insecurity",
+      "tracts": 1205,
+      "r2": 0.78,
+      "groups": {
+        "income": {
+          "beta": 1.072,
+          "se": 0.039,
+          "p": 2.930882495699517e-163,
+          "vif": 3.81,
+          "shapley_share": 0.556,
+          "share_ci": [
+            0.492,
+            0.632
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "burden": {
+          "beta": -0.071,
+          "se": 0.021,
+          "p": 0.0008269922412635545,
+          "vif": 2.09,
+          "shapley_share": 0.056,
+          "share_ci": [
+            0.041,
+            0.071
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "market": {
+          "beta": -0.058,
+          "se": 0.041,
+          "p": 0.16274763776751766,
+          "vif": 2.76,
+          "shapley_share": 0.102,
+          "share_ci": [
+            0.072,
+            0.146
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "vulnerable": {
+          "beta": -0.1,
+          "se": 0.021,
+          "p": 2.490010835098758e-06,
+          "vif": 1.89,
+          "shapley_share": 0.094,
+          "share_ci": [
+            0.075,
+            0.116
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "work": {
+          "beta": 0.005,
+          "se": 0.022,
+          "p": 0.8227722034301996,
+          "vif": 1.49,
+          "shapley_share": 0.066,
+          "share_ci": [
+            0.038,
+            0.1
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "quality": {
+          "beta": -0.074,
+          "se": 0.021,
+          "p": 0.00042593895218340287,
+          "vif": 1.39,
+          "shapley_share": 0.042,
+          "share_ci": [
+            0.022,
+            0.064
+          ],
+          "tool_weight": 0.05,
+          "tool_weight_in_ci": true
+        },
+        "supply": {
+          "beta": -0.025,
+          "se": 0.032,
+          "p": 0.44388719663714404,
+          "vif": 3.24,
+          "shapley_share": 0.083,
+          "share_ci": [
+            0.063,
+            0.105
+          ],
+          "tool_weight": 0.15,
+          "tool_weight_in_ci": false
+        }
+      }
+    },
+    "utility_shutoff": {
+      "label": "Utility shutoff threat",
+      "tracts": 1205,
+      "r2": 0.786,
+      "groups": {
+        "income": {
+          "beta": 1.079,
+          "se": 0.039,
+          "p": 1.0410888421239329e-164,
+          "vif": 3.81,
+          "shapley_share": 0.557,
+          "share_ci": [
+            0.486,
+            0.623
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "burden": {
+          "beta": -0.075,
+          "se": 0.02,
+          "p": 0.0002193810504853253,
+          "vif": 2.09,
+          "shapley_share": 0.056,
+          "share_ci": [
+            0.043,
+            0.07
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "market": {
+          "beta": -0.085,
+          "se": 0.039,
+          "p": 0.029238119719039328,
+          "vif": 2.76,
+          "shapley_share": 0.095,
+          "share_ci": [
+            0.066,
+            0.135
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "vulnerable": {
+          "beta": -0.088,
+          "se": 0.022,
+          "p": 7.678339263646907e-05,
+          "vif": 1.89,
+          "shapley_share": 0.097,
+          "share_ci": [
+            0.079,
+            0.12
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "work": {
+          "beta": 0.027,
+          "se": 0.021,
+          "p": 0.19638677083551315,
+          "vif": 1.49,
+          "shapley_share": 0.073,
+          "share_ci": [
+            0.044,
+            0.104
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "quality": {
+          "beta": -0.084,
+          "se": 0.021,
+          "p": 4.6214126809728254e-05,
+          "vif": 1.39,
+          "shapley_share": 0.041,
+          "share_ci": [
+            0.024,
+            0.067
+          ],
+          "tool_weight": 0.05,
+          "tool_weight_in_ci": true
+        },
+        "supply": {
+          "beta": -0.021,
+          "se": 0.029,
+          "p": 0.46796684089362306,
+          "vif": 3.24,
+          "shapley_share": 0.08,
+          "share_ci": [
+            0.06,
+            0.103
+          ],
+          "tool_weight": 0.15,
+          "tool_weight_in_ci": false
+        }
+      }
+    },
+    "low_income_renter_loss": {
+      "label": "Loss of low-income renters",
+      "tracts": 790,
+      "r2": 0.108,
+      "groups": {
+        "income": {
+          "beta": 0.007,
+          "se": 0.069,
+          "p": 0.9192069581014257,
+          "vif": 3.06,
+          "shapley_share": 0.045,
+          "share_ci": [
+            0.027,
+            0.13
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "burden": {
+          "beta": 0.181,
+          "se": 0.04,
+          "p": 6.6598635933077185e-06,
+          "vif": 1.73,
+          "shapley_share": 0.47,
+          "share_ci": [
+            0.298,
+            0.58
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "market": {
+          "beta": -0.202,
+          "se": 0.052,
+          "p": 9.292115461703733e-05,
+          "vif": 2.0,
+          "shapley_share": 0.223,
+          "share_ci": [
+            0.08,
+            0.366
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "vulnerable": {
+          "beta": 0.074,
+          "se": 0.045,
+          "p": 0.10098478783335404,
+          "vif": 1.64,
+          "shapley_share": 0.044,
+          "share_ci": [
+            0.007,
+            0.14
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "work": {
+          "beta": -0.042,
+          "se": 0.038,
+          "p": 0.26900057473319217,
+          "vif": 1.5,
+          "shapley_share": 0.011,
+          "share_ci": [
+            0.006,
+            0.064
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": false
+        },
+        "quality": {
+          "beta": 0.006,
+          "se": 0.044,
+          "p": 0.889708562375692,
+          "vif": 1.33,
+          "shapley_share": 0.004,
+          "share_ci": [
+            0.003,
+            0.065
+          ],
+          "tool_weight": 0.05,
+          "tool_weight_in_ci": true
+        },
+        "supply": {
+          "beta": 0.18,
+          "se": 0.047,
+          "p": 0.0001114900112554979,
+          "vif": 1.95,
+          "shapley_share": 0.203,
+          "share_ci": [
+            0.101,
+            0.315
+          ],
+          "tool_weight": 0.15,
+          "tool_weight_in_ci": true
+        }
+      }
+    },
+    "combined_dedup": {
+      "label": "Combined outcome",
+      "tracts": 670,
+      "r2": 0.446,
+      "groups": {
+        "income": {
+          "beta": 0.725,
+          "se": 0.068,
+          "p": 2.0671353214447185e-26,
+          "vif": 3.12,
+          "shapley_share": 0.557,
+          "share_ci": [
+            0.466,
+            0.635
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "burden": {
+          "beta": 0.017,
+          "se": 0.044,
+          "p": 0.6992037626228669,
+          "vif": 1.8,
+          "shapley_share": 0.11,
+          "share_ci": [
+            0.053,
+            0.169
+          ],
+          "tool_weight": 0.25,
+          "tool_weight_in_ci": false
+        },
+        "market": {
+          "beta": -0.179,
+          "se": 0.04,
+          "p": 6.401166118842331e-06,
+          "vif": 1.91,
+          "shapley_share": 0.034,
+          "share_ci": [
+            0.024,
+            0.055
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": false
+        },
+        "vulnerable": {
+          "beta": -0.072,
+          "se": 0.047,
+          "p": 0.12184013602673055,
+          "vif": 1.63,
+          "shapley_share": 0.074,
+          "share_ci": [
+            0.047,
+            0.109
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "work": {
+          "beta": 0.066,
+          "se": 0.05,
+          "p": 0.18742187497588403,
+          "vif": 1.55,
+          "shapley_share": 0.116,
+          "share_ci": [
+            0.057,
+            0.186
+          ],
+          "tool_weight": 0.1,
+          "tool_weight_in_ci": true
+        },
+        "quality": {
+          "beta": -0.101,
+          "se": 0.042,
+          "p": 0.0165817398293467,
+          "vif": 1.3,
+          "shapley_share": 0.033,
+          "share_ci": [
+            0.021,
+            0.064
+          ],
+          "tool_weight": 0.05,
+          "tool_weight_in_ci": true
+        },
+        "supply": {
+          "beta": 0.071,
+          "se": 0.035,
+          "p": 0.041172024038132346,
+          "vif": 1.89,
+          "shapley_share": 0.076,
+          "share_ci": [
+            0.048,
+            0.119
+          ],
+          "tool_weight": 0.15,
+          "tool_weight_in_ci": false
+        }
+      }
+    }
+  },
+  "implied_all_outcomes": {
+    "income": 0.488,
+    "burden": 0.133,
+    "market": 0.093,
+    "vulnerable": 0.079,
+    "work": 0.078,
+    "quality": 0.04,
+    "supply": 0.089
+  },
+  "implied_without_cdc_modeled": {
+    "income": 0.42,
+    "burden": 0.192,
+    "market": 0.109,
+    "vulnerable": 0.069,
+    "work": 0.071,
+    "quality": 0.041,
+    "supply": 0.099
+  },
+  "rounding": {
+    "draws": 500,
+    "jitter_points": 2.5,
+    "rho_median": 0.9986,
+    "rho_min": 0.9953,
+    "top10": 122,
+    "top10_kept_median": 118,
+    "top10_kept_min": 113,
+    "implied_weights_rho": 0.979,
+    "implied_weights_top10_kept": 109
+  }
+}

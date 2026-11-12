@@ -1,0 +1,35 @@
+# Raw downloads are re-fetchable with `python -m pipelines.scrape_dca` and contain
+# applicant contact details (emails, phones) that the processed tables deliberately drop.
+# (Git can't re-include a file inside an ignored folder, so ignore the contents, not the folder.)
+data/raw/*
+!data/raw/dca/
+data/raw/dca/*
+!data/raw/dca/manifest.csv
+!data/raw/opportunity/
+data/raw/opportunity/*
+!data/raw/opportunity/manifest.csv
+!data/raw/geocode/
+
+# Shared by a collaborator; keep out of the repo until its source and permission to share
+# are confirmed (see DATA_SOURCES.md).
+model_dataset.csv
+
+# Eviction Lab hands out its data through a download form with its own terms, so tract-level eviction
+# values stay out of git; they are used only to validate the Need score, and only summaries are committed.
+# Get the files from https://evictionlab.org/eviction-tracking/get-the-data/ (see pipelines/need/validate_need.py).
+data/raw/eviction/
+data/processed/need/validation/backtest_tract_scores.csv
+
+# Child Opportunity Index needs an account and its redistribution terms are unchecked.
+data/processed/**/*_with_coi.*
+
+# Built from combined_site/ by `make combined-artifact`.
+combined_site_artifact/
+
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.DS_Store
+
+# Design-skill working files (screenshots, dealt directions)
+.taste-skill/

@@ -1,0 +1,6 @@
+weighting,w_mobility,w_schools,w_jobs,w_transit,w_health,w_environment,validity_mobility,validity_life_exp,validity_adult_emp (test only)
+"published (Opportunity team: 1,245 tracts, uninsured included)",0.345,0.271,0.106,0.05,0.107,0.121,0.351,0.494,0.026
+equal,0.167,0.167,0.167,0.167,0.167,0.167,-0.005,0.329,0.076
+research starting point,0.25,0.25,0.2,0.1,0.1,0.1,0.212,0.428,0.056
+data only,0.507,0.337,0.033,0.0,0.0,0.122,0.497,0.531,-0.0
+"final (half data, half research, kept in ranges)",0.35,0.299,0.122,0.056,0.056,0.117,0.401,0.505,0.016

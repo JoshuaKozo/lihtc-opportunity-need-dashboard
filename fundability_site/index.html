@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Fundability Map · Metro Atlanta LIHTC</title>
+  <meta name="description" content="Chance of a 9% LIHTC award from Georgia DCA at any metro Atlanta address: SiteLine's QAP location points plus your deal, backtested on DCA's 2013–2025 awards.">
+  <meta name="theme-color" content="#f2f4f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css?v=19">
+</head>
+<body>
+  <a class="skip" href="#lookup-input">Skip to address search</a>
+
+  <header class="appbar">
+    <button class="btn quiet menu-btn" id="menu-btn" type="button" aria-haspopup="dialog" aria-controls="menu" aria-label="Methodology">
+      <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
+      <span>Methodology</span>
+    </button>
+    <div class="product">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6"/><path d="M6 12.5 12 7l6 5.5V18h-4v-3.5h-4V18H6z"/></svg>
+      <div>
+        <p class="name" translate="no">Fundability Map</p>
+        <p class="scope">Metro Atlanta · Georgia DCA 9% LIHTC · 2024–2025 QAP</p>
+      </div>
+    </div>
+    <button class="btn quiet rail-btn" id="rail-btn" type="button" aria-controls="rail" aria-expanded="true">
+      <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4.2 3.8 5.5 6 3M2.5 8.7l1.3 1.3L6 7.5M2.5 13.2l1.3 1.3L6 12M8.5 4.5H14M8.5 9H14M8.5 13.5H14"/></svg>
+      <span>Deal checklist</span>
+      <span class="num rail-btn-pts" id="rail-btn-pts"></span>
+    </button>
+  </header>
+
+  <main class="app" id="app">
+    <section class="search" aria-labelledby="page-title">
+      <h1 id="page-title">Score a site</h1>
+      <form class="lookup" id="lookup" role="search">
+        <label for="lookup-input" class="visually-hidden">Address or coordinates</label>
+        <input id="lookup-input" name="address" type="search" placeholder="1129 Euclid Ave NE, Atlanta…" autocomplete="street-address" spellcheck="false">
+        <button class="btn primary" type="submit">Look up</button>
+      </form>
+      <p class="lookup-note"><span id="lookup-status" role="status" aria-live="polite"></span>Or click the map. Coordinates work too: <span class="num">33.77, −84.35</span>.</p>
+    </section>
+
+    <div class="mapwrap">
+      <div id="map" role="region" aria-label="Map of census tracts colored by location points. Click a spot to score it."></div>
+      <div class="legend" id="legend"></div>
+      <div class="loading" id="loading" role="status">Loading tracts…</div>
+    </div>
+
+    <section class="results" id="results" aria-label="Result">
+      <div id="site-empty" class="empty"></div>
+      <div id="site-detail" hidden></div>
+      <div id="top-view" hidden>
+        <div class="view-head">
+          <button class="btn text" type="button" id="top-back">
+            <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>Back
+          </button>
+          <button class="btn secondary" type="button" id="download">Download CSV</button>
+        </div>
+        <h2 id="top-h">Top tracts for your deal</h2>
+        <p class="hint" id="top-sub"></p>
+        <div class="filters">
+          <label>Pool
+            <select id="pool-filter">
+              <option value="">All pools</option>
+              <option value="atlanta metro">Atlanta Metro</option>
+              <option value="other metro">Other Metro</option>
+            </select>
+          </label>
+          <label>County <select id="county-filter"><option value="">All counties</option></select></label>
+        </div>
+        <ol class="ranked" id="toplist"></ol>
+      </div>
+    </section>
+
+    <aside class="rail" id="rail" aria-labelledby="deal-h">
+      <div class="rail-head">
+        <div class="rail-title">
+          <h2 id="deal-h">Deal checklist</h2>
+          <button class="btn icon" type="button" id="rail-close" aria-label="Hide the deal checklist">
+            <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8"/></svg>
+          </button>
+        </div>
+        <p class="hint">Check what your project already has. Points follow the 2024–2025 QAP; answers stay in this browser.</p>
+        <div id="deal-total" class="deal-total"></div>
+        <div class="rail-actions">
+          <button class="btn secondary" type="button" id="deal-typical">Fill a typical funded deal</button>
+          <button class="btn text" type="button" id="deal-expand">Expand all</button>
+          <button class="btn text" type="button" id="deal-clear">Reset</button>
+        </div>
+      </div>
+      <form class="rail-body" id="deal-form" aria-label="Deal checklist items"></form>
+      <section class="board" id="board" aria-labelledby="board-h" hidden>
+        <div class="board-head">
+          <h3 id="board-h">Top tracts for your deal</h3>
+          <button class="btn text" type="button" id="board-all">View all</button>
+        </div>
+        <p class="hint" id="board-sub"></p>
+        <ol class="ranked compact" id="board-list"></ol>
+      </section>
+    </aside>
+  </main>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <dialog class="menu" id="menu" aria-labelledby="menu-title">
+    <div class="menu-head">
+      <p class="menu-title" id="menu-title">Methodology</p>
+      <button class="btn icon" type="button" id="menu-close" aria-label="Close methodology">
+        <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <div class="menu-grid">
+      <nav class="menu-nav" aria-label="Methodology">
+        <a href="#about/how" data-view="how">How it works</a>
+        <a href="#about/scoring" data-view="scoring">Scoring systems</a>
+        <a href="#about/metrics" data-view="metrics">Metrics</a>
+        <a href="#about/weights" data-view="weights">Why these weights</a>
+        <a href="#about/chance" data-view="chance">Chance of an award</a>
+        <a href="#about/data" data-view="data">Data and sources</a>
+        <a href="#about/limits" data-view="limits">Limits</a>
+      </nav>
+      <div class="menu-body" id="menu-body" tabindex="-1">
+
+        <article class="doc" data-view="how">
+          <h2>How it works</h2>
+          <p class="lead"><b>Fundability</b> asks one question: could a LIHTC project at this address realistically win 9% credits from
+            Georgia DCA? It counts only what DCA scores or rules on. Community need and opportunity are measured by the team's separate
+            Need and Opportunity tools.</p>
+          <ol class="steps">
+            <li><b>Location points.</b> SiteLine scores the QAP's eight location criteria (§XI–§XXII, up to 46 points) at every
+              0.25-mile grid point in the 11 Atlanta Regional Commission counties. A lookup uses the nearest grid point; the map shows
+              each tract's best point.</li>
+            <li><b>Deal points.</b> The deal checklist turns the QAP's developer criteria (readiness, compliance, financing,
+              services and the rest) into points with the QAP's own values. Until you fill it in, the estimate assumes a typical funded
+              deal: the 48.5-point median claimed by funded ARC applications in 2024–2025.</li>
+            <li><b>Chance of an award.</b> Location plus deal is an estimated DCA score. A logistic model fit on past 9% applications
+              turns how far that score sits above or below the pool's typical applicant into a probability.</li>
+            <li><b>What to do next.</b> For the site you look up, every unchecked item is ranked by the points and the chance it would
+              add. After you fill in the checklist, the tracts where your deal has the best chance are listed under it.</li>
+          </ol>
+          <h3>Why the map shows location only</h3>
+          <p>The backtest (see <a href="#about/weights" data-view="weights">Why these weights</a>) found that SiteLine's location score,
+            driven by transit (§XII) and schools (§XIII), is the only location measure that predicted which ARC applications DCA funded.
+            So the map's color is SiteLine's points alone, ranked across tracts. Basis boost, recent local awards, LIHTC saturation and
+            flood risk are shown beside a result as context: they matter for a deal, but didn't predict awards.</p>
+          <h3>Reading a result</h3>
+          <dl class="facts">
+            <dt>Chance of a 9% award</dt><dd>The model's probability for the estimated score in this site's pool.</dd>
+            <dt>Estimated score</dt><dd>Location points here plus your deal points (or the typical funded deal).</dd>
+            <dt>Funding line</dt><dd>The lowest score DCA funded in this pool in the latest round.</dd>
+            <dt>Context</dt><dd>Rules outside the point score: basis boost, tiebreakers, award limits, flood review.</dd>
+          </dl>
+        </article>
+
+        <article class="doc" data-view="scoring" hidden>
+          <h2>Scoring systems</h2>
+          <p class="lead">How DCA scores a 9% application under the <b>2024–2025 Qualified Allocation Plan (QAP)</b>, and how this tool
+            handles each part. In the 2024 and 2025 rounds, competing applications scored from about 66 to 89, with a median near 81,
+            so small point differences decide awards. Page numbers refer to the QAP.</p>
+
+          <h3>1. Location criteria: scored by SiteLine, as provided</h3>
+          <div class="tablewrap"><table class="rubric">
+            <thead><tr><th>QAP section</th><th class="num">Max</th><th>How points are earned</th><th>How this tool assesses it</th></tr></thead>
+            <tbody>
+              <tr><td>§XI Desirable / Undesirable Activities <span class="pg">p. 95</span></td><td class="num">20</td>
+                <td>18 amenity types (grocery, pharmacy, park, school, library, bank…). Within 0.5 / 1.0 / 1.5 mi: 2.5 / 2 / 1.5 pts (group 1) or 2 / 1.5 / 1 (group 2). −2 per nuisance or hazard within 0.25 mi; −2 in a food desert with no grocery. Capped at 20.</td>
+                <td>SiteLine measures distance from the spot to each amenity (straight line × 1.15 as a route estimate) using SNAP retailers, Overture places, parks, hospitals, childcare, and EPA / GA EPD hazard sites.</td></tr>
+              <tr><td>§XII Community Transportation Options <span class="pg">p. 99</span></td><td class="num">6</td>
+                <td>Transit hub within 0.25 / 0.5 / 1 mi = 5 / 4.5 / 4; any stop = 3 / 2 / 1. 6 pts only if a transit agency owns the site.</td>
+                <td>SiteLine uses agency GTFS feeds (stops served 5+ days a week). The 6th point is a deal fact, not scored.</td></tr>
+              <tr><td>§XIII Quality Education Areas <span class="pg">p. 102</span></td><td class="num">3</td>
+                <td>K–12 grades zoned to schools passing DCA's quality tests (CCRPI above state average, “Beating the Odds”, or rising scores). 13 grades = 3, 7–12 = 1.5, 3–6 = 1.</td>
+                <td>SiteLine finds the zoned elementary, middle and high school for the spot.</td></tr>
+              <tr><td>§XV Stable Communities <span class="pg">p. 110</span></td><td class="num">10</td>
+                <td>Tract above its pool median on 2 / 3 / 4+ of 5 HUD indicators (environmental health, transit, jobs, poverty, income) = 6 / 8 / 10 pts; 1 less when borrowing a nearby tract. Part of the 10-point block.</td>
+                <td>SiteLine reads DCA's tract flags.</td></tr>
+              <tr><td>§XVI Community Designations <span class="pg">p. 111</span></td><td class="num">10</td>
+                <td>Inside a HUD Choice Neighborhoods or Purpose Built Communities area, if that group selects the project. Part of the 10-point block.</td>
+                <td>SiteLine checks the spot against those areas.</td></tr>
+              <tr><td>§XVIII Previous Projects <span class="pg">p. 113</span></td><td class="num">5</td>
+                <td>No LIHTC award in the city in 15 years = 5 (one older award = 4); or no award within 1 mi recently = 3 / 2.</td>
+                <td>SiteLine counts past awards (HUD database plus DCA lists) by city and distance.</td></tr>
+              <tr><td>§XIX Housing Needs Characteristics <span class="pg">p. 115</span></td><td class="num">10</td>
+                <td>Other Metro pool only: not a QCT, 45%+ of low-income renters with severe housing problems, growing county = 5; +5 if §XV also earns 5+. Part of the 10-point block.</td>
+                <td>SiteLine uses HUD CHAS for the tract. Blank in the Atlanta Metro pool.</td></tr>
+              <tr><td>§XXII Historic Preservation <span class="pg">p. 117</span></td><td class="num">2</td>
+                <td>Inside a National Register historic district (and uses historic tax credits).</td>
+                <td>SiteLine checks NPS district boundaries.</td></tr>
+            </tbody>
+          </table></div>
+          <p class="hint"><b>The 10-point block:</b> §XV, §XVI, §XIX (and §XIV, below) are mutually exclusive; only the highest counts.
+            That's why SiteLine's maximum is 46 rather than the 66 the sections add up to.</p>
+
+          <h3>2. Developer criteria: the deal checklist</h3>
+          <p class="hint">These depend on the deal, not the site, so they aren't on the map. The checklist asks about each one and adds the
+            points to SiteLine's for a full application estimate.</p>
+          <div class="tablewrap"><table class="rubric">
+            <thead><tr><th>QAP section</th><th class="num">Max</th><th>What earns it</th></tr></thead>
+            <tbody>
+              <tr><td>§VIII Readiness to Proceed</td><td class="num">13</td><td>Zoning, utilities, financing commitments, environmental report, cost estimate, market study in hand</td></tr>
+              <tr><td>§VI Compliance Performance</td><td class="num">10</td><td>Starts at 10; deductions for the team's past compliance problems</td></tr>
+              <tr><td>§XIV Revitalization / Redevelopment Plans</td><td class="num">10</td><td>Site in a qualifying local plan area (+1 if also a QCT), community partnerships, investment. Part of the 10-point block.</td></tr>
+              <tr><td>§III Extended Affordability</td><td class="num">6</td><td>Give up the right to exit affordability early; resident ownership plan; nonprofit right of first refusal</td></tr>
+              <tr><td>§V Favorable Financing</td><td class="num">5</td><td>Below-market loans and grants; ground lease or tax abatement</td></tr>
+              <tr><td>§VII Integrated Supportive Housing</td><td class="num">5</td><td>Referral agreements, rental assistance, tenant preferences</td></tr>
+              <tr><td>§XVII Phased Development</td><td class="num">4</td><td>A later phase of an earlier DCA project (instead of §XVIII)</td></tr>
+              <tr><td>§IX Deeper Targeting</td><td class="num">3</td><td>Lower average income targeting, or project-based rental assistance</td></tr>
+              <tr><td>§IV, §X, §XXI, §XXIII, §XXIV</td><td class="num">1–2 each</td><td>Minority- and women-owned business engagement, voucher notices, mixed income, resident services, GICH letter</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>3. Rules outside the point score: shown as context</h3>
+          <div class="tablewrap"><table class="rubric">
+            <thead><tr><th>Rule</th><th>QAP reference</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr><td>Basis boost (QCT / DDA)</td><td>Core Plan §V, p. 15; IRC §42(d)(5)(B)</td><td>Up to 30% more eligible basis, so more credits per project</td></tr>
+              <tr><td>Tiebreakers and award limits</td><td>Core Plan §V, pp. 21–22</td><td>Ties go to the local government with the oldest last award; at most 2 Metro Pool awards per local government per round</td></tr>
+              <tr><td>Market feasibility</td><td>Threshold §IV, p. 42</td><td>Capture rate of 30% or less in Metro Pools and no harm to existing tax-credit properties, or the application fails</td></tr>
+              <tr><td>Environmental review</td><td>Threshold §VI, p. 44</td><td>Floodplains and floodways add cost and risk. Shown as a warning at the exact spot from FEMA's National Flood Hazard Layer: it's pass/fail at DCA, not points</td></tr>
+            </tbody>
+          </table></div>
+        </article>
+
+        <article class="doc" data-view="metrics" hidden>
+          <h2>Metrics</h2>
+          <div id="method-metrics"></div>
+        </article>
+
+        <article class="doc" data-view="weights" hidden>
+          <div id="weighting-body"></div>
+        </article>
+
+        <article class="doc" data-view="chance" hidden>
+          <div id="chance-body"></div>
+        </article>
+
+        <article class="doc" data-view="data" hidden>
+          <div id="data-body"></div>
+        </article>
+
+        <article class="doc" data-view="limits" hidden>
+          <h2>Limits</h2>
+          <ul>
+            <li>Location is only part of DCA's score; developer criteria often decide close rounds.</li>
+            <li>The deal checklist is an estimate from the QAP's point rules. DCA's own review of each item decides the real score.</li>
+            <li>SiteLine's data is a 2026 snapshot; past rounds used older data and slightly different QAPs. A new QAP could change the scale.</li>
+            <li>HUD's LIHTC database stops around 2019; recent awards come from SiteLine's DCA award list.</li>
+            <li>Flood risk is a warning, not part of the score.</li>
+            <li>The address lookup uses the nearest 0.25-mile grid point, not an exact rescore. For an exact score, run SiteLine's <code>score_site(lat, lon)</code>.</li>
+            <li>Covers 9% new-affordability applications; preservation applications are scored differently and aren't covered.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="app.js?v=30"></script>
+</body>
+</html>

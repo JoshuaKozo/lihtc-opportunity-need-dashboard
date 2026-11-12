@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>LIHTC Opportunity & Need Dashboard · Metro Atlanta</title>
+  <meta name="description" content="Find metro Atlanta census tracts for affordable rental housing: slide between housing need and resident opportunity, and check each tract's chance of a 9% LIHTC award.">
+  <meta name="theme-color" content="#f2f4f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css?v=16">
+</head>
+<body>
+  <a class="skip" href="#lookup-input">Skip to address search</a>
+
+  <header class="appbar">
+    <button class="btn quiet menu-btn" id="menu-btn" type="button" aria-haspopup="dialog" aria-controls="menu" aria-label="Settings and methodology">
+      <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
+      <span>Settings &amp; methodology</span>
+    </button>
+    <div class="product">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6"/><path d="M6 12.5 12 7l6 5.5V18h-4v-3.5h-4V18H6z"/></svg>
+      <div>
+        <p class="name" translate="no">LIHTC Opportunity &amp; Need Dashboard</p>
+        <p class="scope">Metro Atlanta · housing need, resident opportunity and 9% award chances</p>
+      </div>
+    </div>
+    <button class="btn quiet tour-btn" id="tour-btn" type="button" aria-haspopup="dialog">
+      <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.7c-.5.2-.8.6-.8 1.1v.4M8 11.4v.1"/></svg>
+      <span>How to use</span>
+    </button>
+    <button class="btn quiet rail-btn" id="rail-btn" type="button" aria-controls="rail" aria-expanded="true">
+      <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 13.5V9M6.2 13.5V5.5M9.8 13.5V7.5M13.5 13.5V3"/></svg>
+      <span>Top tracts</span>
+    </button>
+  </header>
+
+  <main class="app" id="app">
+    <section class="search" aria-labelledby="page-title">
+      <h1 id="page-title">Find a site</h1>
+      <form class="lookup" id="lookup" role="search">
+        <label for="lookup-input" class="visually-hidden">Address or coordinates</label>
+        <div class="combo">
+          <input id="lookup-input" name="address" type="search" placeholder="1129 Euclid Ave NE, Atlanta…" autocomplete="off" spellcheck="false"
+            role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggest">
+          <ul class="suggest" id="suggest" role="listbox" aria-label="Address suggestions" hidden></ul>
+        </div>
+        <button class="btn primary" type="submit">Look up</button>
+      </form>
+      <p class="lookup-note"><span id="lookup-status" role="status" aria-live="polite"></span>Or click anywhere on the map to score that spot.</p>
+
+      <div class="controls" aria-label="What to prioritize">
+        <div class="control">
+          <div class="control-head">
+            <label for="bias" class="control-label">Priority</label>
+            <output class="num" id="bias-out" for="bias"></output>
+          </div>
+          <input id="bias" type="range" min="0" max="100" step="1" value="50" aria-describedby="bias-ends">
+          <div class="ends" id="bias-ends"><span>More need</span><span>More opportunity</span></div>
+        </div>
+        <div class="control">
+          <div class="control-head">
+            <span class="control-label" id="deal-lbl">Estimated DCA score</span>
+            <output class="num" id="deal-out" aria-labelledby="deal-lbl"></output>
+          </div>
+          <div class="stack" id="score-stack"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="mapwrap">
+      <div id="map" role="region" aria-label="Map of census tracts colored by priority. Click a tract to see its scores."></div>
+      <div class="legend" id="legend"></div>
+      <div class="loading" id="loading" role="status">Loading tracts…</div>
+    </div>
+
+    <section class="results" id="results" aria-label="Deal checklist">
+      <div id="deal-view">
+        <div class="control deal-slider">
+          <div class="control-head">
+            <label for="deal" class="control-label">Your deal points</label>
+            <output class="num" id="deal-points-out" for="deal"></output>
+          </div>
+          <input id="deal" type="range" min="30" max="51" step="0.5" value="48.5" aria-describedby="deal-note">
+          <p class="control-note" id="deal-note"></p>
+        </div>
+        <h2 class="deal-h">Your deal checklist <span class="tab-pts" id="tab-deal-pts"></span></h2>
+        <p class="hint">Check off what your project has. Each item adds DCA points; the arrow explains it.</p>
+        <div id="deal-total" class="deal-total"></div>
+        <div class="deal-actions">
+          <button class="btn secondary" type="button" id="deal-typical">Fill a typical funded deal</button>
+          <button class="btn text" type="button" id="deal-clear">Reset</button>
+        </div>
+        <form class="deal-form" id="deal-form" aria-label="Deal checklist items"></form>
+        <p class="hint deal-foot">Points follow Georgia DCA's 2024–2025 QAP. Answers stay in this browser and are shared with the
+          <a href="../fundability_site/">Fundability Map</a>.</p>
+      </div>
+    </section>
+
+    <aside class="rail" id="rail" aria-label="Top tracts, the selected site and your shortlist">
+      <div class="rail-view" id="top-view">
+        <div class="rail-head">
+          <div class="rail-title">
+            <h2 id="rail-h">Top tracts</h2>
+            <div class="rail-title-actions">
+              <button class="btn secondary sl-open" type="button" data-sl-open>
+                <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5h7v11L8 11l-3.5 2.5z"/></svg>
+                Shortlist <span class="num sl-count"></span></button>
+              <button class="btn icon" type="button" id="rail-close" aria-label="Hide the side panel">
+                <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="control row">
+            <span class="control-label">Metric weights</span>
+            <span class="weights-state"><output id="weights-out"></output><a href="#about/weights">Change</a></span>
+          </div>
+        </div>
+        <div class="rail-body">
+          <p class="hint rail-sub" id="rail-sub"></p>
+          <figure class="scatter" id="scatter-fig">
+            <figcaption><span class="cap-title">Need and opportunity</span><span class="cap-note" id="scatter-note"></span></figcaption>
+            <svg id="scatter" role="img" aria-label="Every tract by need score and opportunity score"></svg>
+          </figure>
+          <ol class="ranked" id="toplist"></ol>
+          <p class="rail-foot"><button class="btn secondary" type="button" id="download">Download all tracts (CSV)</button></p>
+        </div>
+      </div>
+      <div class="rail-view" id="site-view" hidden>
+        <div class="rail-head site-head">
+          <button class="btn text back" type="button" id="site-back">
+            <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m10 4-4 4 4 4"/></svg>Top tracts</button>
+          <div class="rail-title-actions">
+            <button class="btn secondary sl-open" type="button" data-sl-open>
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5h7v11L8 11l-3.5 2.5z"/></svg>
+              Shortlist <span class="num sl-count"></span></button>
+            <button class="btn icon" type="button" id="site-close" aria-label="Hide the side panel">
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="rail-body" id="detail"></div>
+      </div>
+      <div class="rail-view" id="list-view" hidden>
+        <div class="rail-head site-head">
+          <button class="btn text back" type="button" id="list-back">
+            <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m10 4-4 4 4 4"/></svg>Top tracts</button>
+          <button class="btn icon" type="button" id="list-close" aria-label="Hide the side panel">
+            <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8"/></svg>
+          </button>
+        </div>
+        <div class="rail-body" id="sl-body"></div>
+      </div>
+    </aside>
+  </main>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <dialog class="compare" id="compare" aria-labelledby="cmp-title">
+    <div class="cmp-head">
+      <div>
+        <h2 id="cmp-title">Compare sites</h2>
+        <p class="hint" id="cmp-sub"></p>
+      </div>
+      <button class="btn secondary" type="button" id="cmp-close">Done</button>
+    </div>
+    <div class="cmp-body" id="cmp-body"></div>
+  </dialog>
+
+  <dialog class="menu" id="menu" aria-labelledby="menu-title">
+    <div class="menu-head">
+      <p class="menu-title" id="menu-title">Settings and methodology</p>
+      <button class="btn secondary menu-done" type="button" id="menu-close" aria-label="Done: close settings and methodology">
+        <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8"/></svg>
+        <span>Done</span>
+      </button>
+    </div>
+    <div class="menu-grid">
+      <nav class="menu-nav" aria-label="Settings and methodology">
+        <p class="menu-group">Settings</p>
+        <a href="#about/weights" data-view="weights">Metric weights</a>
+        <p class="menu-group">Methodology</p>
+        <a href="#about/how" data-view="how">How it works</a>
+        <a href="#about/need" data-view="need">Need score</a>
+        <a href="#about/opportunity" data-view="opportunity">Opportunity score</a>
+        <a href="#about/combining" data-view="combining">The priority slider</a>
+        <a href="#about/fundability" data-view="fundability">Chance of an award</a>
+        <a href="#about/data" data-view="data">Data and sources</a>
+        <a href="#about/limits" data-view="limits">Limits</a>
+      </nav>
+      <div class="menu-body" id="menu-body" tabindex="-1"></div>
+    </div>
+  </dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="app.js?v=28"></script>
+</body>
+</html>
