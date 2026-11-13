@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://tile.openstreetmap.org">
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <link rel="stylesheet" href="style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
   <a class="skip" href="#lookup-input">Skip to address search</a>
@@ -62,13 +62,6 @@
           <input id="bias" type="range" min="0" max="100" step="1" value="50" aria-describedby="bias-ends">
           <div class="ends" id="bias-ends"><span>More need</span><span>More opportunity</span></div>
         </div>
-        <div class="control">
-          <div class="control-head">
-            <span class="control-label" id="deal-lbl">Estimated DCA score</span>
-            <output class="num" id="deal-out" aria-labelledby="deal-lbl"></output>
-          </div>
-          <div class="stack" id="score-stack"></div>
-        </div>
       </div>
     </section>
 
@@ -78,8 +71,32 @@
       <div class="loading" id="loading" role="status">Loading tracts…</div>
     </div>
 
-    <section class="results" id="results" aria-label="Deal checklist">
-      <div id="deal-view">
+    <section class="results" id="results" aria-label="Your score and deal">
+      <!-- three pages share this area: links to the other two, the score, and the checklist -->
+      <div class="lpage" id="home-page">
+        <nav class="page-links" aria-label="Your score and deal">
+          <button class="page-link" type="button" data-page="score">
+            <span class="pl-text"><span class="pl-title">Estimated DCA score</span><span class="pl-sub" id="pl-score-sub"></span></span>
+            <span class="pl-val num" id="pl-score-val"></span><svg class="ico pl-chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg></button>
+          <button class="page-link" type="button" data-page="deal">
+            <span class="pl-text"><span class="pl-title">Your deal checklist</span><span class="pl-sub" id="pl-deal-sub"></span></span>
+            <span class="pl-val num" id="pl-deal-val"></span><svg class="ico pl-chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg></button>
+        </nav>
+        <p class="hint home-hint">Scores start from a typical funded deal. Open the checklist to enter your project's exact points.</p>
+      </div>
+
+      <div class="lpage" id="score-page" hidden>
+        <button class="btn text back" type="button" data-page="home"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m10 4-4 4 4 4"/></svg>Back</button>
+        <h2 class="page-title" tabindex="-1">Estimated DCA score</h2>
+        <p class="hint">Georgia DCA scores every 9% application out of 98 points: location points for the site, plus deal points
+          for your project. Pick a place on the map to fill in the location part.</p>
+        <div class="control score-card">
+          <div class="control-head">
+            <span class="control-label" id="deal-lbl">Estimated DCA score</span>
+            <output class="num" id="deal-out" aria-labelledby="deal-lbl"></output>
+          </div>
+          <div class="stack" id="score-stack"></div>
+        </div>
         <div class="control deal-slider">
           <div class="control-head">
             <label for="deal" class="control-label">Your deal points</label>
@@ -88,8 +105,14 @@
           <input id="deal" type="range" min="30" max="51" step="0.5" value="48.5" aria-describedby="deal-note">
           <p class="control-note" id="deal-note"></p>
         </div>
-        <h2 class="deal-h">Your deal checklist <span class="tab-pts" id="tab-deal-pts"></span></h2>
+        <button class="btn primary page-cta" type="button" data-page="deal">Fill in your exact deal<svg class="ico pl-chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg></button>
+      </div>
+
+      <div class="lpage" id="deal-view" hidden>
+        <button class="btn text back" type="button" data-page="home"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m10 4-4 4 4 4"/></svg>Back</button>
+        <h2 class="deal-h page-title" tabindex="-1">Your deal checklist <span class="tab-pts" id="tab-deal-pts"></span></h2>
         <p class="hint">Check off what your project has. Each item adds DCA points; the arrow explains it.</p>
+        <button class="score-line" type="button" data-page="score" id="deal-score-line"></button>
         <div id="deal-total" class="deal-total"></div>
         <div class="deal-actions">
           <button class="btn secondary" type="button" id="deal-typical">Fill a typical funded deal</button>
@@ -196,6 +219,6 @@
   </dialog>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-  <script src="app.js?v=29"></script>
+  <script src="app.js?v=31"></script>
 </body>
 </html>

@@ -708,6 +708,16 @@ function showRailView(view) {
   if (state.railView === "site") $("#detail").scrollTop = 0;
 }
 
+/* ── the left side's pages: home (links to the other two), the estimated score, and the deal checklist ── */
+function showLeftPage(page, focus = false) {
+  state.leftPage = ["score", "deal"].includes(page) ? page : "home";
+  $("#home-page").hidden = state.leftPage !== "home";
+  $("#score-page").hidden = state.leftPage !== "score";
+  $("#deal-view").hidden = state.leftPage !== "deal";
+  $("#results").scrollTop = 0;
+  if (focus) (state.leftPage === "home" ? $(".page-link") : $(`#${state.leftPage === "score" ? "score-page" : "deal-view"} .page-title`))?.focus({ preventScroll: true });
+}
+
 /* ── controls ── */
 function syncControls() {
   const t = Math.round(100 * state.bias);
@@ -722,8 +732,16 @@ function syncControls() {
     : `${state.dealPoints}${usingTypical() ? " · typical funded deal" : ""}`;
   $("#deal-note").textContent = state.dealStarted
     ? "Your checklist sets the points now. Reset the checklist to use the slider again."
-    : `A quick estimate: funded ARC deals claimed a median of ${typicalPoints()}. For an exact count, use the checklist below.`;
+    : `A quick estimate: funded ARC deals claimed a median of ${typicalPoints()}. For an exact count, fill in your deal checklist.`;
   $("#tab-deal-pts").textContent = state.dealStarted ? `${+sc.other.toFixed(1)} pts` : "";
+  const est = selP && scored(state.selected) ? selectedEstimate() : null, chance = isNum(est?.chance) ? `${Math.round(100 * est.chance)}% chance` : "";
+  const dealPts = state.dealStarted ? +sc.other.toFixed(1) : state.dealPoints;
+  $("#pl-score-val").textContent = est ? st.total : "";
+  $("#pl-score-sub").textContent = est ? `${chance} at ${est.where}` : "Pick a place on the map to see it";
+  $("#pl-deal-val").textContent = `${dealPts} pts`;
+  $("#pl-deal-sub").textContent = state.dealStarted ? "From your checklist" : usingTypical() ? "A typical funded deal, until you fill it in" : "From the slider, until you fill it in";
+  $("#deal-score-line").innerHTML = est ? `<span>Estimated DCA score</span><b>${esc(st.total)}</b>${chance ? `<span class="sl-chance">${chance}</span>` : ""}`
+    : `<span>Estimated DCA score</span><b>${esc(st.total)}</b><span class="sl-chance">pick a place for the location part</span>`;
   $("#weights-out").textContent = customWeights() ? "Custom" : "Team defaults";
 }
 function saveSettings() {
@@ -1073,7 +1091,7 @@ function updateDealSummary() {
       <span class="dt-of">of ${sc.max} deal points${sc.xiv ? ` · §XIV ${sc.xiv}` : ""}${sc.phased ? " · phased +4" : ""}</span></div>
     <div class="dmeter" style="--p:${Math.min(1, pts / sc.max)};--m:${med / sc.max}" role="img"
       aria-label="${pts} of ${sc.max} deal points; funded applications claimed a median of ${med}"><i></i><b></b><span>Funded median ${med}</span></div>
-    ${state.dealStarted ? "" : `<p class="ds-note">Not started: until you check or change an item, the score uses the deal points slider above.</p>`}`;
+    ${state.dealStarted ? "" : `<p class="ds-note">Not started: until you check or change an item, the score uses a typical funded deal (or the slider on the score page).</p>`}`;
 }
 function onDealInput(e) {
   const id = e.target.dataset.id;
@@ -1349,17 +1367,17 @@ const TOUR = [
   { el: () => $("#bias").closest(".control"), title: "Choose what matters more",
     body: `Slide toward <b>need</b> to favor places with the most housing hardship, or toward <b>opportunity</b> to favor places with
       strong schools, jobs and health. The map and the rankings update as you slide.` },
-  { el: () => $("#score-stack").closest(".control"), title: "Your estimated score",
+  { el: () => $("#score-stack").closest(".control"), title: "Your estimated score", before: () => showLeftPage("score"),
     body: `Georgia's housing agency (DCA) scores every 9% application out of 98 points. The <b>blue</b> part comes from the site's
       location; the <b>grey</b> part comes from your project, your "deal". The tick marks the lowest score funded last year, and the
-      chance of an award is underneath.` },
-  { el: () => $(".deal-slider"), title: "Your deal points",
+      chance of an award is underneath. Open this page any time from <b>Estimated DCA score</b> on the left.` },
+  { el: () => $(".deal-slider"), title: "Your deal points", before: () => showLeftPage("score"),
     body: `Not sure yet? Leave this at a typical funded deal (${typicalPoints()} points), or slide it for a quick what-if.` },
   { el: () => $("#deal-form"), title: "The deal checklist", noScroll: true,
-    before: () => { const h = $(".deal-h"); h.style.scrollMarginTop = narrow() ? "64px" : "8px"; h.scrollIntoView({ block: "start" }); },
-    body: `For an exact count, check off what your project has. Click an item's arrow to see what it means. Your answers stay in
-      your browser, and the slider steps aside once you start.` },
-  { el: () => $("#rail"), title: "Details for your place", before: () => { if (state.selected) showRailView("site"); setRail(true); },
+    before: () => { showLeftPage("deal"); const h = $(".deal-h"); h.style.scrollMarginTop = narrow() ? "64px" : "8px"; h.scrollIntoView({ block: "start" }); },
+    body: `For an exact count, open <b>Your deal checklist</b> and check off what your project has. Click an item's arrow to see
+      what it means. Your answers stay in your browser, and the slider steps aside once you start.` },
+  { el: () => $("#rail"), title: "Details for your place", before: () => { showLeftPage("home"); if (state.selected) showRailView("site"); setRail(true); },
     body: `The place you picked opens here: the chance of an award in plain words, and why the area scores the way it does.
       <b>Top tracts</b> goes back to the best-ranked places for your settings, with a download of every tract.` },
   { el: () => [...document.querySelectorAll("#rail .sl-save"), ...document.querySelectorAll("#rail .sl-open")].find((b) => b.offsetParent), title: "Save places to compare",
@@ -1527,11 +1545,18 @@ async function init() {
   document.addEventListener("click", (e) => {
     if (!e.target.closest("[data-open-deal]")) return;
     if (railOverlay.matches) setRail(false);
+    showLeftPage("deal");
     const dv = $("#deal-view");
     setTimeout(() => {   // after the sheet starts closing, so the scroll isn't cut short
       dv.scrollIntoView({ behavior: REDUCED.matches ? "auto" : "smooth", block: "start" });
-      dv.querySelector("input, select")?.focus({ preventScroll: true });
+      dv.querySelector(".page-title")?.focus({ preventScroll: true });
     }, 60);
+  });
+  document.addEventListener("click", (e) => {   // the left side's page links and back buttons
+    const b = e.target.closest("[data-page]");
+    if (!b) return;
+    showLeftPage(b.dataset.page, true);
+    if (narrow()) $("#results").scrollIntoView({ block: "start" });
   });
   $("#site-back").addEventListener("click", () => showRailView("top"));
   loadShortlist(); renderShortlist();
