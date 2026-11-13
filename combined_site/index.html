@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://tile.openstreetmap.org">
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <link rel="stylesheet" href="style.css?v=17">
+  <link rel="stylesheet" href="style.css?v=18">
 </head>
 <body>
   <a class="skip" href="#lookup-input">Skip to address search</a>
@@ -108,20 +108,6 @@
         <button class="btn primary page-cta" type="button" data-page="deal">Fill in your exact deal<svg class="ico pl-chev" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 4 4 4-4 4"/></svg></button>
       </div>
 
-      <div class="lpage" id="deal-view" hidden>
-        <button class="btn text back" type="button" data-page="home"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m10 4-4 4 4 4"/></svg>Back</button>
-        <h2 class="deal-h page-title" tabindex="-1">Your deal checklist <span class="tab-pts" id="tab-deal-pts"></span></h2>
-        <p class="hint">Check off what your project has. Each item adds DCA points; the arrow explains it.</p>
-        <button class="score-line" type="button" data-page="score" id="deal-score-line"></button>
-        <div id="deal-total" class="deal-total"></div>
-        <div class="deal-actions">
-          <button class="btn secondary" type="button" id="deal-typical">Fill a typical funded deal</button>
-          <button class="btn text" type="button" id="deal-clear">Reset</button>
-        </div>
-        <form class="deal-form" id="deal-form" aria-label="Deal checklist items"></form>
-        <p class="hint deal-foot">Points follow Georgia DCA's 2024–2025 QAP. Answers stay in this browser and are shared with the
-          <a href="../fundability_site/">Fundability Map</a>.</p>
-      </div>
     </section>
 
     <aside class="rail" id="rail" aria-label="Top tracts, the selected site and your shortlist">
@@ -180,6 +166,23 @@
       </div>
     </aside>
   </main>
+  <!-- The deal checklist: a page of its own (#checklist), over the map page, so there's room to fill it in. -->
+  <section class="deal-page" id="deal-page" aria-labelledby="deal-page-title" hidden>
+    <div class="deal-page-inner" id="deal-view">
+        <button class="btn text back" type="button" id="deal-back"><svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="m10 4-4 4 4 4"/></svg>Back to the map</button>
+        <h2 class="deal-h page-title" id="deal-page-title" tabindex="-1">Your deal checklist <span class="tab-pts" id="tab-deal-pts"></span></h2>
+        <p class="hint">Check off what your project has. Each item adds DCA points; the arrow explains it.</p>
+        <button class="score-line" type="button" data-page="score" id="deal-score-line"></button>
+        <div id="deal-total" class="deal-total"></div>
+        <div class="deal-actions">
+          <button class="btn secondary" type="button" id="deal-typical">Fill a typical funded deal</button>
+          <button class="btn text" type="button" id="deal-clear">Reset</button>
+        </div>
+        <form class="deal-form" id="deal-form" aria-label="Deal checklist items"></form>
+        <p class="hint deal-foot">Points follow Georgia DCA's 2024–2025 QAP. Answers stay in this browser and are shared with the
+          <a href="../fundability_site/">Fundability Map</a>.</p>
+    </div>
+  </section>
   <div class="scrim" id="scrim" hidden></div>
 
   <dialog class="compare" id="compare" aria-labelledby="cmp-title">
@@ -219,6 +222,6 @@
   </dialog>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-  <script src="app.js?v=31"></script>
+  <script src="app.js?v=33"></script>
 </body>
 </html>

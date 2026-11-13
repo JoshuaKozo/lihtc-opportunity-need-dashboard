@@ -710,12 +710,38 @@ function showRailView(view) {
 
 /* ── the left side's pages: home (links to the other two), the estimated score, and the deal checklist ── */
 function showLeftPage(page, focus = false) {
-  state.leftPage = ["score", "deal"].includes(page) ? page : "home";
+  if (page === "deal") { openDealPage(); return; }   // the checklist has a page of its own
+  if (state.dealPage) closeDealPage();
+  state.leftPage = page === "score" ? "score" : "home";
   $("#home-page").hidden = state.leftPage !== "home";
   $("#score-page").hidden = state.leftPage !== "score";
-  $("#deal-view").hidden = state.leftPage !== "deal";
   $("#results").scrollTop = 0;
-  if (focus) (state.leftPage === "home" ? $(".page-link") : $(`#${state.leftPage === "score" ? "score-page" : "deal-view"} .page-title`))?.focus({ preventScroll: true });
+  if (focus) (state.leftPage === "home" ? $(".page-link") : $("#score-page .page-title"))?.focus({ preventScroll: true });
+}
+
+/* ── the deal checklist's own page (#checklist): it covers the map page below the top bar ── */
+function showDealPage(on) {
+  if (!!state.dealPage === on) return;
+  state.dealPage = on;
+  $("#deal-page").hidden = !on;
+  document.body.classList.toggle("deal-page-open", on);
+  if (!on) { state.dealPushed = false; return; }
+  if (railOverlay.matches) setRail(false);
+  $("#deal-page").scrollTop = 0;
+  updateDealSummary(); syncControls();
+  $("#deal-page-title").focus({ preventScroll: true });
+}
+function openDealPage() {
+  if (state.dealPage) return;
+  try { history.pushState(null, "", "#checklist"); state.dealPushed = true; } catch { /* embedded: no history */ }
+  showDealPage(true);
+}
+function closeDealPage() {
+  if (!state.dealPage) return;
+  const pushed = state.dealPushed;
+  showDealPage(false);
+  if (pushed) history.back();   // back to the map page's own address (its site, tract or nothing)
+  else try { history.replaceState(null, "", selectedHash()); } catch { /* fine */ }
 }
 
 /* ── controls ── */
@@ -1326,6 +1352,8 @@ const selectedHash = () => (state.spot ? `#site=${state.spot.latlng.lat.toFixed(
   : state.selected ? `#tract=${state.selected.properties.g}` : location.pathname + location.search);
 function route() {
   const h = decodeURIComponent(location.hash.slice(1));
+  showDealPage(h === "checklist");
+  if (h === "checklist") return;
   if (h.startsWith("about/")) { openMenu(h.slice(6)); return; }
   if ($("#menu").open) $("#menu").close();
   const site = h.match(/^site=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/);
@@ -1373,10 +1401,9 @@ const TOUR = [
       chance of an award is underneath. Open this page any time from <b>Estimated DCA score</b> on the left.` },
   { el: () => $(".deal-slider"), title: "Your deal points", before: () => showLeftPage("score"),
     body: `Not sure yet? Leave this at a typical funded deal (${typicalPoints()} points), or slide it for a quick what-if.` },
-  { el: () => $("#deal-form"), title: "The deal checklist", noScroll: true,
-    before: () => { showLeftPage("deal"); const h = $(".deal-h"); h.style.scrollMarginTop = narrow() ? "64px" : "8px"; h.scrollIntoView({ block: "start" }); },
-    body: `For an exact count, open <b>Your deal checklist</b> and check off what your project has. Click an item's arrow to see
-      what it means. Your answers stay in your browser, and the slider steps aside once you start.` },
+  { el: () => $('.page-link[data-page="deal"]'), title: "The deal checklist", before: () => showLeftPage("home"),
+    body: `For an exact count, click <b>Your deal checklist</b>. It opens on a page of its own: check off what your project has,
+      and click an item's arrow to see what it means. Your answers stay in your browser, and the slider steps aside once you start.` },
   { el: () => $("#rail"), title: "Details for your place", before: () => { showLeftPage("home"); if (state.selected) showRailView("site"); setRail(true); },
     body: `The place you picked opens here: the chance of an award in plain words, and why the area scores the way it does.
       <b>Top tracts</b> goes back to the best-ranked places for your settings, with a download of every tract.` },
@@ -1412,6 +1439,7 @@ function tourNodes() {
   return tour.nodes;
 }
 function tourStart() {
+  closeDealPage();   // the tour walks through the map page
   tour.lastFocus = document.activeElement;
   if ($("#menu").open) $("#menu").close();
   const { block, spot, pop } = tourNodes();
@@ -1544,13 +1572,11 @@ async function init() {
   $("#deal-clear").addEventListener("click", () => { resetDeal(); renderDeal(); update(); });
   document.addEventListener("click", (e) => {
     if (!e.target.closest("[data-open-deal]")) return;
-    if (railOverlay.matches) setRail(false);
-    showLeftPage("deal");
-    const dv = $("#deal-view");
-    setTimeout(() => {   // after the sheet starts closing, so the scroll isn't cut short
-      dv.scrollIntoView({ behavior: REDUCED.matches ? "auto" : "smooth", block: "start" });
-      dv.querySelector(".page-title")?.focus({ preventScroll: true });
-    }, 60);
+    openDealPage();
+  });
+  $("#deal-back").addEventListener("click", closeDealPage);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && state.dealPage && !document.querySelector("dialog[open]") && tour.i < 0) closeDealPage();
   });
   document.addEventListener("click", (e) => {   // the left side's page links and back buttons
     const b = e.target.closest("[data-page]");
@@ -1595,6 +1621,7 @@ async function init() {
   setRail(railOverlay.matches ? false : railPref());
   railOverlay.addEventListener("change", () => setRail(railOverlay.matches ? false : railPref()));
   $("#rail-btn").addEventListener("click", () => {
+    if (state.dealPage) { closeDealPage(); showRailView("top"); setRail(true); return; }   // from the checklist page: back to the map's list
     const open = $("#rail-btn").getAttribute("aria-expanded") === "true";
     if (open && state.railView === "site") { showRailView("top"); return; }   // showing a site: switch to the list
     showRailView("top"); setRail(!open, true);
