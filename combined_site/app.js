@@ -1379,6 +1379,13 @@ function tourNodes() {
   pop.setAttribute("role", "dialog"); pop.setAttribute("aria-modal", "true"); pop.setAttribute("aria-labelledby", "tour-title");
   pop.tabIndex = -1;
   document.body.append(block, spot, pop);
+  // The tour never traps anyone: a click anywhere outside its card ends the tour and goes on to what was clicked
+  // (the highlighted button, a menu, the map...).
+  block.addEventListener("click", (e) => {
+    const x = e.clientX, y = e.clientY;
+    tourEnd();
+    document.elementFromPoint(x, y)?.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window, clientX: x, clientY: y }));
+  });
   pop.addEventListener("click", (e) => {
     const a = e.target.closest("[data-tour]")?.dataset.tour;
     if (a === "next") tourGo(tour.i + 1); else if (a === "back") tourGo(tour.i - 1); else if (a === "close") tourEnd();
