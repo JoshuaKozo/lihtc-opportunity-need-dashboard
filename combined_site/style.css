@@ -537,6 +537,8 @@ input[type="range"]:focus-visible::-moz-range-thumb { outline: 2px solid var(--a
 .lpage .page-title { font-size: 18px; line-height: 26px; margin-top: 6px; }
 .lpage .page-title:focus { outline: none; }
 .lpage .page-title + .hint { margin-top: 4px; }
+.deal-disclaimer { font-size: 13px; }
+#deal-note[hidden] { display: none; }
 .score-card { margin-top: 14px; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); }
 .score-card #deal-out { font-size: 18px; font-weight: 500; }
 #score-page .deal-slider { margin-top: 16px; }

@@ -712,11 +712,9 @@ function showRailView(view) {
 function showLeftPage(page, focus = false) {
   if (page === "deal") { openDealPage(); return; }   // the checklist has a page of its own
   if (state.dealPage) closeDealPage();
-  state.leftPage = page === "score" ? "score" : "home";
-  $("#home-page").hidden = state.leftPage !== "home";
-  $("#score-page").hidden = state.leftPage !== "score";
+  state.leftPage = "score";   // the score is the left side's only page; the checklist has its own
   $("#results").scrollTop = 0;
-  if (focus) (state.leftPage === "home" ? $(".page-link") : $("#score-page .page-title"))?.focus({ preventScroll: true });
+  if (focus) $("#score-page .page-title")?.focus({ preventScroll: true });
 }
 
 /* ── the deal checklist's own page (#checklist): it covers the map page below the top bar ── */
@@ -756,18 +754,15 @@ function syncControls() {
   slider.disabled = state.dealStarted;   // the checklist's count is more exact, so it wins once it's started
   $("#deal-points-out").textContent = state.dealStarted ? `${+sc.other.toFixed(1)} · from your checklist`
     : `${state.dealPoints}${usingTypical() ? " · typical funded deal" : ""}`;
-  $("#deal-note").textContent = state.dealStarted
-    ? "Your checklist sets the points now. Reset the checklist to use the slider again."
-    : `A quick estimate: funded ARC deals claimed a median of ${typicalPoints()}. For an exact count, fill in your deal checklist.`;
+  $("#deal-disclaimer").textContent = state.dealStarted ? "Deal points come from your checklist."
+    : usingTypical() ? `Deal points start at a typical funded deal (${typicalPoints()} points) until you fill in your own.`
+    : `Deal points come from the slider (${state.dealPoints}) until you fill in your own.`;
+  $("#deal-note").textContent = state.dealStarted ? "Your checklist sets the points now. Clear the checklist to use the slider again." : "";
+  $("#deal-note").hidden = !state.dealStarted;
   $("#tab-deal-pts").textContent = state.dealStarted ? `${+sc.other.toFixed(1)} pts` : "";
   $("#deal-clear").disabled = !state.dealStarted;
   $("#deal-clear").title = state.dealStarted ? "Clear every answer and start over" : "Nothing to clear yet";
   const est = selP && scored(state.selected) ? selectedEstimate() : null, chance = isNum(est?.chance) ? `${Math.round(100 * est.chance)}% chance` : "";
-  const dealPts = state.dealStarted ? +sc.other.toFixed(1) : state.dealPoints;
-  $("#pl-score-val").textContent = est ? st.total : "";
-  $("#pl-score-sub").textContent = est ? `${chance} at ${est.where}` : "Pick a place on the map to see it";
-  $("#pl-deal-val").textContent = `${dealPts} pts`;
-  $("#pl-deal-sub").textContent = state.dealStarted ? "From your checklist" : usingTypical() ? "A typical funded deal, until you fill it in" : "From the slider, until you fill it in";
   $("#deal-score-line").innerHTML = est ? `<span>Estimated DCA score</span><b>${esc(st.total)}</b>${chance ? `<span class="sl-chance">${chance}</span>` : ""}`
     : `<span>Estimated DCA score</span><b>${esc(st.total)}</b><span class="sl-chance">pick a place for the location part</span>`;
   $("#weights-out").textContent = customWeights() ? "Custom" : "Team defaults";
@@ -1511,13 +1506,13 @@ const TOUR = [
   { el: () => $("#score-stack").closest(".control"), title: "Your estimated score", before: () => showLeftPage("score"),
     body: `Georgia's housing agency (DCA) scores every 9% application out of 98 points. The <b>blue</b> part comes from the site's
       location; the <b>grey</b> part comes from your project, your "deal". The tick marks last year's funding line, the highest score that wasn't funded, and the
-      chance of an award is underneath. Open this page any time from <b>Estimated DCA score</b> on the left.` },
+      chance of an award is underneath.` },
   { el: () => $(".deal-slider"), title: "Your deal points", before: () => showLeftPage("score"),
     body: `Not sure yet? Leave this at a typical funded deal (${typicalPoints()} points), or slide it for a quick what-if.` },
-  { el: () => $('.page-link[data-page="deal"]'), title: "The deal checklist", before: () => showLeftPage("home"),
-    body: `For an exact count, click <b>Your deal checklist</b>. It opens on a page of its own: check off what your project has,
+  { el: () => $("#score-page .page-cta"), title: "The deal checklist", before: () => showLeftPage("score"),
+    body: `For an exact count, click <b>Fill in your exact deal</b>. The checklist opens on a page of its own: check off what your project has,
       and click an item's arrow to see what it means. Your answers stay in your browser, and the slider steps aside once you start.` },
-  { el: () => $("#rail"), title: "Details for your place", before: () => { showLeftPage("home"); if (state.selected) showRailView("site"); setRail(true); },
+  { el: () => $("#rail"), title: "Details for your place", before: () => { showLeftPage("score"); if (state.selected) showRailView("site"); setRail(true); },
     body: `The place you picked opens here: the chance of an award in plain words, and why the area scores the way it does.
       <b>Top tracts</b> goes back to the best-ranked places for your settings, with a download of every tract.` },
   { el: () => [...document.querySelectorAll("#rail .sl-save"), ...document.querySelectorAll("#rail .sl-open")].find((b) => b.offsetParent), title: "Save places to compare",
