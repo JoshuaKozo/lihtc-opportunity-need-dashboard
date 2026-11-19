@@ -312,8 +312,13 @@ body.menu-open { overflow: hidden; }
 .menu-title { font-size: 15px; font-weight: 500; }
 .menu-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: 220px minmax(0, 1fr); }
 .menu-nav { padding: 12px 8px; border-right: 1px solid var(--border); background: var(--ground); display: flex; flex-direction: column; gap: 2px; overflow-y: auto; }
-.menu-group { margin: 10px 12px 4px; font-size: 12px; line-height: 16px; color: var(--muted); }
-.menu-group:first-child { margin-top: 2px; }
+/* group labels, not tabs: small capitals, set apart, with a rule between the two groups */
+.menu-group {
+  margin: 6px 12px 6px; font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--faint); cursor: default; user-select: none;
+}
+.menu-group:first-child { margin-top: 4px; }
+.menu-nav [data-view] + .menu-group { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
 .menu-nav [data-view] {
   display: flex; align-items: center; height: 34px; padding: 0 12px; border-radius: var(--radius-control); text-decoration: none; color: var(--muted); font-size: 14px;
   width: 100%; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer;
