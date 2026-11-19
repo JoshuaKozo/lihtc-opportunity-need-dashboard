@@ -111,6 +111,11 @@ def main() -> None:
                    ("need_validation", "chas_swap_test.json")):             # test_chas_swap.py
         if (COMBINED / f).exists():
             meta_out[key] = json.loads((COMBINED / f).read_text())
+    # SiteLine's backtest against real ARC awards (fundability_site/data/backtest.json), for the method page
+    bt = json.loads((FUND_SITE / "backtest.json").read_text())
+    meta_out["siteline_backtest"] = {"rounds": bt["data"]["rounds"], "applications": bt["data"]["applications"],
+                                     "competitions": bt["data"]["competitions"],
+                                     "auc": round(bt["validation"]["baseline"]["auc_mean"], 3)}
     (OUT / "meta.json").write_text(json.dumps(meta_out, indent=1))
     for f in ("win_model.json", "funding_lines.json"):
         shutil.copyfile(FUND_SITE / f, OUT / f)

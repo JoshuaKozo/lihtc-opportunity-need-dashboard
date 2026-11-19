@@ -453,7 +453,7 @@ function renderDetail() {
   const here = state.spot?.latlng || f._layer.getBounds().getCenter();
   const gap = x && L ? +(x.total - L.line).toFixed(1) : null;
   const plain = x ? `At ${esc(x.where)}, with ${x.typical ? "a typical funded deal" : state.dealStarted ? "your deal checklist" : `${+x.deal.toFixed(1)} deal points`}, the estimated DCA score is
-      <b>${x.total.toFixed(1)} of ${scoreMax(p.pool)}</b>${L ? `, ${gap >= 0 ? `${gap} points above` : `${-gap} points below`} the lowest score funded in the ${L.round} ${esc(titleCase(p.pool))} round (${L.line})` : ""}.` : "No location score here.";
+      <b>${x.total.toFixed(1)} of ${scoreMax(p.pool)}</b>${L ? `, ${gap >= 0 ? `${gap} points above` : `${-gap} points below`} the ${L.round} ${esc(titleCase(p.pool))} funding line (${L.line}), the highest score that round that wasn't funded` : ""}.` : "No location score here.";
   const lvl = (v) => (v >= 80 ? "very high" : v >= 60 ? "high" : v >= 40 ? "middle" : v >= 20 ? "low" : "very low");
   box.innerHTML = `${head}
     <div class="card hero">
@@ -1238,6 +1238,68 @@ const SOURCES = [
 ];
 const customNote = (score) => (hasCustom(score) ? `<p class="note caution"><span class="n-title">You're using custom weights.</span>
     This page describes the team's defaults, and the results below were measured with them. <a href="#about/weights">Change your weights</a>.</p>` : "");
+// A short, plain-English account at the top of each method page.
+const plain = (html) => `<div class="plain-summary"><p class="ps-label">In plain English</p><p>${html}</p></div>`;
+
+// The chance-of-an-award model, in full: everything comes from data/win_model.json and data/funding_lines.json.
+function awardMethod() {
+  const w = state.win, lines = state.lines;
+  if (!w) return "";
+  const a = w.coef.intercept, b = w.coef.margin, odds = Math.exp(b), d = w.data, v = w.validation, nr = w.next_round;
+  const pct = (x) => `${Math.round(100 * x)}%`, f2 = (x) => `${x < 0 ? "−" : ""}${Math.abs(x).toFixed(2)}`, yrs = (t) => String(t).replace("-", "–");
+  const pools = Object.entries(nr.pools);
+  const recent = (lines?.lines || []).filter((l) => l.round === nr.based_on && isNum(l.line));
+  const at0 = 1 / (1 + Math.exp(-a)), at3 = 1 / (1 + Math.exp(-(a + 3 * b))), atm3 = 1 / (1 + Math.exp(-(a - 3 * b)));
+  const held = v.held_out[v.chosen];
+  const cal = v.calibration.map((c) => {
+    const [lo, hi] = c.bin.replace(/[(\]\s]/g, "").split(",").map((x) => Math.max(0, +x));
+    return `<tr><td>${Math.round(100 * lo)}–${Math.round(100 * hi)}%</td><td class="num">${c.n}</td><td class="num">${pct(c.predicted)}</td><td class="num">${pct(c.observed)}</td></tr>`;
+  }).join("");
+  const bt = state.meta.siteline_backtest;
+  return `<h3>1. Your estimated DCA score</h3>
+    <p>Location points for the site plus deal points for your project, the same total DCA would give the application (see above).</p>
+    <h3>2. Compare it with the competition</h3>
+    <p>What wins is a score that beats the other applications in the same round and funding pool, not any fixed number: DCA's
+      scale moves when the plan changes (typical applicants scored about 55 in 2013–2020, 71 in 2022–2023 and 82 in 2024–2025).
+      So the model looks at the <b>margin</b>: how many points a score sits above or below the median application in its round and pool.</p>
+    <h3>3. Turn the margin into a chance</h3>
+    <div class="formula">chance = 1 / (1 + e<sup>−(${f2(a)} + ${f2(b)} × margin)</sup>)</div>
+    <p class="hint">a = ${f2(a)} (standard error ${w.se.intercept.toFixed(2)}), b = ${f2(b)} per point (standard error ${w.se.margin.toFixed(2)}).</p>
+    <p>A logistic regression, the standard way to turn a number into a probability of a yes-or-no outcome. Here, each point
+      above the median raises the odds of an award by about ${Math.round(100 * (odds - 1))}%. An application at the median has about a
+      ${pct(at0)} chance; 3 points above it, ${pct(at3)}; 3 points below, ${pct(atm3)}.</p>
+    <h3>4. What it learned from</h3>
+    <p>Every Georgia 9% application with a claimed score and a known result, ${yrs(d.rounds)}: <b>${fmtInt.format(d.applications)} applications,
+      ${fmtInt.format(d.funded)} funded</b>, in ${d.competitions} competitions (one per round and pool), statewide so there's enough history.
+      Preservation applications are left out because DCA scores them on their own scale.</p>
+    <h3>5. How well it works</h3>
+    <p>Tested by leaving out one round at a time, fitting on the rest, and predicting the round it never saw:</p>
+    <ul>
+      <li>It ranks a funded application above an unfunded one <b>${pct(held.auc)}</b> of the time (${pct(held.within_competition_auc)}
+        within the same round and pool). A coin flip would be 50%.</li>
+      <li>Its average error (Brier score) is ${f2(held.brier)}, against ${f2(v.base_rate_brier)} for guessing every application has the same chance.</li>
+      <li>Adding whether the application used the nonprofit set-aside didn't help (${pct(v.held_out["margin + nonprofit"].auc)}), so it's left out.</li>
+    </ul>
+    <p>When it says a given chance, that's about how often those applications actually won:</p>
+    <div class="tablewrap"><table class="rubric"><thead><tr><th>Predicted chance</th><th class="num">Applications</th>
+      <th class="num">Average predicted</th><th class="num">Actually funded</th></tr></thead><tbody>${cal}</tbody></table></div>
+    <h3>6. Next round's competition</h3>
+    <p>Next round's applicants aren't known yet, so the median comes from the latest round (${nr.based_on}):
+      ${pools.map(([k, x]) => `${esc(k)} ${x.field_median}`).join(", ")}. Medians rose by about ${+nr.drift_mean.toFixed(1)} point${+nr.drift_mean.toFixed(1) === 1 ? "" : "s"} a year between
+      rounds under the same plan (${nr.drift_pairs.map((x) => x.replace("->", " to ")).join(", ")}), so that's added, and the curve is widened for the uncertainty (about
+      ±${nr.drift_sd.toFixed(1)} points).</p>
+    <h3>7. The funding line</h3>
+    <p>The highest score in a round and pool that wasn't funded. In ${nr.based_on}: ${recent.map((l) => `${esc(l.pool)} ${l.line}`).join(", ")}.
+      Scores above it were funded; applications using a set-aside (nonprofit, preservation, USDA) can be funded below it.</p>
+    ${bt ? `<h3>8. Why location points</h3>
+    <p>SiteLine's location score was tested against real awards in the 11 ARC counties (${yrs(bt.rounds)}: ${bt.applications} applications,
+      ${bt.competitions} competitions). Held out a round at a time, it puts a funded application above an unfunded rival
+      ${pct(bt.auc)} of the time: a real but modest edge. Most of the competition is decided by deal points, which is why the deal
+      checklist matters.</p>` : ""}
+    <p class="hint">Limits: the model uses the scores applicants claimed; DCA's review lowers some of them, which the model absorbs on
+      average. A new plan (QAP) for 2026 could shift the scale. The pipeline is <code>pipelines/fundability/win_probability.py</code>.</p>`;
+}
+
 const VIEWS = {
   weights: () => `<h2>Metric weights</h2>
     <p class="lead">Choose how much each metric counts toward the Need and Opportunity scores. The map, the chart and the list
@@ -1249,6 +1311,11 @@ const VIEWS = {
       so a metric usable in few tracts moves fewer scores.</p>
     ${weightSection("need")}${weightSection("opportunity")}`,
   how: () => `<h2>How it works</h2>
+    ${plain(`For each score we chose the major categories that matter (for need: income, rent burden, a shortage of assisted
+      housing, renter pressure and barriers to work; for opportunity: upward mobility, schools, jobs, transit, health and clean air).
+      Then we set how much each category counts by testing which mix of weights best lines up with outcomes we already know
+      reflect need or opportunity, such as later evictions or how children from low-income families do as adults, keeping each
+      weight inside a range from published research, and we checked the result on data the fit never saw.`)}
     <p class="lead">The dashboard helps a nonprofit decide where to look for a LIHTC site in the 11 Atlanta Regional Commission
       counties. It brings together three tools the team built.</p>
     <ol class="steps">
@@ -1265,6 +1332,11 @@ const VIEWS = {
     <p>Scores are percentiles among the ${fmtInt.format(state.meta.tracts)} scored tracts: 80 means higher than 80% of them. Tracts with no
       residents (${state.meta.excluded.no_residents}) and student-heavy tracts (${state.meta.excluded.student_tracts}), where college students inflate poverty, are left out.</p>`,
   need: () => `<h2>Need score</h2>
+    ${plain(`We grouped 16 Census and HUD measures into five kinds of hardship: income and poverty, rent burden, a shortage of
+      assisted housing, renter pressure, and barriers to work. To weight them, we tested which mix best predicted three things we
+      already know signal housing need: later eviction filings, low-income renters being pushed out, and CDC's measure of housing
+      insecurity, with research ranges keeping each weight sensible. It also holds up on outcomes the fit never saw: 2026 evictions,
+      utility shutoff threats and CDC's Social Vulnerability Index.`)}
     <p class="lead">How much a tract needs affordable rental housing. Each metric becomes a percentile (100 = most need), each
       category averages its metrics, and the score averages the categories with the weights below, re-ranked so 90 means the top tenth.</p>
     ${customNote("need")}${weightsNote("need")}
@@ -1274,6 +1346,10 @@ const VIEWS = {
       under 40% of the value, 30% for income, and the value is clearly above zero). Elsewhere the value is skipped and the tract's
       other metrics carry the weight. Rent burden has no usable value in about a quarter of tracts, the supply gap in about three quarters.</p>`,
   opportunity: () => `<h2>Opportunity score</h2>
+    ${plain(`We grouped 18 measures into six parts of what a place gives the people who live there: upward mobility, schools, jobs,
+      transit, health and daily needs, and clean air. Published research set a reasonable range for each weight; then we let two
+      outcomes we already know reflect opportunity, how children from low-income families do as adults and how long people live,
+      move each weight within its range, half research and half data. We checked it on counties left out of the fit.`)}
     <p class="lead">What living in a tract gives a resident. Each metric becomes a percentile (100 = most opportunity), each
       category averages its metrics, and the score averages the categories with the weights below.</p>
     ${customNote("opportunity")}${weightsNote("opportunity")}
@@ -1283,6 +1359,9 @@ const VIEWS = {
       proficiency and upward mobility partly reflect residents' income; the Opportunity team's fairness review recommends
       composition-adjusted versions.</p>`,
   combining: () => `<h2>The priority slider</h2>
+    ${plain(`You decide the mix. The slider blends the Need and Opportunity scores, from all need to all opportunity. It uses a
+      geometric mean rather than a plain average, so a place has to do reasonably well on both to rank high: one great score can't
+      hide a very poor one.`)}
     <p class="lead">The slider blends the Need and Opportunity scores (each 0–100) with a <b>weighted geometric mean</b>.</p>
     <div class="formula">priority = need<sup>(1 − t)</sup> × opportunity<sup>t</sup>, &nbsp; where t is the slider's share for opportunity</div>
     <p>Priority stays on the 0–100 scale, between the two scores. The map shows it in fifths of the scored tracts, and a tract's
@@ -1296,6 +1375,10 @@ const VIEWS = {
       <li><b>Fundability isn't in the blend.</b> The chance of an award is shown beside it.</li>
     </ul>`,
   fundability: () => { const dp = state.lines?.deal_points_of_funded_arc; return `<h2>Chance of an award</h2>
+    ${plain(`DCA scores every 9% application out of 98 points; we estimate yours as the site's location points plus your deal points.
+      Whether it wins depends on how that score compares with the other applications in the same round and pool, so we trained a
+      model on ${state.win ? fmtInt.format(state.win.data.applications) : "about 800"} past Georgia 9% applications to turn "points above or below the typical applicant" into a
+      chance of an award, and tested it on rounds it had never seen.`)}
     <p class="lead">From the <a href="../fundability_site/">Fundability Map</a>. DCA scores each 9% application; the chance of an award
       depends on how far that score sits above or below the pool's typical applicant.</p>
     <ul>
@@ -1309,9 +1392,8 @@ const VIEWS = {
       <li><b>Two answers change location points.</b> §XIV revitalization plan points share a 10-point block with §XV, §XVI and §XIX,
         so the block takes whichever is higher at the site; §XVII phasing replaces §XVIII previous projects when higher. For each tract
         the tool keeps its best spot for every combination of those two answers.</li>
-      <li><b>The model</b> is a logistic regression fit on past statewide 9% applications and tested on rounds it never saw. Details
-        are in the Fundability Map's methodology.</li>
     </ul>
+    ${awardMethod()}
     <p class="hint">On the map and in the list, a tract's chance uses its best spot. Look up an address (or click a spot) and it's
       scored at that spot, at its nearest point on the same 0.25-mile grid the Fundability Map uses, with the same result.</p>`; },
   data: () => `<h2>Data and sources</h2>
@@ -1418,7 +1500,7 @@ const TOUR = [
       strong schools, jobs and health. The map and the rankings update as you slide.` },
   { el: () => $("#score-stack").closest(".control"), title: "Your estimated score", before: () => showLeftPage("score"),
     body: `Georgia's housing agency (DCA) scores every 9% application out of 98 points. The <b>blue</b> part comes from the site's
-      location; the <b>grey</b> part comes from your project, your "deal". The tick marks the lowest score funded last year, and the
+      location; the <b>grey</b> part comes from your project, your "deal". The tick marks last year's funding line, the highest score that wasn't funded, and the
       chance of an award is underneath. Open this page any time from <b>Estimated DCA score</b> on the left.` },
   { el: () => $(".deal-slider"), title: "Your deal points", before: () => showLeftPage("score"),
     body: `Not sure yet? Leave this at a typical funded deal (${typicalPoints()} points), or slide it for a quick what-if.` },

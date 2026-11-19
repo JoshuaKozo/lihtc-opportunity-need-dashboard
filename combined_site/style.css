@@ -354,6 +354,9 @@ table.rubric td:first-child { font-weight: 500; }
 table.rubric td.num, table.rubric th.num { text-align: right; white-space: nowrap; }
 table.rubric tr.hl td { background: var(--accent-soft); }
 table.rubric .desc { font-size: 12px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.plain-summary { margin: 4px 0 18px; padding: 14px 16px; border-radius: var(--radius-card); background: var(--accent-soft); border-left: 3px solid var(--accent); }
+.plain-summary .ps-label { font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 4px; }
+.plain-summary p:not(.ps-label) { font-size: 15px; line-height: 24px; color: var(--text); margin: 0; }
 .formula { background: var(--raised); border-radius: var(--radius-card); padding: 14px 16px; margin: 8px 0 14px; font-size: 14px; line-height: 24px; overflow-x: auto; }
 .mcard { border: 1px solid var(--border); border-radius: var(--radius-card); padding: 16px; margin: 12px 0; }
 .mcard-head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; margin-bottom: 6px; }

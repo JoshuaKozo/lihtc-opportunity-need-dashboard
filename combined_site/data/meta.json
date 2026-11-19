@@ -998,5 +998,11 @@
     "diff_significant": true
    }
   ]
+ },
+ "siteline_backtest": {
+  "rounds": "2014-2025",
+  "applications": 190,
+  "competitions": 23,
+  "auc": 0.623
  }
 }
