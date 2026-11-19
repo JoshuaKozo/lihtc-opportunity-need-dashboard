@@ -1370,7 +1370,7 @@ function route() {
 }
 
 /* ── the guided tour: a first-visit walkthrough of the screen, replayable from "How to use" ── */
-const TOUR_KEY = "site-finder-tour-v1";
+const TOUR_KEY = "site-finder-tour-v2";
 const EXAMPLE = { lat: 33.76443, lng: -84.35012, label: "1129 Euclid Ave NE, Atlanta" };
 const narrow = () => window.matchMedia("(max-width: 759px)").matches;
 function exampleSite() {   // a pin to explain, unless the visitor has already picked a place
@@ -1631,7 +1631,19 @@ async function init() {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && railOverlay.matches && $("#app").classList.contains("rail-open")) setRail(false); });
 
   const menu = $("#menu");
-  $("#menu-btn").addEventListener("click", () => { location.hash = `#about/${state.menuView || "how"}`; });
+  // The menu and its pages open directly, then the address follows: some browsers and embeds never report an
+  // address change (hashchange), and then a menu that waited for one wouldn't open or switch pages.
+  const showAbout = (view) => {
+    openMenu(view);
+    try { history.replaceState(null, "", `#about/${state.menuView}`); } catch { /* embedded: no address */ }
+  };
+  $("#menu-btn").addEventListener("click", () => showAbout(state.menuView || "how"));
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#about/"]');
+    if (!a) return;
+    e.preventDefault();
+    showAbout(a.getAttribute("href").slice(7));
+  });
   $("#menu-close").addEventListener("click", () => menu.close());
   menu.addEventListener("click", (e) => { if (e.target === menu) menu.close(); });
   $("#menu-body").addEventListener("input", onWeightInput);

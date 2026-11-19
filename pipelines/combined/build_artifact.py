@@ -201,13 +201,7 @@ async function initDownloads() {
 ''')
     js = sub(js, '''"Couldn't load the data. Serve this folder over http (see combined_site/README.md)."''', '''"The tract data didn't load. Reload the page to try again."''')
 
-    # Open the menu directly: the viewer's frame controls the URL.
-    js = sub(js, '''$("#menu-btn").addEventListener("click", () => { location.hash = `#about/${state.menuView || "how"}`; });''',
-             '''$("#menu-btn").addEventListener("click", () => openMenu(state.menuView || "how"));
-  document.addEventListener("click", (e) => {
-    const a = e.target.closest('a[href^="#about/"]');
-    if (a) { e.preventDefault(); openMenu(a.getAttribute("href").slice(7)); }
-  });''')
+    # (The site itself now opens the menu directly, without waiting for an address change, so no edit is needed.)
 
     # Follow the viewer's theme toggle as well as the system setting.
     js = sub(js, '''window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { readPalette(); restyle(); renderLegend(); });
