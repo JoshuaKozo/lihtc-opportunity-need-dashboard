@@ -761,7 +761,7 @@ function syncControls() {
     : `A quick estimate: funded ARC deals claimed a median of ${typicalPoints()}. For an exact count, fill in your deal checklist.`;
   $("#tab-deal-pts").textContent = state.dealStarted ? `${+sc.other.toFixed(1)} pts` : "";
   $("#deal-clear").disabled = !state.dealStarted;
-  $("#deal-clear").title = state.dealStarted ? "Clear every answer and start over" : "Nothing to reset yet";
+  $("#deal-clear").title = state.dealStarted ? "Clear every answer and start over" : "Nothing to clear yet";
   const est = selP && scored(state.selected) ? selectedEstimate() : null, chance = isNum(est?.chance) ? `${Math.round(100 * est.chance)}% chance` : "";
   const dealPts = state.dealStarted ? +sc.other.toFixed(1) : state.dealPoints;
   $("#pl-score-val").textContent = est ? st.total : "";
@@ -1335,13 +1335,32 @@ const VIEWS = {
       <li>Only the default weights were calibrated and tested. Custom metric weights are a what-if.</li>
     </ul>`,
 };
+/* The settings and methodology panel. It's a plain element over the page (not a native modal <dialog>, which some
+   browsers wouldn't redraw when its tabs changed). While it's open the page behind is inert. */
+const menuIsOpen = () => !$("#menu").hidden;
+const MENU_BEHIND = [".appbar", "#app", "#deal-page"];
+function showMenuPanel() {
+  if (menuIsOpen()) return;
+  state.menuReturnFocus = document.activeElement;
+  $("#menu").hidden = false; $("#menu-backdrop").hidden = false;
+  MENU_BEHIND.forEach((s) => { const el = $(s); if (el) el.inert = true; });
+  document.body.classList.add("menu-open");
+}
+function closeMenu() {
+  if (!menuIsOpen()) return;
+  $("#menu").hidden = true; $("#menu-backdrop").hidden = true;
+  MENU_BEHIND.forEach((s) => { const el = $(s); if (el) el.inert = false; });
+  document.body.classList.remove("menu-open");
+  if (location.hash.startsWith("#about/")) { try { history.replaceState(null, "", selectedHash()); } catch { /* fine */ } }
+  const back = state.menuReturnFocus?.isConnected && !state.menuReturnFocus.closest("#menu") ? state.menuReturnFocus : $("#menu-btn");
+  back.focus({ preventScroll: true });
+}
 function openMenu(view) {
-  const dlg = $("#menu");
   if (!VIEWS[view]) view = "how";
-  if (!dlg.open) dlg.showModal();
+  showMenuPanel();
   state.menuView = view;
   $("#menu-body").innerHTML = `<article class="doc">${VIEWS[view]()}</article>`;
-  document.querySelectorAll(".menu-nav a").forEach((a) => { if (a.dataset.view === view) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  document.querySelectorAll(".menu-nav [data-view]").forEach((b) => { if (b.dataset.view === view) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   document.querySelectorAll(".doc table.rubric").forEach((tbl) => {
     const heads = [...tbl.querySelectorAll("thead th")].map((th) => th.textContent.trim());
     tbl.querySelectorAll("tbody tr").forEach((tr) => [...tr.children].forEach((td, i) => { td.dataset.label = heads[i] || ""; }));
@@ -1357,7 +1376,7 @@ function route() {
   showDealPage(h === "checklist");
   if (h === "checklist") return;
   if (h.startsWith("about/")) { openMenu(h.slice(6)); return; }
-  if ($("#menu").open) $("#menu").close();
+  closeMenu();
   const site = h.match(/^site=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/);
   if (site && state.map) {
     const latlng = L.latLng(+site[1], +site[2]), f = tractAt(latlng);
@@ -1443,7 +1462,7 @@ function tourNodes() {
 function tourStart() {
   closeDealPage();   // the tour walks through the map page
   tour.lastFocus = document.activeElement;
-  if ($("#menu").open) $("#menu").close();
+  closeMenu();
   const { block, spot, pop } = tourNodes();
   [block, spot, pop].forEach((n) => { n.hidden = false; });
   document.addEventListener("keydown", tourKey, true);
@@ -1576,12 +1595,12 @@ async function init() {
   const disarmReset = () => {
     clearTimeout(resetArmed); resetArmed = null;
     $("#deal-clear").classList.remove("armed");
-    $("#deal-clear span").textContent = "Reset checklist";
+    $("#deal-clear span").textContent = "Clear";
   };
   $("#deal-clear").addEventListener("click", () => {
     if (!resetArmed) {
       $("#deal-clear").classList.add("armed");
-      $("#deal-clear span").textContent = "Click again to clear every answer";
+      $("#deal-clear span").textContent = "Click again to clear";
       resetArmed = setTimeout(disarmReset, 4000);
       return;
     }
@@ -1594,7 +1613,7 @@ async function init() {
   });
   $("#deal-back").addEventListener("click", closeDealPage);
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && state.dealPage && !document.querySelector("dialog[open]") && tour.i < 0) closeDealPage();
+    if (e.key === "Escape" && state.dealPage && !document.querySelector("dialog[open]") && !menuIsOpen() && tour.i < 0) closeDealPage();
   });
   document.addEventListener("click", (e) => {   // the left side's page links and back buttons
     const b = e.target.closest("[data-page]");
@@ -1648,7 +1667,6 @@ async function init() {
   $("#scrim").addEventListener("click", () => setRail(false));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && railOverlay.matches && $("#app").classList.contains("rail-open")) setRail(false); });
 
-  const menu = $("#menu");
   // The menu and its pages open directly, then the address follows: some browsers and embeds never report an
   // address change (hashchange), and then a menu that waited for one wouldn't open or switch pages.
   const showAbout = (view) => {
@@ -1656,17 +1674,22 @@ async function init() {
     try { history.replaceState(null, "", `#about/${state.menuView}`); } catch { /* embedded: no address */ }
   };
   $("#menu-btn").addEventListener("click", () => showAbout(state.menuView || "how"));
+  // the menu's tabs and "Change" are buttons; links to #about/ pages inside the text open the same way
   document.addEventListener("click", (e) => {
+    const b = e.target.closest(".menu-nav [data-view], [data-about]");
+    if (b) { showAbout(b.dataset.view || b.dataset.about); return; }
     const a = e.target.closest('a[href^="#about/"]');
     if (!a) return;
     e.preventDefault();
     showAbout(a.getAttribute("href").slice(7));
   });
-  $("#menu-close").addEventListener("click", () => menu.close());
-  menu.addEventListener("click", (e) => { if (e.target === menu) menu.close(); });
+  $("#menu-close").addEventListener("click", closeMenu);
+  $("#menu-backdrop").addEventListener("click", closeMenu);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menuIsOpen() && tour.i < 0) { e.preventDefault(); closeMenu(); }
+  });
   $("#menu-body").addEventListener("input", onWeightInput);
   $("#menu-body").addEventListener("click", onWeightReset);
-  menu.addEventListener("close", () => { if (location.hash.startsWith("#about/")) history.replaceState(null, "", selectedHash()); });
   window.addEventListener("hashchange", route);
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { readPalette(); restyle(); renderLegend(); });
   route();

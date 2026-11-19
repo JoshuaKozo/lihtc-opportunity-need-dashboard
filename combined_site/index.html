@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://tile.openstreetmap.org">
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <link rel="stylesheet" href="style.css?v=20">
+  <link rel="stylesheet" href="style.css?v=23">
 </head>
 <body>
   <a class="skip" href="#lookup-input">Skip to address search</a>
@@ -126,7 +126,7 @@
           </div>
           <div class="control row">
             <span class="control-label">Metric weights</span>
-            <span class="weights-state"><output id="weights-out"></output><a href="#about/weights">Change</a></span>
+            <span class="weights-state"><output id="weights-out"></output><button type="button" class="btn link" data-about="weights">Change</button></span>
           </div>
         </div>
         <div class="rail-body">
@@ -176,8 +176,7 @@
         <div id="deal-total" class="deal-total"></div>
         <div class="deal-actions">
           <button class="btn secondary" type="button" id="deal-typical">Fill a typical funded deal</button>
-          <button class="btn secondary deal-reset" type="button" id="deal-clear" aria-live="polite">
-            <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.5-3.6M3 2.5v2.4h2.4"/></svg><span>Reset checklist</span></button>
+          <button class="btn secondary deal-reset" type="button" id="deal-clear" aria-live="polite"><span>Clear</span></button>
         </div>
         <form class="deal-form" id="deal-form" aria-label="Deal checklist items"></form>
         <p class="hint deal-foot">Points follow Georgia DCA's 2024–2025 QAP. Answers stay in this browser and are shared with the
@@ -197,7 +196,10 @@
     <div class="cmp-body" id="cmp-body"></div>
   </dialog>
 
-  <dialog class="menu" id="menu" aria-labelledby="menu-title">
+  <!-- An ordinary panel, not a native <dialog>: some browsers never redraw a modal dialog's top layer when its
+       contents change, so switching tabs looked like it did nothing. -->
+  <div class="menu-backdrop" id="menu-backdrop" hidden></div>
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-labelledby="menu-title" hidden>
     <div class="menu-head">
       <p class="menu-title" id="menu-title">Settings and methodology</p>
       <button class="btn secondary menu-done" type="button" id="menu-close" aria-label="Done: close settings and methodology">
@@ -208,21 +210,21 @@
     <div class="menu-grid">
       <nav class="menu-nav" aria-label="Settings and methodology">
         <p class="menu-group">Settings</p>
-        <a href="#about/weights" data-view="weights">Metric weights</a>
+        <button type="button" data-view="weights">Metric weights</button>
         <p class="menu-group">Methodology</p>
-        <a href="#about/how" data-view="how">How it works</a>
-        <a href="#about/need" data-view="need">Need score</a>
-        <a href="#about/opportunity" data-view="opportunity">Opportunity score</a>
-        <a href="#about/combining" data-view="combining">The priority slider</a>
-        <a href="#about/fundability" data-view="fundability">Chance of an award</a>
-        <a href="#about/data" data-view="data">Data and sources</a>
-        <a href="#about/limits" data-view="limits">Limits</a>
+        <button type="button" data-view="how">How it works</button>
+        <button type="button" data-view="need">Need score</button>
+        <button type="button" data-view="opportunity">Opportunity score</button>
+        <button type="button" data-view="combining">The priority slider</button>
+        <button type="button" data-view="fundability">Chance of an award</button>
+        <button type="button" data-view="data">Data and sources</button>
+        <button type="button" data-view="limits">Limits</button>
       </nav>
       <div class="menu-body" id="menu-body" tabindex="-1"></div>
     </div>
-  </dialog>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-  <script src="app.js?v=35"></script>
+  <script src="app.js?v=37"></script>
 </body>
 </html>

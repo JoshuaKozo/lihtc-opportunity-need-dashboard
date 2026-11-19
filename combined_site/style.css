@@ -293,19 +293,20 @@ dl.details dt.sub-dt { padding-left: 12px; color: var(--faint); }
 .scrim.on { opacity: 1; }
 .scrim[hidden] { display: none; }
 /* ── the methodology menu: a sheet from the left ── */
-dialog.menu {
-  position: fixed; inset: 0 auto 0 0; margin: 0; padding: 0; border: 0; border-right: 1px solid var(--border);
+.menu-backdrop { position: fixed; inset: 0; z-index: 60; background: rgba(10, 10, 10, .32); }
+.menu-backdrop[hidden], .menu[hidden] { display: none; }
+body.menu-open { overflow: hidden; }
+.menu {
+  position: fixed; z-index: 61; inset: 0 auto 0 0; margin: 0; padding: 0; border: 0; border-right: 1px solid var(--border);
   width: min(980px, calc(100vw - 72px)); max-width: 100vw; height: 100dvh; max-height: 100dvh;
   background: var(--surface); color: var(--text); box-shadow: var(--float-shadow);
   display: flex; flex-direction: column; overflow: hidden;
-  transform: translateX(-100%); transition: transform .32s var(--ease), overlay .32s allow-discrete, display .32s allow-discrete;
 }
-dialog.menu:not([open]) { display: none; }
-dialog.menu[open] { transform: none; }
-@starting-style { dialog.menu[open] { transform: translateX(-100%); } }
-dialog.menu::backdrop { background: rgba(10, 10, 10, 0); transition: background-color .32s, overlay .32s allow-discrete, display .32s allow-discrete; }
-dialog.menu[open]::backdrop { background: rgba(10, 10, 10, .32); }
-@starting-style { dialog.menu[open]::backdrop { background: rgba(10, 10, 10, 0); } }
+/* The slide-in is a one-off animation whose resting state is the open menu: if a browser skips or pauses it, the
+   menu is simply there and usable. */
+.menu:not([hidden]) { animation: menu-in .26s var(--ease); }
+@keyframes menu-in { from { transform: translateX(-32px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .menu:not([hidden]) { animation: none; } }
 .menu-head { flex: none; display: flex; align-items: center; justify-content: space-between; height: var(--bar-h); padding: 0 12px 0 20px; border-bottom: 1px solid var(--border); }
 .menu-done { height: 32px; padding: 0 12px 0 10px; font-size: 13px; gap: 6px; display: inline-flex; align-items: center; }
 .menu-title { font-size: 15px; font-weight: 500; }
@@ -313,9 +314,13 @@ dialog.menu[open]::backdrop { background: rgba(10, 10, 10, .32); }
 .menu-nav { padding: 12px 8px; border-right: 1px solid var(--border); background: var(--ground); display: flex; flex-direction: column; gap: 2px; overflow-y: auto; }
 .menu-group { margin: 10px 12px 4px; font-size: 12px; line-height: 16px; color: var(--muted); }
 .menu-group:first-child { margin-top: 2px; }
-.menu-nav a { display: flex; align-items: center; height: 34px; padding: 0 12px; border-radius: var(--radius-control); text-decoration: none; color: var(--muted); font-size: 14px; }
-.menu-nav a:hover { color: var(--text); background: var(--active); }
-.menu-nav a[aria-current="page"] { color: var(--text); background: var(--active); font-weight: 500; }
+.menu-nav [data-view] {
+  display: flex; align-items: center; height: 34px; padding: 0 12px; border-radius: var(--radius-control); text-decoration: none; color: var(--muted); font-size: 14px;
+  width: 100%; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer;
+}
+.menu-nav [data-view]:hover { color: var(--text); background: var(--active); }
+.menu-nav [data-view]:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.menu-nav [data-view][aria-current="page"] { color: var(--text); background: var(--active); font-weight: 500; }
 .menu-body:focus { outline: none; }
 .menu-body { overflow-y: auto; overscroll-behavior: contain; padding: 32px 40px 64px; scroll-padding-top: 16px; }
 
@@ -565,12 +570,11 @@ input[type="range"]:focus-visible::-moz-range-thumb { outline: 2px solid var(--a
 .dmeter > i { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--p) * 100%); background: var(--bar); border-radius: 999px; transition: width .35s var(--ease); }
 .dmeter > b { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; left: calc(var(--m) * 100%); background: var(--text); }
 .dmeter > span { position: absolute; top: 12px; left: calc(var(--m) * 100%); transform: translateX(calc(-100% + 1px)); font-size: 11px; line-height: 14px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.deal-actions { display: flex; align-items: center; gap: 14px; margin-top: 4px; flex-wrap: wrap; }
-.deal-actions .btn.secondary { height: 32px; padding: 0 12px; font-size: 13px; margin-right: auto; }
+.deal-actions { display: flex; align-items: center; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+.deal-actions .btn.secondary { height: 32px; padding: 0 12px; font-size: 13px; }
 .deal-actions .btn.text { font-size: 13px; }
-.deal-actions .btn.secondary.deal-reset { margin-right: 0; display: inline-flex; align-items: center; gap: 6px; }
-.deal-reset .ico { width: 14px; height: 14px; }
-.deal-reset.armed { background: var(--alert-bg); color: var(--alert-ink); box-shadow: inset 0 0 0 1px var(--alert-line); }
+.deal-actions .btn.secondary.deal-reset { margin-right: 0; }
+.deal-reset.armed { background: var(--alert-bg); color: var(--alert-ink); }
 .deal-reset:disabled { opacity: .45; cursor: not-allowed; }
 .deal-foot { margin-top: 14px; }
 
@@ -698,11 +702,11 @@ body.deal-page-open { overflow: hidden; }
   .scores .val { font-size: 22px; }
   .controls { gap: 8px; margin-top: 12px; }
   .ends { margin-top: 0; }
-  dialog.menu { width: 100vw; border-right: 0; }
+  .menu { width: 100vw; border-right: 0; }
   .menu-grid { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); }
   .menu-nav { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--border); padding: 8px; scrollbar-width: none; }
   .menu-group { display: none; }
-  .menu-nav a { flex: none; height: 36px; }
+  .menu-nav [data-view] { flex: none; width: auto; height: 36px; white-space: nowrap; }
   .menu-body { padding: 20px 16px 48px; }
   .wt-row { grid-template-columns: minmax(0, 1fr) 72px 52px; }
   .wt-row label { grid-column: 1 / -1; }

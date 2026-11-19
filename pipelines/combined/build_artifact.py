@@ -171,7 +171,7 @@ function findTracts(q) {
 async function initDownloads() {
   state.downloads = await window.claude?.use?.("downloads");
   $("#download").hidden = !state.downloads;
-  if (state.menuView === "data" && $("#menu").open) openMenu("data");
+  if (state.menuView === "data" && menuIsOpen()) openMenu("data");
 }
 ''')
     js = sub(js, '''<p><button class="btn secondary" type="button" data-download>Download every tract at the current settings (CSV)</button></p>''',
