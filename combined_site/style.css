@@ -803,3 +803,35 @@ dialog.compare::backdrop { background: rgba(10, 10, 10, .4); }
   .cmp-table .cmp-corner { width: 128px; }
   .cmp-table { min-width: 540px; }
 }
+
+/* ── readability: body 15px, notes and labels 14px, list and checklist rows 15px (UI/UX Pro Max review) ── */
+body { font-size: 15px; line-height: 22px; }
+.hint, .control-note, .lookup-note, .card-sub, .ds-note, .deal-disclaimer { font-size: 14px; line-height: 21px; }
+.control-label, .control output, #bias-out, #deal-points-out { font-size: 14px; }
+.ends, .legend .lg-sub, .legend .ends { font-size: 13px; }
+.stack-rows, .stack-foot { font-size: 13.5px; line-height: 20px; }
+.ck-main { font-size: 15px; line-height: 21px; }
+.ck .pts, .ck-desc, .ds-ref { font-size: 13.5px; }
+.ds-title { font-size: 14.5px; }
+.ranked .nm { font-size: 14px; line-height: 20px; }
+.ranked .loc { font-size: 13px; line-height: 18px; }
+dl.details { font-size: 13.5px; line-height: 21px; }
+.card > h3 { font-size: 15px; }
+.doc { font-size: 16px; line-height: 26px; }
+.menu-nav [data-view] { font-size: 15px; height: 38px; }
+
+/* ── phones and touch screens: 44px tap targets (UI/UX Pro Max review) ── */
+@media (max-width: 759px), (pointer: coarse) {
+  .ck-more { width: 44px; height: 44px; }
+  .ck { grid-template-columns: minmax(0, 1fr) 44px; }
+  .ck-main { min-height: 44px; }
+  .ck .ctl button { width: 44px; height: 44px; }
+  .ck .ctl input { height: 44px; width: 44px; }
+  .ck select { height: 44px; font-size: 15px; }
+  .lookup input, .lookup .btn { height: 44px; }
+  .btn.icon { width: 44px; height: 44px; }
+  .deal-actions .btn.secondary { height: 44px; }
+  .page-cta { height: 52px; }
+  input[type="range"] { height: 40px; }
+  .ranked button { min-height: 48px; }
+}

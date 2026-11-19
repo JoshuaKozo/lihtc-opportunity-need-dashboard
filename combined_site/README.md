@@ -21,7 +21,7 @@ make combined-serve      # http://localhost:8768/combined_site/ (serves the repo
 | **Methodology** (left menu) | How it works, both scores' categories and metrics (generated from the metric set, with their calibrated weights), the slider math, the chance of an award, data and sources, limits. |
 
 Addresses: `#tract=<11-digit GEOID>` opens a tract; `#about/<view>` opens the menu at `weights`, `how`, `need`,
-`opportunity`, `combining`, `fundability`, `data`, or `limits`; `?theme=light|dark` pins the color scheme.
+`opportunity`, `combining`, `fundability`, `data`, or `limits`; `?theme=light|dark` pins the color scheme; `?priority=0-100` sets the priority slider (it's kept in the address, so a copied link shares it).
 
 ## How it computes
 

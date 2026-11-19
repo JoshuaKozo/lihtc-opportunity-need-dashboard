@@ -767,6 +767,14 @@ function syncControls() {
     : `<span>Estimated DCA score</span><b>${esc(st.total)}</b><span class="sl-chance">pick a place for the location part</span>`;
   $("#weights-out").textContent = customWeights() ? "Custom" : "Team defaults";
 }
+// Keep ?priority= in the address, so copying the link shares this priority setting along with the place or page.
+function syncPriorityLink() {
+  try {
+    const u = new URL(location.href);
+    u.searchParams.set("priority", String(Math.round(100 * state.bias)));
+    history.replaceState(history.state, "", u.pathname + u.search + u.hash);
+  } catch { /* embedded: no address */ }
+}
 function saveSettings() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify({ bias: state.bias, dealPoints: state.dealPoints, weights: state.weights })); } catch { /* fine */ }
 }
@@ -1658,6 +1666,9 @@ async function init() {
       });
     }
   } catch { /* fine */ }
+  // A shared link carries the priority setting (?priority=60 is 40% need, 60% opportunity) and wins over this browser's own.
+  const linked = new URLSearchParams(location.search).get("priority");
+  if (linked !== null && linked !== "" && Number.isFinite(+linked)) state.bias = Math.min(100, Math.max(0, Math.round(+linked))) / 100;
   applyWeights();
   computePriority();
   readPalette();
@@ -1670,7 +1681,8 @@ async function init() {
   }).catch((err) => console.error(err));
   update();
 
-  $("#bias").addEventListener("input", (e) => { state.bias = +e.target.value / 100; update(); });
+  $("#bias").addEventListener("input", (e) => { state.bias = +e.target.value / 100; update(); syncPriorityLink(); });
+  syncPriorityLink();
   $("#deal").addEventListener("input", (e) => { state.dealPoints = +e.target.value; update(); });
   renderDeal();
   $("#deal-form").addEventListener("input", onDealInput);
