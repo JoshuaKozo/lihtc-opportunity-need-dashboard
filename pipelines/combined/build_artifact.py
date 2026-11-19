@@ -199,7 +199,8 @@ async function initDownloads() {
       <li>This copy has no street map and can't search street addresses, because the page can't reach outside map services.
         Search by city, county, tract number or coordinates instead.</li>
 ''')
-    js = sub(js, '''"Couldn't load the data. Serve this folder over http (see combined_site/README.md)."''', '''"The tract data didn't load. Reload the page to try again."''')
+    js = sub(js, '''location.protocol === "file:" ? "Couldn't load the data. Open this page through a web server (see combined_site/README.md)."
+    : "Couldn't load the map data. Check your connection and reload the page."''', '''"The tract data didn't load. Reload the page to try again."''')
 
     # (The site itself now opens the menu directly, without waiting for an address change, so no edit is needed.)
 

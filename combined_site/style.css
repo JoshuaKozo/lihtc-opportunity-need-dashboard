@@ -582,7 +582,7 @@ input[type="range"]:focus-visible::-moz-range-thumb { outline: 2px solid var(--a
 .deal-actions .btn.secondary { height: 32px; padding: 0 12px; font-size: 13px; }
 .deal-actions .btn.text { font-size: 13px; }
 .deal-actions .btn.secondary.deal-reset { margin-right: 0; }
-.deal-reset.armed { background: var(--alert-bg); color: var(--alert-ink); }
+.deal-reset.armed, [data-reset-weights].armed { background: var(--alert-bg); color: var(--alert-ink); }
 .deal-reset:disabled { opacity: .45; cursor: not-allowed; }
 .deal-foot { margin-top: 14px; }
 
@@ -630,6 +630,7 @@ div.ck-main:hover { background: transparent; }
 
 /* ── the deal checklist's own page: it covers the map page below the top bar ── */
 .deal-page {
+  scroll-padding-top: 72px;   /* tabbing through the checklist keeps the focused item below the pinned score */
   position: fixed; z-index: 25; inset: var(--bar-h) 0 0 0; overflow-y: auto; overscroll-behavior: contain;
   background: var(--ground);
 }
@@ -691,6 +692,7 @@ body.deal-page-open { overflow: hidden; }
 /* ── phone: one column; search and controls, then the map, then the tract ── */
 @media (max-width: 759px) {
   :root { --pad: 16px; --bar-h: 52px; }
+  html { scroll-padding-top: calc(var(--bar-h) + 8px); }   /* the page scrolls under the sticky top bar on phones */
   .appbar { gap: 4px; padding-left: max(6px, env(safe-area-inset-left)); padding-right: max(8px, env(safe-area-inset-right)); }
   .menu-btn span { display: none; }
   .tour-btn span { display: none; }

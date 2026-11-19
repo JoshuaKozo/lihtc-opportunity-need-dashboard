@@ -977,7 +977,7 @@ function weightRow(score, cat, m) {
 function weightSection(score) {
   const label = titleCase(score);
   return `<section class="wt-score"><div class="wt-head"><h3>${label}</h3>
-      <button class="btn secondary" type="button" data-reset-weights="${score}">Reset ${label}</button></div>
+      <button class="btn secondary" type="button" data-reset-weights="${score}" aria-live="polite">Reset ${label}</button></div>
     <p class="note warn" data-weights-off="${score}" hidden>Every ${label} weight is zero, so ${label} is using the team's defaults. Give at least one metric a weight.</p>
     ${state.meta.scores[score].map((c) => `<div class="wt-cat"><div class="wt-cat-head"><span>${esc(c.label)}</span><output data-share="${c.key}"></output></div>
       ${c.metrics.map((m) => weightRow(score, c, m)).join("")}</div>`).join("")}</section>`;
@@ -1005,9 +1005,19 @@ function onWeightInput(e) {
   setWeight(el.dataset.score, el.dataset.metric, value);
   syncWeightShares();
 }
+let weightResetArmed = null;
 function onWeightReset(e) {
   const b = e.target.closest("[data-reset-weights]");
   if (!b) return;
+  // it throws away every custom weight for that score, so the first click asks and a second within 4 seconds resets
+  if (weightResetArmed?.button !== b) {
+    if (weightResetArmed) { clearTimeout(weightResetArmed.timer); weightResetArmed.button.classList.remove("armed"); weightResetArmed.button.textContent = weightResetArmed.label; }
+    const label = b.textContent;
+    b.classList.add("armed"); b.textContent = "Click again to reset";
+    weightResetArmed = { button: b, label, timer: setTimeout(() => { b.classList.remove("armed"); b.textContent = label; weightResetArmed = null; }, 4000) };
+    return;
+  }
+  clearTimeout(weightResetArmed.timer); weightResetArmed = null;
   state.weights[b.dataset.resetWeights] = {};
   applyWeights();
   update();
@@ -1782,6 +1792,7 @@ async function init() {
 }
 
 init().catch((err) => {
-  $("#loading").textContent = "Couldn't load the data. Serve this folder over http (see combined_site/README.md).";
+  $("#loading").textContent = location.protocol === "file:" ? "Couldn't load the data. Open this page through a web server (see combined_site/README.md)."
+    : "Couldn't load the map data. Check your connection and reload the page.";
   console.error(err);
 });

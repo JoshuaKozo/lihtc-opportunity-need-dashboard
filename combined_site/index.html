@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://tile.openstreetmap.org">
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <link rel="stylesheet" href="style.css?v=25">
+  <link rel="stylesheet" href="style.css?v=26">
 </head>
 <body>
   <a class="skip" href="#lookup-input">Skip to address search</a>
@@ -29,7 +29,7 @@
         <p class="scope">Metro Atlanta · housing need, resident opportunity and 9% award chances</p>
       </div>
     </div>
-    <button class="btn quiet tour-btn" id="tour-btn" type="button" aria-haspopup="dialog">
+    <button class="btn quiet tour-btn" id="tour-btn" type="button" aria-haspopup="dialog" aria-label="How to use: start the guided tour">
       <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.7c-.5.2-.8.6-.8 1.1v.4M8 11.4v.1"/></svg>
       <span>How to use</span>
     </button>
@@ -53,7 +53,7 @@
       </form>
       <p class="lookup-note"><span id="lookup-status" role="status" aria-live="polite"></span>Or click anywhere on the map to score that spot.</p>
 
-      <div class="controls" aria-label="What to prioritize">
+      <div class="controls" role="group" aria-label="What to prioritize">
         <div class="control">
           <div class="control-head">
             <label for="bias" class="control-label">Priority</label>
@@ -225,6 +225,6 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-  <script src="app.js?v=39"></script>
+  <script src="app.js?v=40"></script>
 </body>
 </html>
