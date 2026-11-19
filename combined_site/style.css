@@ -565,9 +565,13 @@ input[type="range"]:focus-visible::-moz-range-thumb { outline: 2px solid var(--a
 .dmeter > i { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--p) * 100%); background: var(--bar); border-radius: 999px; transition: width .35s var(--ease); }
 .dmeter > b { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; left: calc(var(--m) * 100%); background: var(--text); }
 .dmeter > span { position: absolute; top: 12px; left: calc(var(--m) * 100%); transform: translateX(calc(-100% + 1px)); font-size: 11px; line-height: 14px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.deal-actions { display: flex; align-items: center; gap: 14px; margin-top: -6px; }
+.deal-actions { display: flex; align-items: center; gap: 14px; margin-top: 4px; flex-wrap: wrap; }
 .deal-actions .btn.secondary { height: 32px; padding: 0 12px; font-size: 13px; margin-right: auto; }
 .deal-actions .btn.text { font-size: 13px; }
+.deal-actions .btn.secondary.deal-reset { margin-right: 0; display: inline-flex; align-items: center; gap: 6px; }
+.deal-reset .ico { width: 14px; height: 14px; }
+.deal-reset.armed { background: var(--alert-bg); color: var(--alert-ink); box-shadow: inset 0 0 0 1px var(--alert-line); }
+.deal-reset:disabled { opacity: .45; cursor: not-allowed; }
 .deal-foot { margin-top: 14px; }
 
 /* the checklist: one card per group, one compact row per item, details behind an arrow */

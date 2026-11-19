@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://tile.openstreetmap.org">
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-  <link rel="stylesheet" href="style.css?v=18">
+  <link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
   <a class="skip" href="#lookup-input">Skip to address search</a>
@@ -176,7 +176,8 @@
         <div id="deal-total" class="deal-total"></div>
         <div class="deal-actions">
           <button class="btn secondary" type="button" id="deal-typical">Fill a typical funded deal</button>
-          <button class="btn text" type="button" id="deal-clear">Reset</button>
+          <button class="btn secondary deal-reset" type="button" id="deal-clear" aria-live="polite">
+            <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.5-3.6M3 2.5v2.4h2.4"/></svg><span>Reset checklist</span></button>
         </div>
         <form class="deal-form" id="deal-form" aria-label="Deal checklist items"></form>
         <p class="hint deal-foot">Points follow Georgia DCA's 2024–2025 QAP. Answers stay in this browser and are shared with the
@@ -222,6 +223,6 @@
   </dialog>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-  <script src="app.js?v=34"></script>
+  <script src="app.js?v=35"></script>
 </body>
 </html>

@@ -760,6 +760,8 @@ function syncControls() {
     ? "Your checklist sets the points now. Reset the checklist to use the slider again."
     : `A quick estimate: funded ARC deals claimed a median of ${typicalPoints()}. For an exact count, fill in your deal checklist.`;
   $("#tab-deal-pts").textContent = state.dealStarted ? `${+sc.other.toFixed(1)} pts` : "";
+  $("#deal-clear").disabled = !state.dealStarted;
+  $("#deal-clear").title = state.dealStarted ? "Clear every answer and start over" : "Nothing to reset yet";
   const est = selP && scored(state.selected) ? selectedEstimate() : null, chance = isNum(est?.chance) ? `${Math.round(100 * est.chance)}% chance` : "";
   const dealPts = state.dealStarted ? +sc.other.toFixed(1) : state.dealPoints;
   $("#pl-score-val").textContent = est ? st.total : "";
@@ -1569,7 +1571,23 @@ async function init() {
   $("#deal-form").addEventListener("click", onDealStep);
   $("#deal-form").addEventListener("submit", (e) => e.preventDefault());
   $("#deal-typical").addEventListener("click", () => { state.deal = typicalDeal(); saveDeal(); renderDeal(); update(); });
-  $("#deal-clear").addEventListener("click", () => { resetDeal(); renderDeal(); update(); });
+  // Reset clears every answer, so it asks once: the first click arms it, a second within a few seconds resets.
+  let resetArmed = null;
+  const disarmReset = () => {
+    clearTimeout(resetArmed); resetArmed = null;
+    $("#deal-clear").classList.remove("armed");
+    $("#deal-clear span").textContent = "Reset checklist";
+  };
+  $("#deal-clear").addEventListener("click", () => {
+    if (!resetArmed) {
+      $("#deal-clear").classList.add("armed");
+      $("#deal-clear span").textContent = "Click again to clear every answer";
+      resetArmed = setTimeout(disarmReset, 4000);
+      return;
+    }
+    disarmReset();
+    resetDeal(); renderDeal(); update();
+  });
   document.addEventListener("click", (e) => {
     if (!e.target.closest("[data-open-deal]")) return;
     openDealPage();
